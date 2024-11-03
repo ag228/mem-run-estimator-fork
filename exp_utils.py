@@ -149,7 +149,7 @@ def generate_multimodal_inputs(
 def generate_noise_and_timesteps(
         bsz: int, im_sz:int, num_denoise:int, dev: torch.device
 ) -> Tuple[torch.Tensor, torch.Tensor]:
-    pixel_img = torch.randn(bsz, 3, im_sz, im_sz).to(dev)
+    pixel_img = torch.randn(bsz, 3, im_sz, im_sz)
     timesteps = torch.randint(0, num_denoise, (bsz,), device=dev).long()
     return (pixel_img, timesteps)
 
@@ -310,7 +310,7 @@ def create_training_setup(
 
         with init_mode:
             with torch.device(dev):
-                unet = model_cls[0].from_pretrained(model_card[0], subfolder="unet")
+                unet = model_cls[0].from_pretrained(model_card[0], subfolder="unet").to(dev)
                 vae = model_cls[1].from_pretrained(model_card[0], subfolder="vae")
                 text_encoder = model_cls[2].from_pretrained(model_card[0], subfolder="text_encoder")
                 tokenizer = model_cls[3].from_pretrained(model_card[1])
@@ -329,6 +329,7 @@ def create_training_setup(
                 # Generate text embeddings
                 input_ids, labels = generate_inputs_and_labels(batch_size, text_encoder.config.vocab_size, seq_len, dev)
                 text_embeddings = text_encoder(input_ids).last_hidden_state
+                text_embeddings = text_embeddings.to(dev)
 
                 # Generate timesteps and pixel_image
                 pixel_img, timesteps = generate_noise_and_timesteps(batch_size, image_size, num_denoising_steps, dev)
@@ -338,6 +339,7 @@ def create_training_setup(
                     latents = vae.encode(pixel_img).latent_dist.sample() * 0.18215
                 noise = torch.randn_like(latents)
                 noisy_latents = scheduler.add_noise(latents, noise, timesteps)
+                noisy_latents = noisy_latents.to(dev)
 
                 # Prepare inputs for UNet
                 inputs = {
@@ -349,7 +351,7 @@ def create_training_setup(
                 with sdpa_kernel([SDPBackend.FLASH_ATTENTION, SDPBackend.CUDNN_ATTENTION, SDPBackend.EFFICIENT_ATTENTION]):
                     with amp_context:
                         noise_pred = unet(**inputs).sample
-                        loss = torch.nn.functional.mse_loss(noise_pred, noise)
+                        loss = torch.nn.functional.mse_loss(noise_pred, noise.to(dev))
                     loss.backward()
                     optimizer.step()
                     optimizer.zero_grad()
