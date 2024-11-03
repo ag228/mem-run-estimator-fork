@@ -99,6 +99,21 @@ input_configs = {
         {"batch_size": 64, "seq_len": 77, "precision": Precision.FP, "ac": False, "image_size": 512, "num_denoising_steps": 50},
         {"batch_size": 128, "seq_len": 77, "precision": Precision.FP, "ac": False, "image_size": 512, "num_denoising_steps": 50},
     ],
+    "flux": [
+        {"batch_size": 1, "seq_len": 256, "precision": Precision.FP, "ac": False, "image_size": 16, "num_denoising_steps": 50},
+        {"batch_size": 1, "seq_len": 256, "precision": Precision.FP, "ac": False, "image_size": 64, "num_denoising_steps": 50},
+        {"batch_size": 16, "seq_len": 256, "precision": Precision.FP, "ac": False, "image_size": 64, "num_denoising_steps": 50},
+        {"batch_size": 32, "seq_len": 256, "precision": Precision.FP, "ac": False, "image_size": 64, "num_denoising_steps": 50},
+        {"batch_size": 64, "seq_len": 256, "precision": Precision.FP, "ac": False, "image_size": 64, "num_denoising_steps": 50},
+        {"batch_size": 1, "seq_len": 256, "precision": Precision.FP, "ac": False, "image_size": 128, "num_denoising_steps": 50},
+        {"batch_size": 16, "seq_len": 256, "precision": Precision.FP, "ac": False, "image_size": 128, "num_denoising_steps": 50},
+        {"batch_size": 32, "seq_len": 256, "precision": Precision.FP, "ac": False, "image_size": 128, "num_denoising_steps": 50},
+        {"batch_size": 64, "seq_len": 256, "precision": Precision.FP, "ac": False, "image_size": 128, "num_denoising_steps": 50},
+        {"batch_size": 1, "seq_len": 256, "precision": Precision.FP, "ac": False, "image_size": 512, "num_denoising_steps": 50},
+        {"batch_size": 16, "seq_len": 256, "precision": Precision.FP, "ac": False, "image_size": 512, "num_denoising_steps": 50},
+        {"batch_size": 32, "seq_len": 256, "precision": Precision.FP, "ac": False, "image_size": 512, "num_denoising_steps": 50},
+        {"batch_size": 64, "seq_len": 256, "precision": Precision.FP, "ac": False, "image_size": 512, "num_denoising_steps": 50},
+    ],
 }
 
 
@@ -378,7 +393,7 @@ if __name__ == "__main__":
         help="Runtime estimation modes",
     )
     args = parser.parse_args()
-    print(args)
+    print("args = ", args)
     
     if not args.benchmark:
         if args.preset_config:
