@@ -8,6 +8,10 @@ from typing import Any, Callable, Dict, Iterator, List, Set, ContextManager, Tup
 import timm
 import timm.optim
 from transformers import AutoConfig, AutoModelForCausalLM, AutoModelForSeq2SeqLM, CLIPModel, GemmaForCausalLM, LlamaForCausalLM
+from diffusers import StableDiffusionPipeline
+from torch import optim, autocast
+from transformers import CLIPTextModel, CLIPTokenizer 
+from diffusers import UNet2DConditionModel, AutoencoderKL, DDPMScheduler
 from torchmultimodal.modules.losses.contrastive_loss_with_temperature import (
     ContrastiveLossWithTemperature,
 )
@@ -49,7 +53,8 @@ class TestMode(TorchDispatchMode):
         return out
 
 DEVICE = "cuda:0"
-BASE_DIR = "/n/holyscratch01/idreos_lab/Users/spurandare/mem-run-estimator"
+# BASE_DIR = "/n/holyscratch01/idreos_lab/Users/spurandare/mem-run-estimator"
+BASE_DIR = "/n/holylabs/LABS/acc_lab/Users/golden/CS2881r/mem-run-estimator-fork"
 OUT_DIR = f"{BASE_DIR}/outputs"
 gpu_types: Set[str] = {"H100", "A100"}
 
@@ -62,7 +67,9 @@ model_names: Set[str] = {
     "hf_clip",
     "llama_v3_1b",
     "gemma_2b",
-    "timm_convnext_v2"
+    "timm_convnext_v2",
+    "stable_diffusion",
+    "flux"
 }
 
 class ExpType(StrEnum):
@@ -84,6 +91,8 @@ model_cards: Dict[str, str] = {
     "timm_convnext_v2": "convnextv2_huge.fcmae_ft_in22k_in1k_512",
     "timm_vit": "vit_huge_patch14_clip_224.laion2b_ft_in12k_in1k",
     "hf_clip": "openai/clip-vit-large-patch14-336",
+    "stable_diffusion": ["runwayml/stable-diffusion-v1-5", "openai/clip-vit-large-patch14"],
+    "flux": [],
 }
 
 precision_to_dtype: Dict[Precision, torch.dtype] = {
@@ -98,6 +107,8 @@ model_class: Dict[str, Type] = {
     "llama_v3_1b": AutoModelForCausalLM,
     "gemma_2b": AutoModelForCausalLM,
     "hf_clip": CLIPModel,
+    "stable_diffusion": [UNet2DConditionModel, AutoencoderKL, CLIPTextModel,  CLIPTokenizer, DDPMScheduler],
+    "flux": ,
 }
 
 model_ac_classes: Dict[str, List[str]] = {
@@ -108,6 +119,8 @@ model_ac_classes: Dict[str, List[str]] = {
     "timm_convnext_v2": ["GlobalResponseNormMlp",],
     "timm_vit": ["Block",],
     "hf_clip": ["CLIPEncoderLayer",],
+    "stable_diffusion": ["CrossAttnDownBlock2D", "DownBlock2D", "UpBlock2D", "CrossAttnUpBlock2D", "UNetMidBlock2DCrossAttn"],
+    "flux": ,
 }
 
 def generate_inputs_and_labels(
@@ -132,6 +145,13 @@ def generate_multimodal_inputs(
     attention_mask = torch.ones((bsz, seq_len), dtype=torch.int64, device=dev)
     return (input_img, input_ids, attention_mask)
      
+def generate_noise_and_timesteps(
+        bsz: int, im_sz:int, num_denoise:int, dev: torch.device
+) -> Tuple[torch.Tensor, torch.Tensor]:
+    pixel_img = torch.randn(bsz, 3, im_sz, im_sz).to(dev)
+    timesteps = torch.randint(0, num_denoise, (bsz,), device=dev).long()
+    return (pixel_img, timesteps)
+
 
 def create_optimizer(param_iter: Iterator) -> optim.Optimizer:
     optimizer = optim.Adam(
@@ -157,6 +177,7 @@ def create_training_setup(
         image_size: int = 224,
         dev: torch.device = torch.device(DEVICE), 
         init_mode: ContextManager = nullcontext(),
+        num_denoising_steps: int=50,
     ) -> Tuple[nn.Module, optim.Optimizer, Callable]:
     dtype = precision_to_dtype[precision]
     amp_context = nullcontext()
@@ -266,6 +287,113 @@ def create_training_setup(
 
         return (model_with_loss, optimizer, clip_train_step)
 
+    elif model_name == "stable_diffusion":
+        
+        model_card = model_cards[model_name]
+        model_cls = model_class[model_name]
+
+        with init_mode:
+            with torch.device(dev):
+                unet = model_cls[0].from_pretrained(model_card[0], subfolder="unet")
+                vae = model_cls[1].from_pretrained(model_card[0], subfolder="vae")
+                text_encoder = model_cls[2].from_pretrained(model_card[0], subfolder="text_encoder")
+                tokenizer = model_cls[3].from_pretrained(model_card[1])
+
+            optimizer = create_optimizer(unet.parameters())
+            scheduler = model_cls[4].from_pretrained(model_card[0], subfolder="scheduler")
+
+            if ac:
+                ac_classes = model_ac_classes[model_name]
+                apply_ac(unet, ac_classes)
+
+
+        def hf_train_step(
+                model: nn.Module, optim: optim.Optimizer,
+            ):
+                # Generate text embeddings
+                input_ids, labels = generate_inputs_and_labels(batch_size, text_encoder.config.vocab_size, seq_len, dev)
+                text_embeddings = text_encoder(input_ids).last_hidden_state
+
+                # Generate timesteps and pixel_image
+                pixel_img, timesteps = generate_noise_and_timesteps(batch_size, image_size, num_denoising_steps, dev)
+
+                # Generate noisy latents
+                with torch.no_grad():
+                    latents = vae.encode(pixel_img).latent_dist.sample() * 0.18215
+                noise = torch.randn_like(latents)
+                noisy_latents = scheduler.add_noise(latents, noise, timesteps)
+
+                # Prepare inputs for UNet
+                inputs = {
+                    "encoder_hidden_states": text_embeddings,  # Text embeddings as conditioning information
+                    "timestep": timesteps,    # Current timestep
+                    "sample": noisy_latents  # Noisy latents as input
+                }
+
+                with sdpa_kernel([SDPBackend.FLASH_ATTENTION, SDPBackend.CUDNN_ATTENTION, SDPBackend.EFFICIENT_ATTENTION]):
+                    with amp_context:
+                        noise_pred = unet(**inputs).sample
+                        loss = torch.nn.functional.mse_loss(noise_pred, noise)
+                    loss.backward()
+                    optimizer.step()
+                    optimizer.zero_grad()
+
+        return (unet, optimizer, hf_train_step)
+
+
+    elif model_name == "flux":
+        
+        model_card = model_cards[model_name]
+        model_cls = model_class[model_name]
+
+        with init_mode:
+            with torch.device(dev):
+                unet = model_cls[0].from_pretrained(model_card[0], subfolder="unet")
+                vae = model_cls[1].from_pretrained(model_card[0], subfolder="vae")
+                text_encoder = model_cls[2].from_pretrained(model_card[0], subfolder="text_encoder")
+                tokenizer = model_cls[3].from_pretrained(model_card[1])
+
+            optimizer = create_optimizer(unet.parameters())
+            scheduler = model_cls[4].from_pretrained(model_card[0], subfolder="scheduler")
+
+            if ac:
+                ac_classes = model_ac_classes[model_name]
+                apply_ac(unet, ac_classes)
+
+
+        def hf_train_step(
+                model: nn.Module, optim: optim.Optimizer,
+            ):
+                # Generate text embeddings
+                input_ids, labels = generate_inputs_and_labels(batch_size, text_encoder.config.vocab_size, seq_len, dev)
+                text_embeddings = text_encoder(input_ids).last_hidden_state
+
+                # Generate timesteps and pixel_image
+                pixel_img, timesteps = generate_noise_and_timesteps(batch_size, image_size, num_denoising_steps, dev)
+
+                # Generate noisy latents
+                with torch.no_grad():
+                    latents = vae.encode(pixel_img).latent_dist.sample() * 0.18215
+                noise = torch.randn_like(latents)
+                noisy_latents = scheduler.add_noise(latents, noise, timesteps)
+
+                # Prepare inputs for UNet
+                inputs = {
+                    "encoder_hidden_states": text_embeddings,  # Text embeddings as conditioning information
+                    "timestep": timesteps,    # Current timestep
+                    "sample": noisy_latents  # Noisy latents as input
+                }
+
+                with sdpa_kernel([SDPBackend.FLASH_ATTENTION, SDPBackend.CUDNN_ATTENTION, SDPBackend.EFFICIENT_ATTENTION]):
+                    with amp_context:
+                        noise_pred = unet(**inputs).sample
+                        loss = torch.nn.functional.mse_loss(noise_pred, noise)
+                    loss.backward()
+                    optimizer.step()
+                    optimizer.zero_grad()
+
+        return (unet, optimizer, hf_train_step)
+
     else:
          raise ValueError(f"No setup is available for {model_name}. Please choose from {model_names}")
 
@@ -293,4 +421,5 @@ def override_args_with_configs(args, config: Dict[str, Any]):
     b_args.precision = config["precision"].value
     b_args.enable_ac = config["ac"]
     b_args.image_size = config["image_size"]
+    b_args.num_denoising_steps = config["num_denoising_steps"]
     return b_args

@@ -19,71 +19,85 @@ torch.backends.cuda.enable_flash_sdp(enabled=True)
 
 input_configs = {
     "hf_T5": [
-        {"batch_size": 6, "seq_len": 512, "precision": Precision.MP, "ac": False, "image_size": -1},
-        {"batch_size": 4, "seq_len": 1024, "precision": Precision.HP, "ac": False, "image_size": -1},
-        {"batch_size": 1, "seq_len": 2048, "precision": Precision.HP, "ac": True, "image_size": -1},
-        {"batch_size": 2, "seq_len": 1024, "precision": Precision.FP, "ac": True, "image_size": -1},
-        {"batch_size": 1, "seq_len": 2048, "precision": Precision.MP, "ac": True, "image_size": -1},
-        {"batch_size": 1, "seq_len": 2048, "precision": Precision.HP, "ac": True, "image_size": -1},
-        {"batch_size": 1, "seq_len": 2048, "precision": Precision.FP, "ac": True, "image_size": -1},
+        {"batch_size": 6, "seq_len": 512, "precision": Precision.MP, "ac": False, "image_size": -1, "num_denoising_steps": -1},
+        {"batch_size": 4, "seq_len": 1024, "precision": Precision.HP, "ac": False, "image_size": -1, "num_denoising_steps": -1},
+        {"batch_size": 1, "seq_len": 2048, "precision": Precision.HP, "ac": True, "image_size": -1, "num_denoising_steps": -1},
+        {"batch_size": 2, "seq_len": 1024, "precision": Precision.FP, "ac": True, "image_size": -1, "num_denoising_steps": -1},
+        {"batch_size": 1, "seq_len": 2048, "precision": Precision.MP, "ac": True, "image_size": -1, "num_denoising_steps": -1},
+        {"batch_size": 1, "seq_len": 2048, "precision": Precision.HP, "ac": True, "image_size": -1, "num_denoising_steps": -1},
+        {"batch_size": 1, "seq_len": 2048, "precision": Precision.FP, "ac": True, "image_size": -1, "num_denoising_steps": -1},
     ],
     "hf_GPT2": [
-        {"batch_size": 16, "seq_len": 512, "precision": Precision.MP, "ac": False, "image_size": -1},
-        {"batch_size": 16, "seq_len": 1024, "precision": Precision.HP, "ac": False, "image_size": -1},
-        {"batch_size": 16, "seq_len": 2048, "precision": Precision.HP, "ac": True, "image_size": -1},
-        {"batch_size": 8, "seq_len": 4096, "precision": Precision.HP, "ac": True, "image_size": -1},
-        {"batch_size": 8, "seq_len": 1024, "precision": Precision.MP, "ac": False, "image_size": -1},
-        {"batch_size": 8, "seq_len": 2048, "precision": Precision.FP, "ac": True, "image_size": -1},
-        {"batch_size": 2, "seq_len": 8192, "precision": Precision.HP, "ac": True, "image_size": -1},
-        {"batch_size": 16, "seq_len": 2048, "precision": Precision.FP, "ac": True, "image_size": -1},
+        {"batch_size": 16, "seq_len": 512, "precision": Precision.MP, "ac": False, "image_size": -1, "num_denoising_steps": -1},
+        {"batch_size": 16, "seq_len": 1024, "precision": Precision.HP, "ac": False, "image_size": -1, "num_denoising_steps": -1},
+        {"batch_size": 16, "seq_len": 2048, "precision": Precision.HP, "ac": True, "image_size": -1, "num_denoising_steps": -1},
+        {"batch_size": 8, "seq_len": 4096, "precision": Precision.HP, "ac": True, "image_size": -1, "num_denoising_steps": -1},
+        {"batch_size": 8, "seq_len": 1024, "precision": Precision.MP, "ac": False, "image_size": -1, "num_denoising_steps": -1},
+        {"batch_size": 8, "seq_len": 2048, "precision": Precision.FP, "ac": True, "image_size": -1, "num_denoising_steps": -1},
+        {"batch_size": 2, "seq_len": 8192, "precision": Precision.HP, "ac": True, "image_size": -1, "num_denoising_steps": -1},
+        {"batch_size": 16, "seq_len": 2048, "precision": Precision.FP, "ac": True, "image_size": -1, "num_denoising_steps": -1},
     ],
     "timm_vit": [
-        {"batch_size": 32, "seq_len": -1, "precision": Precision.FP, "ac": False, "image_size": 224},
-        {"batch_size": 64, "seq_len": -1, "precision": Precision.MP, "ac": False, "image_size": 224},
-        {"batch_size": 64, "seq_len": -1, "precision": Precision.HP, "ac": False, "image_size": 224},
-        {"batch_size": 128, "seq_len": -1, "precision": Precision.HP, "ac": True, "image_size": 224},
-        {"batch_size": 64, "seq_len": -1, "precision": Precision.MP, "ac": False, "image_size": 224},
-        {"batch_size": 256, "seq_len": -1, "precision": Precision.HP, "ac": True, "image_size": 224},
-        {"batch_size": 64, "seq_len": -1, "precision": Precision.FP, "ac": True, "image_size": 224},
+        {"batch_size": 32, "seq_len": -1, "precision": Precision.FP, "ac": False, "image_size": 224, "num_denoising_steps": -1},
+        {"batch_size": 64, "seq_len": -1, "precision": Precision.MP, "ac": False, "image_size": 224, "num_denoising_steps": -1},
+        {"batch_size": 64, "seq_len": -1, "precision": Precision.HP, "ac": False, "image_size": 224, "num_denoising_steps": -1},
+        {"batch_size": 128, "seq_len": -1, "precision": Precision.HP, "ac": True, "image_size": 224, "num_denoising_steps": -1},
+        {"batch_size": 64, "seq_len": -1, "precision": Precision.MP, "ac": False, "image_size": 224, "num_denoising_steps": -1},
+        {"batch_size": 256, "seq_len": -1, "precision": Precision.HP, "ac": True, "image_size": 224, "num_denoising_steps": -1},
+        {"batch_size": 64, "seq_len": -1, "precision": Precision.FP, "ac": True, "image_size": 224, "num_denoising_steps": -1},
     ],
     "hf_clip": [
-        {"batch_size": 32, "seq_len": 20, "precision": Precision.FP, "ac": False, "image_size": 336},
-        {"batch_size": 64, "seq_len": 20, "precision": Precision.MP, "ac": False, "image_size": 336},
-        {"batch_size": 64, "seq_len": 20, "precision": Precision.HP, "ac": True, "image_size": 336},
-        {"batch_size": 32, "seq_len": 20, "precision": Precision.FP, "ac": False, "image_size": 336},
-        {"batch_size": 64, "seq_len": 20, "precision": Precision.MP, "ac": False, "image_size": 336},
-        {"batch_size": 128, "seq_len": 20, "precision": Precision.HP, "ac": True, "image_size": 336},
-        {"batch_size": 64, "seq_len": 20, "precision": Precision.FP, "ac": True, "image_size": 336},
+        {"batch_size": 32, "seq_len": 20, "precision": Precision.FP, "ac": False, "image_size": 336, "num_denoising_steps": -1},
+        {"batch_size": 64, "seq_len": 20, "precision": Precision.MP, "ac": False, "image_size": 336, "num_denoising_steps": -1},
+        {"batch_size": 64, "seq_len": 20, "precision": Precision.HP, "ac": True, "image_size": 336, "num_denoising_steps": -1},
+        {"batch_size": 32, "seq_len": 20, "precision": Precision.FP, "ac": False, "image_size": 336, "num_denoising_steps": -1},
+        {"batch_size": 64, "seq_len": 20, "precision": Precision.MP, "ac": False, "image_size": 336, "num_denoising_steps": -1},
+        {"batch_size": 128, "seq_len": 20, "precision": Precision.HP, "ac": True, "image_size": 336, "num_denoising_steps": -1},
+        {"batch_size": 64, "seq_len": 20, "precision": Precision.FP, "ac": True, "image_size": 336, "num_denoising_steps": -1},
     ],
     "llama_v3_1b": [
-        {"batch_size": 4, "seq_len": 1024, "precision": Precision.FP, "ac": False, "image_size": -1},
-        {"batch_size": 4, "seq_len": 2048, "precision": Precision.HP, "ac": True, "image_size": -1},
-        {"batch_size": 4, "seq_len": 4096, "precision": Precision.HP, "ac": True, "image_size": -1},
-        {"batch_size": 8, "seq_len": 2048, "precision": Precision.HP, "ac": True, "image_size": -1},
-        {"batch_size": 2, "seq_len": 8192, "precision": Precision.HP, "ac": True, "image_size": -1},
-        {"batch_size": 4, "seq_len": 1024, "precision": Precision.MP, "ac": False, "image_size": -1},
-        {"batch_size": 4, "seq_len": 2048, "precision": Precision.FP, "ac": True, "image_size": -1},
-        {"batch_size": 1, "seq_len": 16384, "precision": Precision.HP, "ac": True, "image_size": -1},
-        {"batch_size": 8, "seq_len": 2048, "precision": Precision.FP, "ac": True, "image_size": -1},
+        {"batch_size": 4, "seq_len": 1024, "precision": Precision.FP, "ac": False, "image_size": -1, "num_denoising_steps": -1},
+        {"batch_size": 4, "seq_len": 2048, "precision": Precision.HP, "ac": True, "image_size": -1, "num_denoising_steps": -1},
+        {"batch_size": 4, "seq_len": 4096, "precision": Precision.HP, "ac": True, "image_size": -1, "num_denoising_steps": -1},
+        {"batch_size": 8, "seq_len": 2048, "precision": Precision.HP, "ac": True, "image_size": -1, "num_denoising_steps": -1},
+        {"batch_size": 2, "seq_len": 8192, "precision": Precision.HP, "ac": True, "image_size": -1, "num_denoising_steps": -1},
+        {"batch_size": 4, "seq_len": 1024, "precision": Precision.MP, "ac": False, "image_size": -1, "num_denoising_steps": -1},
+        {"batch_size": 4, "seq_len": 2048, "precision": Precision.FP, "ac": True, "image_size": -1, "num_denoising_steps": -1},
+        {"batch_size": 1, "seq_len": 16384, "precision": Precision.HP, "ac": True, "image_size": -1, "num_denoising_steps": -1},
+        {"batch_size": 8, "seq_len": 2048, "precision": Precision.FP, "ac": True, "image_size": -1, "num_denoising_steps": -1},
     ],
     "gemma_2b": [
-        {"batch_size": 8, "seq_len": 512, "precision": Precision.MP, "ac": False, "image_size": -1},
-        {"batch_size": 8, "seq_len": 1024, "precision": Precision.HP, "ac": False, "image_size": -1},
-        {"batch_size": 4, "seq_len": 2048, "precision": Precision.HP, "ac": True, "image_size": -1},
-        {"batch_size": 2, "seq_len": 4096, "precision": Precision.HP, "ac": True, "image_size": -1},
-        {"batch_size": 4, "seq_len": 1024, "precision": Precision.FP, "ac": True, "image_size": -1},
-        {"batch_size": 2, "seq_len": 2048, "precision": Precision.FP, "ac": True, "image_size": -1},
-        {"batch_size": 2, "seq_len": 2048, "precision": Precision.MP, "ac": False, "image_size": -1},
+        {"batch_size": 8, "seq_len": 512, "precision": Precision.MP, "ac": False, "image_size": -1, "num_denoising_steps": -1},
+        {"batch_size": 8, "seq_len": 1024, "precision": Precision.HP, "ac": False, "image_size": -1, "num_denoising_steps": -1},
+        {"batch_size": 4, "seq_len": 2048, "precision": Precision.HP, "ac": True, "image_size": -1, "num_denoising_steps": -1},
+        {"batch_size": 2, "seq_len": 4096, "precision": Precision.HP, "ac": True, "image_size": -1, "num_denoising_steps": -1},
+        {"batch_size": 4, "seq_len": 1024, "precision": Precision.FP, "ac": True, "image_size": -1, "num_denoising_steps": -1},
+        {"batch_size": 2, "seq_len": 2048, "precision": Precision.FP, "ac": True, "image_size": -1, "num_denoising_steps": -1},
+        {"batch_size": 2, "seq_len": 2048, "precision": Precision.MP, "ac": False, "image_size": -1, "num_denoising_steps": -1},
     ],
     "timm_convnext_v2": [
-        {"batch_size": 16, "seq_len": -1, "precision": Precision.FP, "ac": False, "image_size": 224},
-        {"batch_size": 32, "seq_len": -1, "precision": Precision.MP, "ac": False, "image_size": 224},
-        {"batch_size": 64, "seq_len": -1, "precision": Precision.MP, "ac": False, "image_size": 224},
-        {"batch_size": 64, "seq_len": -1, "precision": Precision.HP, "ac": False, "image_size": 224},
-        {"batch_size": 128, "seq_len": -1, "precision": Precision.HP, "ac": True, "image_size": 224},
-        {"batch_size": 32, "seq_len": -1, "precision": Precision.FP, "ac": True, "image_size": 224},
-        {"batch_size": 256, "seq_len": -1, "precision": Precision.HP, "ac": True, "image_size": 224},
-        {"batch_size": 128, "seq_len": -1, "precision": Precision.FP, "ac": True, "image_size": 224},
+        {"batch_size": 16, "seq_len": -1, "precision": Precision.FP, "ac": False, "image_size": 224, "num_denoising_steps": -1},
+        {"batch_size": 32, "seq_len": -1, "precision": Precision.MP, "ac": False, "image_size": 224, "num_denoising_steps": -1},
+        {"batch_size": 64, "seq_len": -1, "precision": Precision.MP, "ac": False, "image_size": 224, "num_denoising_steps": -1},
+        {"batch_size": 64, "seq_len": -1, "precision": Precision.HP, "ac": False, "image_size": 224, "num_denoising_steps": -1},
+        {"batch_size": 128, "seq_len": -1, "precision": Precision.HP, "ac": True, "image_size": 224, "num_denoising_steps": -1},
+        {"batch_size": 32, "seq_len": -1, "precision": Precision.FP, "ac": True, "image_size": 224, "num_denoising_steps": -1},
+        {"batch_size": 256, "seq_len": -1, "precision": Precision.HP, "ac": True, "image_size": 224, "num_denoising_steps": -1},
+        {"batch_size": 128, "seq_len": -1, "precision": Precision.FP, "ac": True, "image_size": 224, "num_denoising_steps": -1},
+    ],
+    "stable_diffusion": [
+        {"batch_size": 16, "seq_len": 77, "precision": Precision.FP, "ac": False, "image_size": 128, "num_denoising_steps": 50},
+        {"batch_size": 32, "seq_len": 77, "precision": Precision.FP, "ac": False, "image_size": 128, "num_denoising_steps": 50},
+        {"batch_size": 64, "seq_len": 77, "precision": Precision.FP, "ac": False, "image_size": 128, "num_denoising_steps": 50},
+        {"batch_size": 128, "seq_len": 77, "precision": Precision.FP, "ac": False, "image_size": 128, "num_denoising_steps": 50},
+        {"batch_size": 16, "seq_len": 77, "precision": Precision.FP, "ac": False, "image_size": 256, "num_denoising_steps": 50},
+        {"batch_size": 32, "seq_len": 77, "precision": Precision.FP, "ac": False, "image_size": 256, "num_denoising_steps": 50},
+        {"batch_size": 64, "seq_len": 77, "precision": Precision.FP, "ac": False, "image_size": 256, "num_denoising_steps": 50},
+        {"batch_size": 128, "seq_len": 77, "precision": Precision.FP, "ac": False, "image_size": 256, "num_denoising_steps": 50},
+        {"batch_size": 16, "seq_len": 77, "precision": Precision.FP, "ac": False, "image_size": 512, "num_denoising_steps": 50},
+        {"batch_size": 32, "seq_len": 77, "precision": Precision.FP, "ac": False, "image_size": 512, "num_denoising_steps": 50},
+        {"batch_size": 64, "seq_len": 77, "precision": Precision.FP, "ac": False, "image_size": 512, "num_denoising_steps": 50},
+        {"batch_size": 128, "seq_len": 77, "precision": Precision.FP, "ac": False, "image_size": 512, "num_denoising_steps": 50},
     ],
 }
 
@@ -116,6 +130,7 @@ class Experiment:
             "image_size": args.image_size,
             "init_mode": init_mode,
             "dev": dev,
+            "num_denoising_steps": args.num_denoising_steps,
         }
         self.gpu_type = args.gpu_type
         self.model, self.optimizer, self.train_step = create_training_setup(**self.setup_cfg)
@@ -229,7 +244,7 @@ class Experiment:
 
         cfg = self.setup_cfg
         log_record = [
-            cfg['model_name'], cfg['batch_size'], cfg["seq_len"], cfg["image_size"], cfg['precision'].value, cfg['ac']
+            cfg['model_name'], cfg['batch_size'], cfg["seq_len"], cfg["image_size"], cfg["num_denoising_steps"], cfg['precision'].value, cfg['ac']
         ]
         if self.exp_type == ExpType.test:
             iter_time, peak_active, peak_reserved = self.test()
@@ -291,6 +306,12 @@ if __name__ == "__main__":
         default=224,
         type=int,
         help="Training image size"
+    )
+    parser.add_argument(
+        "--num_denoising_steps", 
+        default=50,
+        type=int,
+        help="Number of denoising steps for diffusion"
     )
     parser.add_argument(
         "--precision",

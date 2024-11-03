@@ -1,20 +1,19 @@
 #!/bin/bash
 
 #SBATCH --job-name=bench-h100
-#SBATCH --partition=kempner_requeue
-#SBATCH --account=kempner_sham_lab
+#SBATCH --partition=seas_gpu
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=16
 #SBATCH --gres=gpu:nvidia_h100_80gb_hbm3:1
 #SBATCH --time=0-01:00:00
 #SBATCH --mem=64gb
 #SBATCH --array=0-52
-#SBATCH --output=/n/holyscratch01/idreos_lab/Users/spurandare/mem-run-estimator/job_logs/bench_%x_%j.out
-#SBATCH --error=/n/holyscratch01/idreos_lab/Users/spurandare/mem-run-estimator/job_logs/bench_%x_%j.err
+#SBATCH --output=/n/holylabs/LABS/acc_lab/Users/golden/CS2881r/mem-run-estimator-fork/job_logs/bench_%x_%j.out
+#SBATCH --error=/n/holylabs/LABS/acc_lab/Users/golden/CS2881r/mem-run-estimator-fork/job_logs/bench_%x_%j.err
 #SBATCH --open-mode=append
-#SBATCH --chdir=/n/holyscratch01/idreos_lab/Users/spurandare/mem-run-estimator/
+#SBATCH --chdir=/n/holylabs/LABS/acc_lab/Users/golden/CS2881r/mem-run-estimator-fork/
 
-OUT_DIR=/n/holyscratch01/idreos_lab/Users/spurandare/mem-run-estimator/outputs
+OUT_DIR=/n/holylabs/LABS/acc_lab/Users/golden/CS2881r/mem-run-estimator-fork/outputs
 
 # gemma_2b 7
 # hf_T5 7
