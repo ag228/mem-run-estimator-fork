@@ -8,7 +8,7 @@ from typing import Any, Callable, Dict, Iterator, List, Set, ContextManager, Tup
 import timm
 import timm.optim
 from transformers import AutoConfig, AutoModelForCausalLM, AutoModelForSeq2SeqLM, CLIPModel, GemmaForCausalLM, LlamaForCausalLM
-from diffusers import StableDiffusionPipeline
+from diffusers import StableDiffusionPipeline, StableDiffusion3Pipeline
 from diffusers import FluxTransformer2DModel
 from torch import optim, autocast
 from transformers import CLIPTextModel, CLIPTokenizer 
@@ -70,7 +70,8 @@ model_names: Set[str] = {
     "gemma_2b",
     "timm_convnext_v2",
     "stable_diffusion",
-    "flux"
+    "flux",
+    "stable_diffusion_mmdit"
 }
 
 class ExpType(StrEnum):
@@ -94,6 +95,7 @@ model_cards: Dict[str, str] = {
     "hf_clip": "openai/clip-vit-large-patch14-336",
     "stable_diffusion": ["runwayml/stable-diffusion-v1-5", "openai/clip-vit-large-patch14"],
     "flux": "black-forest-labs/FLUX.1-schnell",
+    "stable_diffusion_mmdit": ["stabilityai/stable-diffusion-3-medium-diffusers"]
 }
 
 precision_to_dtype: Dict[Precision, torch.dtype] = {
@@ -109,7 +111,8 @@ model_class: Dict[str, Type] = {
     "gemma_2b": AutoModelForCausalLM,
     "hf_clip": CLIPModel,
     "stable_diffusion": [UNet2DConditionModel, AutoencoderKL, CLIPTextModel,  CLIPTokenizer, DDPMScheduler],
-    "flux": FluxTransformer2DModel
+    "flux": FluxTransformer2DModel,
+    "stable_diffusion_mmdit": [StableDiffusion3Pipeline]
 }
 
 model_ac_classes: Dict[str, List[str]] = {
@@ -121,7 +124,8 @@ model_ac_classes: Dict[str, List[str]] = {
     "timm_vit": ["Block",],
     "hf_clip": ["CLIPEncoderLayer",],
     "stable_diffusion": ["CrossAttnDownBlock2D", "DownBlock2D", "UpBlock2D", "CrossAttnUpBlock2D", "UNetMidBlock2DCrossAttn"], ### ???
-    "flux": ["FluxTransformer2DModel"] ### ???
+    "flux": ["FluxTransformer2DModel"], ### ???
+    "stable_diffusion_mmdit": ["JointTransformerBlock"] ### ???
 }
 
 def generate_inputs_and_labels(
@@ -167,7 +171,17 @@ def generate_flux_inputs(
 
     return (hidden_states, encoder_hidden_states, pooled_projections, timestep, img_ids, txt_ids, target)
 
+def generate_sd3_inputs(
+        batch_size: int, image_size:int, seq_len:int, in_channels:int, joint_attention_dim:int, pooled_projection_dim:int, embed_dim:int, dtype: torch.dtype, dev: torch.device
+) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
 
+    hidden_states = torch.randn((batch_size, in_channels, image_size, image_size), dtype=dtype, requires_grad=True).to(dev)
+    encoder_hidden_states = torch.randn((batch_size, seq_len, embed_dim), dtype=dtype, requires_grad=True).to(dev)
+    pooled_projections = torch.randn((batch_size, pooled_projection_dim), dtype=dtype, requires_grad=True).to(dev)
+    timestep = torch.tensor([0], dtype=dtype, requires_grad=True).to(dev)
+    target = torch.randn_like(hidden_states, requires_grad=True).to(dev)
+
+    return (hidden_states, encoder_hidden_states, pooled_projections, timestep, target)
 
 def create_optimizer(param_iter: Iterator) -> optim.Optimizer:
     optimizer = optim.Adam(
@@ -343,15 +357,15 @@ def create_training_setup(
 
                 # Prepare inputs for UNet
                 inputs = {
-                    "encoder_hidden_states": text_embeddings,  # Text embeddings as conditioning information
-                    "timestep": timesteps,    # Current timestep
-                    "sample": noisy_latents  # Noisy latents as input
+                    "encoder_hidden_states": text_embeddings,
+                    "timestep": timesteps, 
+                    "sample": noisy_latents  
                 }
 
                 with sdpa_kernel([SDPBackend.FLASH_ATTENTION, SDPBackend.CUDNN_ATTENTION, SDPBackend.EFFICIENT_ATTENTION]):
                     with amp_context:
                         noise_pred = unet(**inputs).sample
-                        loss = torch.nn.functional.mse_loss(noise_pred, noise.to(dev))
+                        loss = torch.nn.functional.mse_loss(noise_pred, latents.to(dev))
                     loss.backward()
                     optimizer.step()
                     optimizer.zero_grad()
@@ -380,13 +394,13 @@ def create_training_setup(
             model: nn.Module, optim: optim.Optimizer,
         ):
 
-            # Example inputs for training (replace with actual data as needed)
             with torch.device(dev):
                 in_channels = model.in_channels
                 joint_attention_dim = model.joint_attention_dim
                 pooled_projection_dim = model.pooled_projection_dim
 
-                hidden_states, encoder_hidden_states, pooled_projections, timestep, img_ids, txt_ids, target = generate_flux_inputs(batch_size, image_size, seq_len, in_channels, joint_attention_dim, pooled_projection_dim, dtype, dev)
+                hidden_states, encoder_hidden_states, pooled_projections, timestep, img_ids, txt_ids, target = generate_flux_inputs(
+                    batch_size, image_size, seq_len, in_channels, joint_attention_dim, pooled_projection_dim, dtype, dev)
                 
                 # Prepare inputs for FluxTransformer
                 inputs = {
@@ -402,15 +416,76 @@ def create_training_setup(
                 with amp_context:
                     output = transformer(**inputs).sample
                     loss = nn.functional.mse_loss(output, target) 
-
                 loss.backward()
                 optimizer.step()
                 optimizer.zero_grad()
 
         return (transformer, optimizer, hf_train_step)
 
+
+
+
+    elif model_name == "stable_diffusion_mmdit":
+        
+        model_card = model_cards[model_name]
+        model_cls = model_class[model_name]
+
+        with init_mode:
+            with torch.device(dev):
+
+                model = StableDiffusion3Pipeline.from_pretrained("stabilityai/stable-diffusion-3-medium-diffusers", torch_dtype=torch.float16).to(dev)
+
+                transformer = model.transformer
+                vae = model.vae
+                text_encoder = model.text_encoder
+                text_encoder_2 = model.text_encoder_2
+                tokenizer = model.tokenizer
+                tokenizer_2 = model.tokenizer_2
+                tokenizer_3 = model.tokenizer_3
+                scheduler = model.scheduler
+
+            optimizer = create_optimizer(transformer.parameters())
+
+            if ac:
+                ac_classes = model_ac_classes[model_name]
+                apply_ac(transformer, ac_classes)
+
+
+        def hf_train_step(
+                model: nn.Module, optim: optim.Optimizer,
+            ):
+
+                in_channels = model.in_channels
+                joint_attention_dim = model.joint_attention_dim
+                pooled_projection_dim = model.pooled_projection_dim
+                embed_dim = 4096
+
+                hidden_states, encoder_hidden_states, pooled_projections, timestep, target = generate_sd3_inputs(
+                    batch_size, image_size, seq_len, in_channels, joint_attention_dim, pooled_projection_dim, embed_dim, dtype, dev)
+
+                inputs = {
+                    "hidden_states": hidden_states,
+                    "encoder_hidden_states": encoder_hidden_states,
+                    "pooled_projections": pooled_projections,
+                    "timestep": timestep,
+                }
+
+                with sdpa_kernel([SDPBackend.FLASH_ATTENTION, SDPBackend.CUDNN_ATTENTION, SDPBackend.EFFICIENT_ATTENTION]):
+                    with amp_context:
+                        noise_pred = model(**inputs).sample
+                        loss = torch.nn.functional.mse_loss(hidden_states, target.to(dev))
+                    loss.backward()
+                    optimizer.step()
+                    optimizer.zero_grad()
+
+        return (model.transformer, optimizer, hf_train_step)
+
+
+
     else:
          raise ValueError(f"No setup is available for {model_name}. Please choose from {model_names}")
+
+         
 
 def write_to_logfile(file_name: str, log_record: str):
     # Create a lock file

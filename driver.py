@@ -114,6 +114,21 @@ input_configs = {
         {"batch_size": 32, "seq_len": 256, "precision": Precision.FP, "ac": False, "image_size": 512, "num_denoising_steps": 50},
         {"batch_size": 64, "seq_len": 256, "precision": Precision.FP, "ac": False, "image_size": 512, "num_denoising_steps": 50},
     ],
+    "stable_diffusion_mmdit": [
+        {"batch_size": 1, "seq_len": 256, "precision": Precision.HP, "ac": False, "image_size": 16, "num_denoising_steps": 50},
+        {"batch_size": 1, "seq_len": 256, "precision": Precision.HP, "ac": False, "image_size": 64, "num_denoising_steps": 50},
+        {"batch_size": 16, "seq_len": 256, "precision": Precision.HP, "ac": False, "image_size": 64, "num_denoising_steps": 50},
+        {"batch_size": 32, "seq_len": 256, "precision": Precision.HP, "ac": False, "image_size": 64, "num_denoising_steps": 50},
+        {"batch_size": 64, "seq_len": 256, "precision": Precision.HP, "ac": False, "image_size": 64, "num_denoising_steps": 50},
+        {"batch_size": 1, "seq_len": 256, "precision": Precision.HP, "ac": False, "image_size": 128, "num_denoising_steps": 50},
+        {"batch_size": 16, "seq_len": 256, "precision": Precision.HP, "ac": False, "image_size": 128, "num_denoising_steps": 50},
+        {"batch_size": 32, "seq_len": 256, "precision": Precision.HP, "ac": False, "image_size": 128, "num_denoising_steps": 50},
+        {"batch_size": 64, "seq_len": 256, "precision": Precision.HP, "ac": False, "image_size": 128, "num_denoising_steps": 50},
+        {"batch_size": 1, "seq_len": 256, "precision": Precision.HP, "ac": False, "image_size": 512, "num_denoising_steps": 50},
+        {"batch_size": 16, "seq_len": 256, "precision": Precision.HP, "ac": False, "image_size": 512, "num_denoising_steps": 50},
+        {"batch_size": 32, "seq_len": 256, "precision": Precision.HP, "ac": False, "image_size": 512, "num_denoising_steps": 50},
+        {"batch_size": 64, "seq_len": 256, "precision": Precision.HP, "ac": False, "image_size": 512, "num_denoising_steps": 50},
+    ],
 }
 
 
