@@ -13,10 +13,11 @@ import torch.optim as optim
 from torch.distributed._tools import MemTracker, RuntimeEstimator
 from torch._subclasses.fake_tensor import FakeTensorMode
 
-from exp_utils import create_training_setup, DEVICE, gpu_types, model_names, Precision, runtime_est_modes, ExpType, BASE_DIR, OUT_DIR, TestMode, write_to_logfile, override_args_with_configs
-
+from exp_utils import create_training_setup, DEVICE, gpu_types, model_names, Precision, runtime_est_modes, ExpType, OUT_DIR, write_to_logfile, override_args_with_configs
+from configs import input_configs
 torch.backends.cuda.enable_flash_sdp(enabled=True)
 
+<<<<<<< HEAD
 input_configs = {
     "hf_T5": [
         {"batch_size": 6, "seq_len": 512, "precision": Precision.MP, "ac": False, "image_size": -1, "num_denoising_steps": -1},
@@ -131,6 +132,8 @@ input_configs = {
     ],
 }
 
+=======
+>>>>>>> origin/main
 
 class Experiment:
 
@@ -163,24 +166,17 @@ class Experiment:
             "num_denoising_steps": args.num_denoising_steps,
         }
         self.gpu_type = args.gpu_type
-        self.model, self.optimizer, self.train_step = create_training_setup(**self.setup_cfg)
-        self.model.train()
-        print(self.model)
-        
-        # for name, module in self.model.named_modules():
-        #     print(name)
-        #     param_dtypes = set()
-        #     param_count = 0
-        #     param_size = 0
-        #     for p in module.parameters():
-        #         param_numel = p.numel()
-        #         param_count += param_numel
-        #         param_size += param_numel * p.dtype.itemsize
-        #         param_dtypes.add(p.dtype)
+        self.models, self.optimizer, self.train_step = create_training_setup(**self.setup_cfg)
+        param_count = 0
+        param_size = 0
+        for model in self.models:
+            for p in model.parameters():
+                param_numel = p.numel()
+                param_count += param_numel
+                param_size += param_numel * p.dtype.itemsize
 
-        #     print(f"Model has {param_count} parameters.")
-        #     print(f"Model has {param_dtypes} dtypes.")
-        #     print(f"Parameter Memory: {param_size / 2**30:.3f} GiB")
+        print(f"Model has {param_count} parameters.")
+        print(f"Parameter Memory: {param_size / 2**30:.3f} GiB")
 
     def real_execution(self) -> Tuple[float, int, int]:
         torch.cuda.reset_peak_memory_stats()
@@ -192,7 +188,7 @@ class Experiment:
         for i in range(5):
             start_events[i].record()
             with self.execution_ctx:
-                self.train_step(self.model, self.optimizer)
+                self.train_step(self.models, self.optimizer)
             end_events[i].record()
         torch.cuda.synchronize()
         iter_time = (
@@ -207,24 +203,25 @@ class Experiment:
 
         return iter_time, peak_active, peak_reserved
     
-    def memory_estimation(self) -> Tuple[int, float]:
+    def memory_estimation(self) -> Tuple[int, Dict[torch.device, Dict[str, int]], float]:
         iters = 2
         mem_tracker = MemTracker()
-        mem_tracker.track_external(self.model, self.optimizer)
+        mem_tracker.track_external(*self.models, self.optimizer)
 
         for iter in range(iters):
             track_start_time = time.time()
             with self.execution_ctx:
                 with mem_tracker:
-                    self.train_step(self.model, self.optimizer)
+                    self.train_step(self.models, self.optimizer)
             track_end_time = time.time()
             if iter == 0:
                 mem_tracker.reset_mod_stats()
         peak_tracker = mem_tracker.get_tracker_snapshot("peak")[self.device]["Total"]
         mem_tracker.display_snapshot("peak", units="GiB", tabulate=True)
+        peak_snapshot = mem_tracker.get_tracker_snapshot("peak")
         tracking_time = (track_end_time - track_start_time) * 1e3
         print(f"Memory Tracking time (ms): {tracking_time}")
-        return (peak_tracker, tracking_time)
+        return (peak_tracker, peak_snapshot, tracking_time)
     
     def runtime_estimation(self, estimate_mode: str) -> Tuple[float, float]:
         runtime_estimator = RuntimeEstimator()
@@ -233,7 +230,7 @@ class Experiment:
         est_start_time = time.time()
         with self.execution_ctx:
             with runtime_estimator(estimate_mode_type=estimate_mode):
-                self.train_step(self.model, self.optimizer)
+                self.train_step(self.models, self.optimizer)
         torch.cuda.synchronize()
         est_end_time = time.time()
         estimation_time = (est_end_time - est_start_time) * 1e3
@@ -243,7 +240,7 @@ class Experiment:
 
     def test(self) -> Tuple[float, int, int]:
         with self.execution_ctx:
-            self.train_step(self.model, self.optimizer)
+            self.train_step(self.models, self.optimizer)
         torch.cuda.reset_peak_memory_stats()
         torch.cuda.reset_accumulated_memory_stats()
 
@@ -266,12 +263,6 @@ class Experiment:
         return iter_time, peak_active, peak_reserved
 
     def run(self,):
-        Path(f"{OUT_DIR}/").mkdir(parents=True, exist_ok=True)
-        if self.exp_type == ExpType.runtime_est:
-            out_file = f"{OUT_DIR}/{self.exp_type.value}_{self.est_mode}_{self.gpu_type}_CFG2.csv"
-        else:
-            out_file = f"{OUT_DIR}/{self.exp_type.value}_{self.gpu_type}.csv"
-
         cfg = self.setup_cfg
         log_record = [
             cfg['model_name'], cfg['batch_size'], cfg["seq_len"], cfg["image_size"], cfg["num_denoising_steps"], cfg['precision'].value, cfg['ac']
@@ -286,10 +277,23 @@ class Experiment:
             run_est, est_time = self.runtime_estimation(self.est_mode)
             log_record.extend([self.est_mode, run_est, est_time])
         elif self.exp_type == ExpType.memory_est:
-            peak_mem_est, est_time = self.memory_estimation()
+            peak_mem_est, peak_snapshot, est_time = self.memory_estimation()
+            snapshot_log_record = copy.deepcopy(log_record)
+            cuda_snapshot = peak_snapshot[torch.device(DEVICE)]
+            snapshot_log_record.extend(cuda_snapshot.values())
             log_record.extend([peak_mem_est, est_time])
             if peak_mem_est > (70 * 2**30):
                 print(f"Delete: {log_record}")
+
+        Path(f"{OUT_DIR}/").mkdir(parents=True, exist_ok=True)
+        if self.exp_type == ExpType.runtime_est:
+            out_file = f"{OUT_DIR}/{self.exp_type.value}_{self.est_mode}_{self.gpu_type}.csv"
+        else:
+            out_file = f"{OUT_DIR}/{self.exp_type.value}_{self.gpu_type}.csv"
+
+        if self.exp_type == ExpType.memory_est:
+            snapshot_out_file = f"{OUT_DIR}/{self.exp_type.value}_snapshot_{self.gpu_type}.csv"
+            write_to_logfile(snapshot_out_file, snapshot_log_record)
 
         write_to_logfile(out_file, log_record)
 

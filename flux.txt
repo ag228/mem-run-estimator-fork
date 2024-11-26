@@ -1,0 +1,952 @@
+args =  Namespace(model_name='flux', batch_size=2, seq_len=64, image_size=224, num_denoising_steps=50, precision='HP', enable_ac=False, gpu_type='H100', real_execution=False, memory_estimation=True, test=False, runtime_estimation=False, benchmark=True, preset_config=False, config_idx=0, runtime_estimation_mode='operator-level-learned-model')
+Cannot initialize model with low cpu memory usage because `accelerate` was not found in the environment. Defaulting to `low_cpu_mem_usage=False`. It is strongly recommended to install `accelerate` for faster and less memory-intense model loading. You can do so with: 
+```
+pip install accelerate
+```
+.
+Cannot initialize model with low cpu memory usage because `accelerate` was not found in the environment. Defaulting to `low_cpu_mem_usage=False`. It is strongly recommended to install `accelerate` for faster and less memory-intense model loading. You can do so with: 
+```
+pip install accelerate
+```
+.
+Cannot initialize model with low cpu memory usage because `accelerate` was not found in the environment. Defaulting to `low_cpu_mem_usage=False`. It is strongly recommended to install `accelerate` for faster and less memory-intense model loading. You can do so with: 
+```
+pip install accelerate
+```
+.
+Cannot initialize model with low cpu memory usage because `accelerate` was not found in the environment. Defaulting to `low_cpu_mem_usage=False`. It is strongly recommended to install `accelerate` for faster and less memory-intense model loading. You can do so with: 
+```
+pip install accelerate
+```
+.
+Cannot initialize model with low cpu memory usage because `accelerate` was not found in the environment. Defaulting to `low_cpu_mem_usage=False`. It is strongly recommended to install `accelerate` for faster and less memory-intense model loading. You can do so with: 
+```
+pip install accelerate
+```
+.
+Cannot initialize model with low cpu memory usage because `accelerate` was not found in the environment. Defaulting to `low_cpu_mem_usage=False`. It is strongly recommended to install `accelerate` for faster and less memory-intense model loading. You can do so with: 
+```
+pip install accelerate
+```
+.
+Cannot initialize model with low cpu memory usage because `accelerate` was not found in the environment. Defaulting to `low_cpu_mem_usage=False`. It is strongly recommended to install `accelerate` for faster and less memory-intense model loading. You can do so with: 
+```
+pip install accelerate
+```
+.
+Cannot initialize model with low cpu memory usage because `accelerate` was not found in the environment. Defaulting to `low_cpu_mem_usage=False`. It is strongly recommended to install `accelerate` for faster and less memory-intense model loading. You can do so with: 
+```
+pip install accelerate
+```
+.
+Cannot initialize model with low cpu memory usage because `accelerate` was not found in the environment. Defaulting to `low_cpu_mem_usage=False`. It is strongly recommended to install `accelerate` for faster and less memory-intense model loading. You can do so with: 
+```
+pip install accelerate
+```
+.
+Cannot initialize model with low cpu memory usage because `accelerate` was not found in the environment. Defaulting to `low_cpu_mem_usage=False`. It is strongly recommended to install `accelerate` for faster and less memory-intense model loading. You can do so with: 
+```
+pip install accelerate
+```
+.
+Cannot initialize model with low cpu memory usage because `accelerate` was not found in the environment. Defaulting to `low_cpu_mem_usage=False`. It is strongly recommended to install `accelerate` for faster and less memory-intense model loading. You can do so with: 
+```
+pip install accelerate
+```
+.
+Cannot initialize model with low cpu memory usage because `accelerate` was not found in the environment. Defaulting to `low_cpu_mem_usage=False`. It is strongly recommended to install `accelerate` for faster and less memory-intense model loading. You can do so with: 
+```
+pip install accelerate
+```
+.
+Cannot initialize model with low cpu memory usage because `accelerate` was not found in the environment. Defaulting to `low_cpu_mem_usage=False`. It is strongly recommended to install `accelerate` for faster and less memory-intense model loading. You can do so with: 
+```
+pip install accelerate
+```
+.
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py:653: UserWarning: Not enough free disk space to download the file. The expected file size is: 9962.58 MB. The target location /n/home11/spurandare/.cache/huggingface/hub/models--black-forest-labs--FLUX.1-schnell/blobs only has 3602.91 MB free disk space.
+  warnings.warn(
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py:653: UserWarning: Not enough free disk space to download the file. The expected file size is: 3870.58 MB. The target location /n/home11/spurandare/.cache/huggingface/hub/models--black-forest-labs--FLUX.1-schnell/blobs only has 3602.91 MB free disk space.
+  warnings.warn(
+/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py:653: UserWarning: Not enough free disk space to download the file. The expected file size is: 9949.33 MB. The target location /n/home11/spurandare/.cache/huggingface/hub/models--black-forest-labs--FLUX.1-schnell/blobs only has 3602.91 MB free disk space.
+  warnings.warn(
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files:   0%|          | 0/3 [03:32<?, ?it/s]
+/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py:653: UserWarning: Not enough free disk space to download the file. The expected file size is: 9962.58 MB. The target location /n/home11/spurandare/.cache/huggingface/hub/models--black-forest-labs--FLUX.1-schnell/blobs only has 0.00 MB free disk space.
+  warnings.warn(
+/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py:653: UserWarning: Not enough free disk space to download the file. The expected file size is: 9949.33 MB. The target location /n/home11/spurandare/.cache/huggingface/hub/models--black-forest-labs--FLUX.1-schnell/blobs only has 0.00 MB free disk space.
+  warnings.warn(
+Fetching 3 files:   0%|          | 0/3 [05:12<?, ?it/s]
+/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py:653: UserWarning: Not enough free disk space to download the file. The expected file size is: 9962.58 MB. The target location /n/home11/spurandare/.cache/huggingface/hub/models--black-forest-labs--FLUX.1-schnell/blobs only has 0.00 MB free disk space.
+  warnings.warn(
+/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py:653: UserWarning: Not enough free disk space to download the file. The expected file size is: 9949.33 MB. The target location /n/home11/spurandare/.cache/huggingface/hub/models--black-forest-labs--FLUX.1-schnell/blobs only has 0.00 MB free disk space.
+  warnings.warn(
+Traceback (most recent call last):
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/driver.py", line 185, in experiment_runner
+    else:
+          
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/driver.py", line 52, in __init__
+    self.model, self.optimizer, self.train_step = create_training_setup(**self.setup_cfg)
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/exp_utils.py", line 342, in create_training_setup
+    transformer = model_cls.from_pretrained(model_card, subfolder="transformer", torch_dtype=dtype).to(dev)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/diffusers/models/modeling_utils.py", line 763, in from_pretrained
+    sharded_ckpt_cached_folder, sharded_metadata = _get_checkpoint_shard_files(
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/diffusers/utils/hub_utils.py", line 471, in _get_checkpoint_shard_files
+    cached_folder = snapshot_download(
+                    ^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 293, in snapshot_download
+    thread_map(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 69, in thread_map
+    return _executor_map(ThreadPoolExecutor, fn, *iterables, **tqdm_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 51, in _executor_map
+    return list(tqdm_class(ex.map(fn, *iterables, chunksize=chunksize), **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/std.py", line 1181, in __iter__
+    for obj in iterable:
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 267, in _inner_hf_hub_download
+    return hf_hub_download(
+           ^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 862, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1011, in _hf_hub_download_to_cache_dir
+    _download_to_tmp_and_move(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1545, in _download_to_tmp_and_move
+    http_get(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 457, in http_get
+    temp_file.write(chunk)
+OSError: [Errno 28] No space left on device
+Fetching 3 files:   0%|          | 0/3 [05:54<?, ?it/s]
+/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py:653: UserWarning: Not enough free disk space to download the file. The expected file size is: 9962.58 MB. The target location /n/home11/spurandare/.cache/huggingface/hub/models--black-forest-labs--FLUX.1-schnell/blobs only has 0.00 MB free disk space.
+  warnings.warn(
+/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py:653: UserWarning: Not enough free disk space to download the file. The expected file size is: 9949.33 MB. The target location /n/home11/spurandare/.cache/huggingface/hub/models--black-forest-labs--FLUX.1-schnell/blobs only has 0.00 MB free disk space.
+  warnings.warn(
+Fetching 3 files:   0%|          | 0/3 [06:34<?, ?it/s]
+/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py:653: UserWarning: Not enough free disk space to download the file. The expected file size is: 9962.58 MB. The target location /n/home11/spurandare/.cache/huggingface/hub/models--black-forest-labs--FLUX.1-schnell/blobs only has 0.00 MB free disk space.
+  warnings.warn(
+/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py:653: UserWarning: Not enough free disk space to download the file. The expected file size is: 9949.33 MB. The target location /n/home11/spurandare/.cache/huggingface/hub/models--black-forest-labs--FLUX.1-schnell/blobs only has 0.00 MB free disk space.
+  warnings.warn(
+Fetching 3 files:   0%|          | 0/3 [07:10<?, ?it/s]
+Traceback (most recent call last):
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/driver.py", line 185, in experiment_runner
+    if args.preset_config:
+              ^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/driver.py", line 52, in __init__
+    self.model, self.optimizer, self.train_step = create_training_setup(**self.setup_cfg)
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/exp_utils.py", line 342, in create_training_setup
+    transformer = model_cls.from_pretrained(model_card, subfolder="transformer", torch_dtype=dtype).to(dev)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/diffusers/models/modeling_utils.py", line 763, in from_pretrained
+    sharded_ckpt_cached_folder, sharded_metadata = _get_checkpoint_shard_files(
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/diffusers/utils/hub_utils.py", line 471, in _get_checkpoint_shard_files
+    cached_folder = snapshot_download(
+                    ^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 293, in snapshot_download
+    thread_map(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 69, in thread_map
+    return _executor_map(ThreadPoolExecutor, fn, *iterables, **tqdm_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 51, in _executor_map
+    return list(tqdm_class(ex.map(fn, *iterables, chunksize=chunksize), **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/std.py", line 1181, in __iter__
+    for obj in iterable:
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 267, in _inner_hf_hub_download
+    return hf_hub_download(
+           ^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 862, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1011, in _hf_hub_download_to_cache_dir
+    _download_to_tmp_and_move(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1545, in _download_to_tmp_and_move
+    http_get(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 457, in http_get
+    temp_file.write(chunk)
+OSError: [Errno 28] No space left on device
+/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py:653: UserWarning: Not enough free disk space to download the file. The expected file size is: 9962.58 MB. The target location /n/home11/spurandare/.cache/huggingface/hub/models--black-forest-labs--FLUX.1-schnell/blobs only has 0.00 MB free disk space.
+  warnings.warn(
+/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py:653: UserWarning: Not enough free disk space to download the file. The expected file size is: 9949.33 MB. The target location /n/home11/spurandare/.cache/huggingface/hub/models--black-forest-labs--FLUX.1-schnell/blobs only has 0.00 MB free disk space.
+  warnings.warn(
+Fetching 3 files:   0%|          | 0/3 [07:55<?, ?it/s]
+/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py:653: UserWarning: Not enough free disk space to download the file. The expected file size is: 9962.58 MB. The target location /n/home11/spurandare/.cache/huggingface/hub/models--black-forest-labs--FLUX.1-schnell/blobs only has 0.00 MB free disk space.
+  warnings.warn(
+Traceback (most recent call last):
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/driver.py", line 185, in experiment_runner
+    m_args = override_args_with_configs(args, input_configs[args.model_name][args.config_idx])
+        ^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/driver.py", line 52, in __init__
+    self.model, self.optimizer, self.train_step = create_training_setup(**self.setup_cfg)
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/exp_utils.py", line 342, in create_training_setup
+    transformer = model_cls.from_pretrained(model_card, subfolder="transformer", torch_dtype=dtype).to(dev)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/diffusers/models/modeling_utils.py", line 763, in from_pretrained
+    sharded_ckpt_cached_folder, sharded_metadata = _get_checkpoint_shard_files(
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/diffusers/utils/hub_utils.py", line 471, in _get_checkpoint_shard_files
+    cached_folder = snapshot_download(
+                    ^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 293, in snapshot_download
+    thread_map(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 69, in thread_map
+    return _executor_map(ThreadPoolExecutor, fn, *iterables, **tqdm_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 51, in _executor_map
+    return list(tqdm_class(ex.map(fn, *iterables, chunksize=chunksize), **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/std.py", line 1181, in __iter__
+    for obj in iterable:
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 267, in _inner_hf_hub_download
+    return hf_hub_download(
+           ^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 862, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1011, in _hf_hub_download_to_cache_dir
+    _download_to_tmp_and_move(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1545, in _download_to_tmp_and_move
+    http_get(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 457, in http_get
+    temp_file.write(chunk)
+OSError: [Errno 28] No space left on device
+/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py:653: UserWarning: Not enough free disk space to download the file. The expected file size is: 9949.33 MB. The target location /n/home11/spurandare/.cache/huggingface/hub/models--black-forest-labs--FLUX.1-schnell/blobs only has 0.00 MB free disk space.
+  warnings.warn(
+Fetching 3 files:   0%|          | 0/3 [08:40<?, ?it/s]
+/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py:653: UserWarning: Not enough free disk space to download the file. The expected file size is: 9962.58 MB. The target location /n/home11/spurandare/.cache/huggingface/hub/models--black-forest-labs--FLUX.1-schnell/blobs only has 0.00 MB free disk space.
+  warnings.warn(
+Traceback (most recent call last):
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/driver.py", line 185, in experiment_runner
+    m_args = override_args_with_configs(args, input_configs[args.model_name][args.config_idx])
+        ^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/driver.py", line 52, in __init__
+    self.model, self.optimizer, self.train_step = create_training_setup(**self.setup_cfg)
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/exp_utils.py", line 342, in create_training_setup
+    transformer = model_cls.from_pretrained(model_card, subfolder="transformer", torch_dtype=dtype).to(dev)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/diffusers/models/modeling_utils.py", line 763, in from_pretrained
+    sharded_ckpt_cached_folder, sharded_metadata = _get_checkpoint_shard_files(
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/diffusers/utils/hub_utils.py", line 471, in _get_checkpoint_shard_files
+    cached_folder = snapshot_download(
+                    ^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 293, in snapshot_download
+    thread_map(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 69, in thread_map
+    return _executor_map(ThreadPoolExecutor, fn, *iterables, **tqdm_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 51, in _executor_map
+    return list(tqdm_class(ex.map(fn, *iterables, chunksize=chunksize), **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/std.py", line 1181, in __iter__
+    for obj in iterable:
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 267, in _inner_hf_hub_download
+    return hf_hub_download(
+           ^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 862, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1011, in _hf_hub_download_to_cache_dir
+    _download_to_tmp_and_move(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1545, in _download_to_tmp_and_move
+    http_get(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 457, in http_get
+    temp_file.write(chunk)
+OSError: [Errno 28] No space left on device
+/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py:653: UserWarning: Not enough free disk space to download the file. The expected file size is: 9949.33 MB. The target location /n/home11/spurandare/.cache/huggingface/hub/models--black-forest-labs--FLUX.1-schnell/blobs only has 0.00 MB free disk space.
+  warnings.warn(
+Fetching 3 files:   0%|          | 0/3 [09:23<?, ?it/s]
+Traceback (most recent call last):
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/driver.py", line 185, in experiment_runner
+    m_args = override_args_with_configs(args, input_configs[args.model_name][args.config_idx])
+        ^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/driver.py", line 52, in __init__
+    self.model, self.optimizer, self.train_step = create_training_setup(**self.setup_cfg)
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/exp_utils.py", line 342, in create_training_setup
+    transformer = model_cls.from_pretrained(model_card, subfolder="transformer", torch_dtype=dtype).to(dev)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/diffusers/models/modeling_utils.py", line 763, in from_pretrained
+    sharded_ckpt_cached_folder, sharded_metadata = _get_checkpoint_shard_files(
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/diffusers/utils/hub_utils.py", line 471, in _get_checkpoint_shard_files
+    cached_folder = snapshot_download(
+                    ^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 293, in snapshot_download
+    thread_map(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 69, in thread_map
+    return _executor_map(ThreadPoolExecutor, fn, *iterables, **tqdm_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 51, in _executor_map
+    return list(tqdm_class(ex.map(fn, *iterables, chunksize=chunksize), **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/std.py", line 1181, in __iter__
+    for obj in iterable:
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 267, in _inner_hf_hub_download
+    return hf_hub_download(
+           ^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 862, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1011, in _hf_hub_download_to_cache_dir
+    _download_to_tmp_and_move(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1545, in _download_to_tmp_and_move
+    http_get(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 457, in http_get
+    temp_file.write(chunk)
+OSError: [Errno 28] No space left on device
+/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py:653: UserWarning: Not enough free disk space to download the file. The expected file size is: 9962.58 MB. The target location /n/home11/spurandare/.cache/huggingface/hub/models--black-forest-labs--FLUX.1-schnell/blobs only has 0.00 MB free disk space.
+  warnings.warn(
+Traceback (most recent call last):
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/driver.py", line 185, in experiment_runner
+    m_args = override_args_with_configs(args, input_configs[args.model_name][args.config_idx])
+        ^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/driver.py", line 52, in __init__
+    self.model, self.optimizer, self.train_step = create_training_setup(**self.setup_cfg)
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/exp_utils.py", line 342, in create_training_setup
+    transformer = model_cls.from_pretrained(model_card, subfolder="transformer", torch_dtype=dtype).to(dev)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/diffusers/models/modeling_utils.py", line 763, in from_pretrained
+    sharded_ckpt_cached_folder, sharded_metadata = _get_checkpoint_shard_files(
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/diffusers/utils/hub_utils.py", line 471, in _get_checkpoint_shard_files
+    cached_folder = snapshot_download(
+                    ^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 293, in snapshot_download
+    thread_map(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 69, in thread_map
+    return _executor_map(ThreadPoolExecutor, fn, *iterables, **tqdm_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 51, in _executor_map
+    return list(tqdm_class(ex.map(fn, *iterables, chunksize=chunksize), **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/std.py", line 1181, in __iter__
+    for obj in iterable:
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 267, in _inner_hf_hub_download
+    return hf_hub_download(
+           ^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 862, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1011, in _hf_hub_download_to_cache_dir
+    _download_to_tmp_and_move(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1545, in _download_to_tmp_and_move
+    http_get(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 457, in http_get
+    temp_file.write(chunk)
+OSError: [Errno 28] No space left on device
+/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py:653: UserWarning: Not enough free disk space to download the file. The expected file size is: 9949.33 MB. The target location /n/home11/spurandare/.cache/huggingface/hub/models--black-forest-labs--FLUX.1-schnell/blobs only has 0.00 MB free disk space.
+  warnings.warn(
+Traceback (most recent call last):
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/driver.py", line 185, in experiment_runner
+    m_args = override_args_with_configs(args, input_configs[args.model_name][args.config_idx])
+        ^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/driver.py", line 52, in __init__
+    self.model, self.optimizer, self.train_step = create_training_setup(**self.setup_cfg)
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/exp_utils.py", line 342, in create_training_setup
+    transformer = model_cls.from_pretrained(model_card, subfolder="transformer", torch_dtype=dtype).to(dev)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/diffusers/models/modeling_utils.py", line 763, in from_pretrained
+    sharded_ckpt_cached_folder, sharded_metadata = _get_checkpoint_shard_files(
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/diffusers/utils/hub_utils.py", line 471, in _get_checkpoint_shard_files
+    cached_folder = snapshot_download(
+                    ^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 293, in snapshot_download
+    thread_map(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 69, in thread_map
+    return _executor_map(ThreadPoolExecutor, fn, *iterables, **tqdm_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 51, in _executor_map
+    return list(tqdm_class(ex.map(fn, *iterables, chunksize=chunksize), **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/std.py", line 1181, in __iter__
+    for obj in iterable:
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 267, in _inner_hf_hub_download
+    return hf_hub_download(
+           ^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 862, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1011, in _hf_hub_download_to_cache_dir
+    _download_to_tmp_and_move(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1545, in _download_to_tmp_and_move
+    http_get(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 457, in http_get
+    temp_file.write(chunk)
+OSError: [Errno 28] No space left on device
+Fetching 3 files:   0%|          | 0/3 [10:07<?, ?it/s]
+/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py:653: UserWarning: Not enough free disk space to download the file. The expected file size is: 9949.33 MB. The target location /n/home11/spurandare/.cache/huggingface/hub/models--black-forest-labs--FLUX.1-schnell/blobs only has 0.00 MB free disk space.
+  warnings.warn(
+Traceback (most recent call last):
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/driver.py", line 185, in experiment_runner
+    m_args = override_args_with_configs(args, input_configs[args.model_name][args.config_idx])
+        ^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/driver.py", line 52, in __init__
+    self.model, self.optimizer, self.train_step = create_training_setup(**self.setup_cfg)
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/exp_utils.py", line 342, in create_training_setup
+    transformer = model_cls.from_pretrained(model_card, subfolder="transformer", torch_dtype=dtype).to(dev)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/diffusers/models/modeling_utils.py", line 763, in from_pretrained
+    sharded_ckpt_cached_folder, sharded_metadata = _get_checkpoint_shard_files(
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/diffusers/utils/hub_utils.py", line 471, in _get_checkpoint_shard_files
+    cached_folder = snapshot_download(
+                    ^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 293, in snapshot_download
+    thread_map(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 69, in thread_map
+    return _executor_map(ThreadPoolExecutor, fn, *iterables, **tqdm_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 51, in _executor_map
+    return list(tqdm_class(ex.map(fn, *iterables, chunksize=chunksize), **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/std.py", line 1181, in __iter__
+    for obj in iterable:
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 267, in _inner_hf_hub_download
+    return hf_hub_download(
+           ^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 862, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1011, in _hf_hub_download_to_cache_dir
+    _download_to_tmp_and_move(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1545, in _download_to_tmp_and_move
+    http_get(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 457, in http_get
+    temp_file.write(chunk)
+OSError: [Errno 28] No space left on device
+/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py:653: UserWarning: Not enough free disk space to download the file. The expected file size is: 9962.58 MB. The target location /n/home11/spurandare/.cache/huggingface/hub/models--black-forest-labs--FLUX.1-schnell/blobs only has 0.00 MB free disk space.
+  warnings.warn(
+/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py:653: UserWarning: Not enough free disk space to download the file. The expected file size is: 9949.33 MB. The target location /n/home11/spurandare/.cache/huggingface/hub/models--black-forest-labs--FLUX.1-schnell/blobs only has 0.00 MB free disk space.
+  warnings.warn(
+Fetching 3 files:   0%|          | 0/3 [10:46<?, ?it/s]
+/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py:653: UserWarning: Not enough free disk space to download the file. The expected file size is: 9962.58 MB. The target location /n/home11/spurandare/.cache/huggingface/hub/models--black-forest-labs--FLUX.1-schnell/blobs only has 0.00 MB free disk space.
+  warnings.warn(
+Traceback (most recent call last):
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/driver.py", line 185, in experiment_runner
+    if args.preset_config:
+              ^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/driver.py", line 52, in __init__
+    self.model, self.optimizer, self.train_step = create_training_setup(**self.setup_cfg)
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/exp_utils.py", line 342, in create_training_setup
+    transformer = model_cls.from_pretrained(model_card, subfolder="transformer", torch_dtype=dtype).to(dev)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/diffusers/models/modeling_utils.py", line 763, in from_pretrained
+    sharded_ckpt_cached_folder, sharded_metadata = _get_checkpoint_shard_files(
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/diffusers/utils/hub_utils.py", line 471, in _get_checkpoint_shard_files
+    cached_folder = snapshot_download(
+                    ^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 293, in snapshot_download
+    thread_map(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 69, in thread_map
+    return _executor_map(ThreadPoolExecutor, fn, *iterables, **tqdm_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 51, in _executor_map
+    return list(tqdm_class(ex.map(fn, *iterables, chunksize=chunksize), **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/std.py", line 1181, in __iter__
+    for obj in iterable:
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 267, in _inner_hf_hub_download
+    return hf_hub_download(
+           ^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 862, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1011, in _hf_hub_download_to_cache_dir
+    _download_to_tmp_and_move(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1545, in _download_to_tmp_and_move
+    http_get(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 457, in http_get
+    temp_file.write(chunk)
+OSError: [Errno 28] No space left on device
+/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py:653: UserWarning: Not enough free disk space to download the file. The expected file size is: 9949.33 MB. The target location /n/home11/spurandare/.cache/huggingface/hub/models--black-forest-labs--FLUX.1-schnell/blobs only has 0.00 MB free disk space.
+  warnings.warn(
+Fetching 3 files:   0%|          | 0/3 [11:28<?, ?it/s]
+Traceback (most recent call last):
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/driver.py", line 185, in experiment_runner
+    if args.preset_config:
+              ^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/driver.py", line 52, in __init__
+    self.model, self.optimizer, self.train_step = create_training_setup(**self.setup_cfg)
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/exp_utils.py", line 342, in create_training_setup
+    transformer = model_cls.from_pretrained(model_card, subfolder="transformer", torch_dtype=dtype).to(dev)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/diffusers/models/modeling_utils.py", line 763, in from_pretrained
+    sharded_ckpt_cached_folder, sharded_metadata = _get_checkpoint_shard_files(
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/diffusers/utils/hub_utils.py", line 471, in _get_checkpoint_shard_files
+    cached_folder = snapshot_download(
+                    ^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 293, in snapshot_download
+    thread_map(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 69, in thread_map
+    return _executor_map(ThreadPoolExecutor, fn, *iterables, **tqdm_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 51, in _executor_map
+    return list(tqdm_class(ex.map(fn, *iterables, chunksize=chunksize), **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/std.py", line 1181, in __iter__
+    for obj in iterable:
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 267, in _inner_hf_hub_download
+    return hf_hub_download(
+           ^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 862, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1011, in _hf_hub_download_to_cache_dir
+    _download_to_tmp_and_move(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1545, in _download_to_tmp_and_move
+    http_get(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 457, in http_get
+    temp_file.write(chunk)
+OSError: [Errno 28] No space left on device
+/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py:653: UserWarning: Not enough free disk space to download the file. The expected file size is: 9962.58 MB. The target location /n/home11/spurandare/.cache/huggingface/hub/models--black-forest-labs--FLUX.1-schnell/blobs only has 0.00 MB free disk space.
+  warnings.warn(
+Traceback (most recent call last):
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/driver.py", line 185, in experiment_runner
+    if args.preset_config:
+              ^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/driver.py", line 52, in __init__
+    self.model, self.optimizer, self.train_step = create_training_setup(**self.setup_cfg)
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/exp_utils.py", line 342, in create_training_setup
+    transformer = model_cls.from_pretrained(model_card, subfolder="transformer", torch_dtype=dtype).to(dev)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/diffusers/models/modeling_utils.py", line 763, in from_pretrained
+    sharded_ckpt_cached_folder, sharded_metadata = _get_checkpoint_shard_files(
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/diffusers/utils/hub_utils.py", line 471, in _get_checkpoint_shard_files
+    cached_folder = snapshot_download(
+                    ^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 293, in snapshot_download
+    thread_map(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 69, in thread_map
+    return _executor_map(ThreadPoolExecutor, fn, *iterables, **tqdm_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 51, in _executor_map
+    return list(tqdm_class(ex.map(fn, *iterables, chunksize=chunksize), **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/std.py", line 1181, in __iter__
+    for obj in iterable:
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 267, in _inner_hf_hub_download
+    return hf_hub_download(
+           ^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 862, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1011, in _hf_hub_download_to_cache_dir
+    _download_to_tmp_and_move(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1545, in _download_to_tmp_and_move
+    http_get(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 457, in http_get
+    temp_file.write(chunk)
+OSError: [Errno 28] No space left on device
+Fetching 3 files:   0%|          | 0/3 [12:17<?, ?it/s]
+/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py:653: UserWarning: Not enough free disk space to download the file. The expected file size is: 9949.33 MB. The target location /n/home11/spurandare/.cache/huggingface/hub/models--black-forest-labs--FLUX.1-schnell/blobs only has 0.00 MB free disk space.
+  warnings.warn(
+/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py:653: UserWarning: Not enough free disk space to download the file. The expected file size is: 9962.58 MB. The target location /n/home11/spurandare/.cache/huggingface/hub/models--black-forest-labs--FLUX.1-schnell/blobs only has 0.00 MB free disk space.
+  warnings.warn(
+Traceback (most recent call last):
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/driver.py", line 185, in experiment_runner
+    if args.preset_config:
+              ^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/driver.py", line 52, in __init__
+    self.model, self.optimizer, self.train_step = create_training_setup(**self.setup_cfg)
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/exp_utils.py", line 342, in create_training_setup
+    transformer = model_cls.from_pretrained(model_card, subfolder="transformer", torch_dtype=dtype).to(dev)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/diffusers/models/modeling_utils.py", line 763, in from_pretrained
+    sharded_ckpt_cached_folder, sharded_metadata = _get_checkpoint_shard_files(
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/diffusers/utils/hub_utils.py", line 471, in _get_checkpoint_shard_files
+    cached_folder = snapshot_download(
+                    ^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 293, in snapshot_download
+    thread_map(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 69, in thread_map
+    return _executor_map(ThreadPoolExecutor, fn, *iterables, **tqdm_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 51, in _executor_map
+    return list(tqdm_class(ex.map(fn, *iterables, chunksize=chunksize), **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/std.py", line 1181, in __iter__
+    for obj in iterable:
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 267, in _inner_hf_hub_download
+    return hf_hub_download(
+           ^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 862, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1011, in _hf_hub_download_to_cache_dir
+    _download_to_tmp_and_move(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1545, in _download_to_tmp_and_move
+    http_get(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 457, in http_get
+    temp_file.write(chunk)
+OSError: [Errno 28] No space left on device
+Fetching 3 files:   0%|          | 0/3 [13:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/driver.py", line 185, in experiment_runner
+    if args.preset_config:
+              ^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/driver.py", line 52, in __init__
+    self.model, self.optimizer, self.train_step = create_training_setup(**self.setup_cfg)
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/auto-sac/exp_utils.py", line 342, in create_training_setup
+    transformer = model_cls.from_pretrained(model_card, subfolder="transformer", torch_dtype=dtype).to(dev)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/diffusers/models/modeling_utils.py", line 763, in from_pretrained
+    sharded_ckpt_cached_folder, sharded_metadata = _get_checkpoint_shard_files(
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/diffusers/utils/hub_utils.py", line 471, in _get_checkpoint_shard_files
+    cached_folder = snapshot_download(
+                    ^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 293, in snapshot_download
+    thread_map(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 69, in thread_map
+    return _executor_map(ThreadPoolExecutor, fn, *iterables, **tqdm_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 51, in _executor_map
+    return list(tqdm_class(ex.map(fn, *iterables, chunksize=chunksize), **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/tqdm/std.py", line 1181, in __iter__
+    for obj in iterable:
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 267, in _inner_hf_hub_download
+    return hf_hub_download(
+           ^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 862, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1011, in _hf_hub_download_to_cache_dir
+    _download_to_tmp_and_move(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1545, in _download_to_tmp_and_move
+    http_get(
+  File "/n/holyscratch01/idreos_lab/Users/spurandare/pytorch-3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 457, in http_get
+    temp_file.write(chunk)
+OSError: [Errno 28] No space left on device
+Experiment failed: [Errno 28] No space left on device
+Experiment failed: [Errno 28] No space left on device
+Experiment failed: [Errno 28] No space left on device
+Experiment failed: [Errno 28] No space left on device
+Experiment failed: [Errno 28] No space left on device
+Experiment failed: [Errno 28] No space left on device
+Experiment failed: [Errno 28] No space left on device
+Experiment failed: [Errno 28] No space left on device
+Experiment failed: [Errno 28] No space left on device
+Experiment failed: [Errno 28] No space left on device
+Experiment failed: [Errno 28] No space left on device
+Experiment failed: [Errno 28] No space left on device
+Experiment failed: [Errno 28] No space left on device

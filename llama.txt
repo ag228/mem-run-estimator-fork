@@ -1,0 +1,91 @@
+args =  Namespace(model_name='llama_v3_1b', batch_size=2, seq_len=64, image_size=224, num_denoising_steps=50, precision='HP', enable_ac=False, gpu_type='H100', real_execution=False, memory_estimation=True, test=False, runtime_estimation=False, benchmark=True, preset_config=False, config_idx=0, runtime_estimation_mode='operator-level-learned-model')
+Model has 1235814400 parameters.
+Parameter Memory: 4.604 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+cuda:0    4.6 GiB      0.0 GiB   0.0 GiB     38.44 GiB     0.02 GiB  9.21 GiB    0.0 GiB  52.27 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+Memory Tracking time (ms): 4826.501369476318
+Model has 1235814400 parameters.
+Parameter Memory: 2.302 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+cuda:0    2.3 GiB      0.0 GiB   0.0 GiB     84.26 GiB     0.02 GiB  4.6 GiB     0.0 GiB  91.19 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+Memory Tracking time (ms): 4916.006088256836
+Delete: ['llama_v3_1b', 12, 2048, -1, -1, 'HP', False, 97915844096, 4916.006088256836]
+Model has 1235814400 parameters.
+Parameter Memory: 2.302 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  ========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
+========  ===========  ========  ==========  ============  ========  ==========  =======  ========
+cuda:0    2.3 GiB      0.0 GiB   0.0 GiB     56.18 GiB     0.02 GiB  4.6 GiB     0.0 GiB  63.1 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  ========
+Memory Tracking time (ms): 4918.596982955933
+Model has 1235814400 parameters.
+Parameter Memory: 4.604 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  ========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
+========  ===========  ========  ==========  ============  ========  ==========  =======  ========
+cuda:0    4.6 GiB      0.0 GiB   0.0 GiB     40.76 GiB     0.03 GiB  9.21 GiB    0.0 GiB  54.6 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  ========
+Memory Tracking time (ms): 5497.29061126709
+Model has 1235814400 parameters.
+Parameter Memory: 4.604 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+cuda:0    4.6 GiB      0.0 GiB   0.0 GiB     20.38 GiB     0.02 GiB  9.21 GiB    0.0 GiB  34.21 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+Memory Tracking time (ms): 5502.590656280518
+Model has 1235814400 parameters.
+Parameter Memory: 4.604 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+cuda:0    4.6 GiB      0.0 GiB   0.0 GiB     63.91 GiB     0.02 GiB  9.21 GiB    0.0 GiB  77.73 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+Memory Tracking time (ms): 5414.418935775757
+Delete: ['llama_v3_1b', 16, 1024, -1, -1, 'MP', False, 83465684480, 5414.418935775757]
+Model has 1235814400 parameters.
+Parameter Memory: 2.302 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+cuda:0    2.3 GiB      0.0 GiB   0.0 GiB     18.02 GiB     0.01 GiB  4.6 GiB     0.0 GiB  24.94 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+Memory Tracking time (ms): 5630.930423736572
+Model has 1235814400 parameters.
+Parameter Memory: 2.302 GiB
+========  ===========  ========  ==========  ============  =========  ==========  =======  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp       Optstate    Other    Total
+========  ===========  ========  ==========  ============  =========  ==========  =======  =========
+cuda:0    2.3 GiB      0.0 GiB   0.0 GiB     15.99 GiB     15.67 GiB  4.6 GiB     0.0 GiB  38.56 GiB
+========  ===========  ========  ==========  ============  =========  ==========  =======  =========
+Memory Tracking time (ms): 5631.2243938446045
+Model has 1235814400 parameters.
+Parameter Memory: 2.302 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+cuda:0    2.3 GiB      0.0 GiB   0.0 GiB     36.05 GiB     0.02 GiB  4.6 GiB     0.0 GiB  42.97 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+Memory Tracking time (ms): 5656.758069992065
+Model has 1235814400 parameters.
+Parameter Memory: 2.302 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+cuda:0    2.3 GiB      0.0 GiB   0.0 GiB     36.06 GiB     0.02 GiB  4.6 GiB     0.0 GiB  42.98 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+Memory Tracking time (ms): 5619.347810745239
+Model has 1235814400 parameters.
+Parameter Memory: 2.302 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+cuda:0    2.3 GiB      0.0 GiB   0.0 GiB     36.05 GiB     0.02 GiB  4.6 GiB     0.0 GiB  42.97 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+Memory Tracking time (ms): 5674.563407897949

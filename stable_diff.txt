@@ -1,0 +1,113 @@
+args =  Namespace(model_name='stable_diffusion', batch_size=2, seq_len=64, image_size=224, num_denoising_steps=50, precision='HP', enable_ac=False, gpu_type='H100', real_execution=False, memory_estimation=True, test=False, runtime_estimation=False, benchmark=True, preset_config=False, config_idx=0, runtime_estimation_mode='operator-level-learned-model')
+<class 'diffusers.schedulers.scheduling_ddpm.DDPMScheduler'>
+Model has 1066235307 parameters.
+Parameter Memory: 3.972 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  ==========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
+========  ===========  ========  ==========  ============  ========  ==========  =======  ==========
+cuda:0    3.97 GiB     0.0 GiB   0.46 GiB    109.72 GiB    4.38 GiB  6.4 GiB     0.0 GiB  124.93 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  ==========
+Memory Tracking time (ms): 38798.96068572998
+Delete: ['stable_diffusion', 16, 77, 1024, 50, 'FP', False, 134142104064, 38798.96068572998]
+<class 'diffusers.schedulers.scheduling_ddpm.DDPMScheduler'>
+Model has 1066235307 parameters.
+Parameter Memory: 3.972 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+cuda:0    3.97 GiB     0.0 GiB   0.46 GiB    56.32 GiB     2.19 GiB  6.4 GiB     0.0 GiB  69.35 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+Memory Tracking time (ms): 38801.37133598328
+<class 'diffusers.schedulers.scheduling_ddpm.DDPMScheduler'>
+Model has 1066235307 parameters.
+Parameter Memory: 3.972 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  ========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
+========  ===========  ========  ==========  ============  ========  ==========  =======  ========
+cuda:0    3.97 GiB     0.0 GiB   0.46 GiB    62.17 GiB     2.19 GiB  6.4 GiB     0.0 GiB  75.2 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  ========
+Memory Tracking time (ms): 38822.505474090576
+Delete: ['stable_diffusion', 128, 77, 256, 50, 'FP', False, 80742203392, 38822.505474090576]
+<class 'diffusers.schedulers.scheduling_ddpm.DDPMScheduler'>
+Model has 1066235307 parameters.
+Parameter Memory: 3.972 GiB
+========  ===========  ========  ==========  ============  =======  ==========  =======  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp     Optstate    Other    Total
+========  ===========  ========  ==========  ============  =======  ==========  =======  =========
+cuda:0    3.97 GiB     0.0 GiB   3.5 GiB     1.41 GiB      0.1 GiB  6.4 GiB     0.0 GiB  15.38 GiB
+========  ===========  ========  ==========  ============  =======  ==========  =======  =========
+Memory Tracking time (ms): 38914.446115493774
+<class 'diffusers.schedulers.scheduling_ddpm.DDPMScheduler'>
+Model has 1066235307 parameters.
+Parameter Memory: 3.972 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+cuda:0    3.97 GiB     0.0 GiB   0.46 GiB    10.7 GiB      0.27 GiB  6.4 GiB     0.0 GiB  21.81 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+Memory Tracking time (ms): 38902.427434921265
+<class 'diffusers.schedulers.scheduling_ddpm.DDPMScheduler'>
+Model has 1066235307 parameters.
+Parameter Memory: 3.972 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  ==========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
+========  ===========  ========  ==========  ============  ========  ==========  =======  ==========
+cuda:0    3.97 GiB     0.0 GiB   0.46 GiB    225.29 GiB    8.75 GiB  6.4 GiB     0.0 GiB  244.87 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  ==========
+Memory Tracking time (ms): 39080.0998210907
+Delete: ['stable_diffusion', 128, 77, 512, 50, 'FP', False, 262931185664, 39080.0998210907]
+<class 'diffusers.schedulers.scheduling_ddpm.DDPMScheduler'>
+Model has 1066235307 parameters.
+Parameter Memory: 3.972 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+cuda:0    3.97 GiB     0.0 GiB   0.46 GiB    7.77 GiB      0.27 GiB  6.4 GiB     0.0 GiB  18.88 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+Memory Tracking time (ms): 39014.914989471436
+<class 'diffusers.schedulers.scheduling_ddpm.DDPMScheduler'>
+Model has 1066235307 parameters.
+Parameter Memory: 3.972 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  ==========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
+========  ===========  ========  ==========  ============  ========  ==========  =======  ==========
+cuda:0    3.97 GiB     0.0 GiB   0.46 GiB    112.64 GiB    4.38 GiB  6.4 GiB     0.0 GiB  127.86 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  ==========
+Memory Tracking time (ms): 39056.83660507202
+Delete: ['stable_diffusion', 64, 77, 512, 50, 'FP', False, 137283398144, 39056.83660507202]
+<class 'diffusers.schedulers.scheduling_ddpm.DDPMScheduler'>
+Model has 1066235307 parameters.
+Parameter Memory: 3.972 GiB
+========  ===========  ========  ==========  ============  =======  ==========  =======  ========
+Device    Parameter    Buffer    Gradient    Activation    Temp     Optstate    Other    Total
+========  ===========  ========  ==========  ============  =======  ==========  =======  ========
+cuda:0    3.97 GiB     0.0 GiB   3.5 GiB     2.82 GiB      0.2 GiB  6.4 GiB     0.0 GiB  16.9 GiB
+========  ===========  ========  ==========  ============  =======  ==========  =======  ========
+Memory Tracking time (ms): 38930.301904678345
+<class 'diffusers.schedulers.scheduling_ddpm.DDPMScheduler'>
+Model has 1066235307 parameters.
+Parameter Memory: 3.972 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+cuda:0    3.97 GiB     0.0 GiB   0.46 GiB    31.09 GiB     1.09 GiB  6.4 GiB     0.0 GiB  43.02 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+Memory Tracking time (ms): 39013.0820274353
+<class 'diffusers.schedulers.scheduling_ddpm.DDPMScheduler'>
+Model has 1066235307 parameters.
+Parameter Memory: 3.972 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+cuda:0    3.97 GiB     0.0 GiB   0.46 GiB    31.09 GiB     1.09 GiB  6.4 GiB     0.0 GiB  43.02 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+Memory Tracking time (ms): 39075.60992240906
+<class 'diffusers.schedulers.scheduling_ddpm.DDPMScheduler'>
+Model has 1066235307 parameters.
+Parameter Memory: 3.972 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+cuda:0    3.97 GiB     0.0 GiB   0.46 GiB    21.4 GiB      0.55 GiB  6.4 GiB     0.0 GiB  32.78 GiB
+========  ===========  ========  ==========  ============  ========  ==========  =======  =========
+Memory Tracking time (ms): 38967.55886077881

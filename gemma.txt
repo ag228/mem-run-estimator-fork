@@ -1,0 +1,85 @@
+args =  Namespace(model_name='gemma_2b', batch_size=2, seq_len=64, image_size=224, num_denoising_steps=50, precision='HP', enable_ac=False, gpu_type='H100', real_execution=False, memory_estimation=True, test=False, runtime_estimation=False, benchmark=True, preset_config=False, config_idx=0, runtime_estimation_mode='operator-level-learned-model')
+`config.hidden_act` is ignored, you should use `config.hidden_activation` instead.
+Gemma's activation function will be set to `gelu_pytorch_tanh`. Please, use
+`config.hidden_activation` if you want to override this behaviour.
+See https://github.com/huggingface/transformers/pull/29402 for more details.
+`config.hidden_act` is ignored, you should use `config.hidden_activation` instead.
+Gemma's activation function will be set to `gelu_pytorch_tanh`. Please, use
+`config.hidden_activation` if you want to override this behaviour.
+See https://github.com/huggingface/transformers/pull/29402 for more details.
+`config.hidden_act` is ignored, you should use `config.hidden_activation` instead.
+Gemma's activation function will be set to `gelu_pytorch_tanh`. Please, use
+`config.hidden_activation` if you want to override this behaviour.
+See https://github.com/huggingface/transformers/pull/29402 for more details.
+`config.hidden_act` is ignored, you should use `config.hidden_activation` instead.
+Gemma's activation function will be set to `gelu_pytorch_tanh`. Please, use
+`config.hidden_activation` if you want to override this behaviour.
+See https://github.com/huggingface/transformers/pull/29402 for more details.
+`config.hidden_act` is ignored, you should use `config.hidden_activation` instead.
+Gemma's activation function will be set to `gelu_pytorch_tanh`. Please, use
+`config.hidden_activation` if you want to override this behaviour.
+See https://github.com/huggingface/transformers/pull/29402 for more details.
+`config.hidden_act` is ignored, you should use `config.hidden_activation` instead.
+Gemma's activation function will be set to `gelu_pytorch_tanh`. Please, use
+`config.hidden_activation` if you want to override this behaviour.
+See https://github.com/huggingface/transformers/pull/29402 for more details.
+`config.hidden_act` is ignored, you should use `config.hidden_activation` instead.
+Gemma's activation function will be set to `gelu_pytorch_tanh`. Please, use
+`config.hidden_activation` if you want to override this behaviour.
+See https://github.com/huggingface/transformers/pull/29402 for more details.
+Model has 2506172416 parameters.
+Parameter Memory: 4.668 GiB
+========  ===========  ========  ==========  ============  =======  ==========  =======  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp     Optstate    Other    Total
+========  ===========  ========  ==========  ============  =======  ==========  =======  =========
+cuda:0    4.67 GiB     0.0 GiB   0.0 GiB     52.4 GiB      0.0 GiB  9.34 GiB    0.0 GiB  66.41 GiB
+========  ===========  ========  ==========  ============  =======  ==========  =======  =========
+Memory Tracking time (ms): 6958.037853240967
+Model has 2506172416 parameters.
+Parameter Memory: 9.336 GiB
+========  ===========  ========  ==========  ============  =======  ==========  =======  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp     Optstate    Other    Total
+========  ===========  ========  ==========  ============  =======  ==========  =======  =========
+cuda:0    9.34 GiB     0.0 GiB   0.0 GiB     31.77 GiB     0.0 GiB  18.67 GiB   0.0 GiB  59.78 GiB
+========  ===========  ========  ==========  ============  =======  ==========  =======  =========
+Memory Tracking time (ms): 7265.477418899536
+Model has 2506172416 parameters.
+Parameter Memory: 9.336 GiB
+========  ===========  ========  ==========  ============  =======  ==========  =======  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp     Optstate    Other    Total
+========  ===========  ========  ==========  ============  =======  ==========  =======  =========
+cuda:0    9.34 GiB     0.0 GiB   0.0 GiB     31.73 GiB     0.0 GiB  18.67 GiB   0.0 GiB  59.75 GiB
+========  ===========  ========  ==========  ============  =======  ==========  =======  =========
+Memory Tracking time (ms): 7278.506517410278
+Model has 2506172416 parameters.
+Parameter Memory: 9.336 GiB
+========  ===========  ========  ==========  ============  =======  ==========  =======  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp     Optstate    Other    Total
+========  ===========  ========  ==========  ============  =======  ==========  =======  =========
+cuda:0    9.34 GiB     0.0 GiB   0.0 GiB     15.33 GiB     0.0 GiB  18.67 GiB   0.0 GiB  43.34 GiB
+========  ===========  ========  ==========  ============  =======  ==========  =======  =========
+Memory Tracking time (ms): 7460.130929946899
+Model has 2506172416 parameters.
+Parameter Memory: 9.336 GiB
+========  ===========  ========  ==========  ============  =======  ==========  =======  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp     Optstate    Other    Total
+========  ===========  ========  ==========  ============  =======  ==========  =======  =========
+cuda:0    9.34 GiB     0.0 GiB   0.0 GiB     15.37 GiB     0.0 GiB  18.67 GiB   0.0 GiB  43.38 GiB
+========  ===========  ========  ==========  ============  =======  ==========  =======  =========
+Memory Tracking time (ms): 7474.66254234314
+Model has 2506172416 parameters.
+Parameter Memory: 4.668 GiB
+========  ===========  ========  ==========  ============  =======  ==========  =======  ========
+Device    Parameter    Buffer    Gradient    Activation    Temp     Optstate    Other    Total
+========  ===========  ========  ==========  ============  =======  ==========  =======  ========
+cuda:0    4.67 GiB     0.0 GiB   0.0 GiB     30.99 GiB     0.0 GiB  9.34 GiB    0.0 GiB  45.0 GiB
+========  ===========  ========  ==========  ============  =======  ==========  =======  ========
+Memory Tracking time (ms): 7816.70618057251
+Model has 2506172416 parameters.
+Parameter Memory: 4.668 GiB
+========  ===========  ========  ==========  ============  =======  ==========  =======  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp     Optstate    Other    Total
+========  ===========  ========  ==========  ============  =======  ==========  =======  =========
+cuda:0    4.67 GiB     0.0 GiB   0.0 GiB     30.95 GiB     0.0 GiB  9.34 GiB    0.0 GiB  44.96 GiB
+========  ===========  ========  ==========  ============  =======  ==========  =======  =========
+Memory Tracking time (ms): 7850.428819656372
