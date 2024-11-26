@@ -17,7 +17,6 @@ from exp_utils import create_training_setup, DEVICE, gpu_types, model_names, Pre
 from configs import input_configs
 torch.backends.cuda.enable_flash_sdp(enabled=True)
 
-<<<<<<< HEAD
 input_configs = {
     "hf_T5": [
         {"batch_size": 6, "seq_len": 512, "precision": Precision.MP, "ac": False, "image_size": -1, "num_denoising_steps": -1},
@@ -132,8 +131,6 @@ input_configs = {
     ],
 }
 
-=======
->>>>>>> origin/main
 
 class Experiment:
 

@@ -7,13 +7,8 @@ from typing import Any, Callable, Dict, Iterator, List, Set, ContextManager, Tup
 
 import timm
 import timm.optim
-<<<<<<< HEAD
 from transformers import AutoConfig, AutoModelForCausalLM, AutoModelForSeq2SeqLM, CLIPModel, GemmaForCausalLM, LlamaForCausalLM
 from diffusers import StableDiffusionPipeline, StableDiffusion3Pipeline
-=======
-from transformers import AutoConfig, AutoModelForCausalLM, AutoModelForSeq2SeqLM, CLIPModel
-from diffusers import StableDiffusionPipeline
->>>>>>> origin/main
 from diffusers import FluxTransformer2DModel
 from transformers import CLIPTextModel, CLIPTokenizer 
 from diffusers import UNet2DConditionModel, AutoencoderKL, DDPMScheduler
@@ -83,14 +78,9 @@ model_class: Dict[str, Type] = {
     "llama_v3_1b": AutoModelForCausalLM,
     "gemma_2b": AutoModelForCausalLM,
     "hf_clip": CLIPModel,
-<<<<<<< HEAD
     "stable_diffusion": [UNet2DConditionModel, AutoencoderKL, CLIPTextModel,  CLIPTokenizer, DDPMScheduler],
     "flux": FluxTransformer2DModel,
     "stable_diffusion_mmdit": [StableDiffusion3Pipeline]
-=======
-    "stable_diffusion": [UNet2DConditionModel, AutoencoderKL, CLIPTextModel, DDPMScheduler],
-    "flux": FluxTransformer2DModel
->>>>>>> origin/main
 }
 
 model_ac_classes: Dict[str, List[str]] = {
@@ -352,11 +342,7 @@ def create_training_setup(
                 with sdpa_kernel([SDPBackend.FLASH_ATTENTION, SDPBackend.CUDNN_ATTENTION, SDPBackend.EFFICIENT_ATTENTION]):
                     with amp_context:
                         noise_pred = unet(**inputs).sample
-<<<<<<< HEAD
                         loss = torch.nn.functional.mse_loss(noise_pred, latents.to(dev))
-=======
-                        loss = torch.nn.functional.mse_loss(noise_pred, noise)
->>>>>>> origin/main
                     loss.backward()
                     optim.step()
                     optim.zero_grad()
@@ -383,7 +369,6 @@ def create_training_setup(
         def flux_train_step(
             models: List[nn.Module], optim: optim.Optimizer,
         ):
-<<<<<<< HEAD
 
             with torch.device(dev):
                 in_channels = model.in_channels
@@ -402,26 +387,6 @@ def create_training_setup(
                     "img_ids": img_ids,
                     "txt_ids": txt_ids,
                 }
-=======
-            
-            model = models[0]
-            # Example inputs for training (replace with actual data as needed)
-            in_channels = model.in_channels
-            joint_attention_dim = model.joint_attention_dim
-            pooled_projection_dim = model.pooled_projection_dim
-
-            hidden_states, encoder_hidden_states, pooled_projections, timestep, img_ids, txt_ids, target = generate_flux_inputs(batch_size, image_size, seq_len, in_channels, joint_attention_dim, pooled_projection_dim, dtype, dev)
-            
-            # Prepare inputs for FluxTransformer
-            inputs = {
-                "hidden_states": hidden_states,
-                "encoder_hidden_states": encoder_hidden_states,
-                "pooled_projections": pooled_projections,
-                "timestep": timestep,
-                "img_ids": img_ids,
-                "txt_ids": txt_ids,
-            }
->>>>>>> origin/main
 
             with sdpa_kernel([SDPBackend.FLASH_ATTENTION, SDPBackend.CUDNN_ATTENTION, SDPBackend.EFFICIENT_ATTENTION]):
                 with amp_context:
@@ -496,11 +461,7 @@ def create_training_setup(
     else:
          raise ValueError(f"No setup is available for {model_name}. Please choose from {model_names}")
 
-<<<<<<< HEAD
          
-=======
-import fcntl
->>>>>>> origin/main
 
 def write_to_logfile(file_name: str, log_record: str):
     with open(file_name, 'a', newline='') as csvfile:
