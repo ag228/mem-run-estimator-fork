@@ -370,6 +370,13 @@ def create_training_setup(
             with torch.device(dev):
                 transformer = model_cls.from_pretrained(model_card, subfolder="transformer", torch_dtype=dtype)
 
+                vae = model_cls.from_pretrained(model_card, subfolder="vae", torch_dtype=dtype)
+                text_encoder = model_cls.from_pretrained(model_card, subfolder="text_encoder", torch_dtype=dtype)
+                text_encoder_2 = model_cls.from_pretrained(model_card, subfolder="text_encoder_2", torch_dtype=dtype)
+                tokenizer = model_cls.from_pretrained(model_card, subfolder="tokenizer", torch_dtype=dtype)
+                tokenizer_2 = model_cls.from_pretrained(model_card, subfolder="tokenizer_2", torch_dtype=dtype)
+                scheduler = model_cls.from_pretrained(model_card, subfolder="scheduler", torch_dtype=dtype)
+
             optimizer = create_optimizer(transformer.parameters())
 
             if ac == AC.FULL:
@@ -382,6 +389,8 @@ def create_training_setup(
                 batch_size, image_size, seq_len, in_channels, joint_attention_dim, pooled_projection_dim, dtype, dev
             )
 
+
+
         # Training loop
         def flux_train_step(
             models: List[nn.Module], optimizers: List[optim.Optimizer], flux_inputs
@@ -389,15 +398,32 @@ def create_training_setup(
             transformer = models[0]
             optimizer = optimizers[0]
             hidden_states, encoder_hidden_states, pooled_projections, timestep, img_ids, txt_ids, target = flux_inputs
+
+
+            # overwrite encoder_hidden_states and pooled_projections from real models:
+
+            ### Text Encoder 2
+            text_input_ids = torch.randn((batch_size, 77))   # hardcode to 77 for now, todo: add two sequence lengths for flux
+            pooled_prompt_embeds = models[2](text_input_ids.to(device), output_hidden_states=False)[0]  ### text_encoder
+
+            ### Text Encoder 1
+            text_input_ids = torch.randn((batch_size, seq_len))
+            prompt_embeds = models[1](text_input_ids.to(device), output_hidden_states=False)    ### text_encoder
+
+            prompt_embeds = prompt_embeds.pooler_output
+            prompt_embeds = prompt_embeds.to(dtype=models[1].dtype, device=device)
+            text_ids = torch.zeros(prompt_embeds.shape[1], 3).to(device=device, dtype=dtype)
+            ### now have prompt_embeds and pooled_prompt_embeds and text_ids that can feed into the inputs
+
             
             # Prepare inputs for FluxTransformer
             inputs = {
-                "hidden_states": hidden_states,
-                "encoder_hidden_states": encoder_hidden_states,
-                "pooled_projections": pooled_projections,
+                "hidden_states": hidden_states, 
+                "encoder_hidden_states": prompt_embeds,
+                "pooled_projections": pooled_prompt_embeds,
                 "timestep": timestep,
                 "img_ids": img_ids,
-                "txt_ids": txt_ids,
+                "txt_ids": text_ids,
             }
 
             with sdpa_kernel([SDPBackend.FLASH_ATTENTION, SDPBackend.CUDNN_ATTENTION, SDPBackend.EFFICIENT_ATTENTION]):
@@ -408,7 +434,7 @@ def create_training_setup(
                 optimizer.step()
                 optimizer.zero_grad()
 
-        return (flux_train_step, [transformer], [optimizer], flux_inputs)
+        return (flux_train_step, [transformer, text_encoder, text_encoder_2, tokenizer, tokenizer_2], [optimizer], flux_inputs)
 
 
 
