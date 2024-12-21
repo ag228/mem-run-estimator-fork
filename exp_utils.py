@@ -128,18 +128,25 @@ def generate_noise_and_timesteps(
     return (pixel_img, timesteps)
 
 def generate_flux_inputs(
-        batch_size: int, image_size:int, seq_len:int, in_channels:int, joint_attention_dim:int, pooled_projection_dim:int, dtype: torch.dtype, dev: torch.device
-) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
+        bsz: int, im_sz:int, dtype: torch.dtype, dev: torch.device
+) -> Tuple[torch.Tensor, torch.Tensor]:
+    img_ids = torch.randn(im_sz, 3, dtype=dtype, device=dev)
+    return (img_ids)
 
-    hidden_states = torch.randn((batch_size, int((image_size/8)*2), in_channels), dtype=dtype, device=dev)
-    encoder_hidden_states = torch.randn((batch_size, seq_len, joint_attention_dim), dtype=dtype, device=dev)
-    pooled_projections = torch.randn((batch_size, pooled_projection_dim), dtype=dtype, device=dev)
-    timestep = torch.tensor([0], dtype=dtype, device=dev)
-    img_ids = torch.randn((int((image_size/8)*2), 3), dtype=dtype, device=dev)
-    txt_ids = torch.randn((seq_len, 3), dtype=dtype, device=dev)
-    target = torch.randn_like(hidden_states)
 
-    return (hidden_states, encoder_hidden_states, pooled_projections, timestep, img_ids, txt_ids, target)
+# def generate_flux_inputs(
+#         batch_size: int, image_size:int, seq_len:int, in_channels:int, joint_attention_dim:int, pooled_projection_dim:int, dtype: torch.dtype, dev: torch.device
+# ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
+
+#     hidden_states = torch.randn((batch_size, int((image_size/8)*2), in_channels), dtype=dtype, device=dev)
+#     encoder_hidden_states = torch.randn((batch_size, seq_len, joint_attention_dim), dtype=dtype, device=dev)
+#     pooled_projections = torch.randn((batch_size, pooled_projection_dim), dtype=dtype, device=dev)
+#     timestep = torch.tensor([0], dtype=dtype, device=dev)
+#     img_ids = torch.randn((int((image_size/8)*2), 3), dtype=dtype, device=dev)
+#     txt_ids = torch.randn((seq_len, 3), dtype=dtype, device=dev)
+#     target = torch.randn_like(hidden_states)
+
+#     return (hidden_states, encoder_hidden_states, pooled_projections, timestep, img_ids, txt_ids, target)
 
 def generate_sd3_inputs(
         batch_size: int, image_size:int, seq_len:int, in_channels:int, joint_attention_dim:int, pooled_projection_dim:int, embed_dim:int, dtype: torch.dtype, dev: torch.device
@@ -366,28 +373,34 @@ def create_training_setup(
         model_card = model_cards[model_name]
         model_cls = model_class[model_name]
 
+        transformer_config = model_cls[0].load_config(model_card, subfolder="transformer")
+        vae_config = model_cls[5].load_config(model_card, subfolder="vae")
+        scheduler_config = model_cls[6].load_config(model_card, subfolder="scheduler")
+
         with init_mode:
             with torch.device(dev):
-                transformer = model_cls.from_pretrained(model_card, subfolder="transformer", torch_dtype=dtype)
 
-                vae = model_cls.from_pretrained(model_card, subfolder="vae", torch_dtype=dtype)
-                text_encoder = model_cls.from_pretrained(model_card, subfolder="text_encoder", torch_dtype=dtype)
-                text_encoder_2 = model_cls.from_pretrained(model_card, subfolder="text_encoder_2", torch_dtype=dtype)
-                tokenizer = model_cls.from_pretrained(model_card, subfolder="tokenizer", torch_dtype=dtype)
-                tokenizer_2 = model_cls.from_pretrained(model_card, subfolder="tokenizer_2", torch_dtype=dtype)
-                scheduler = model_cls.from_pretrained(model_card, subfolder="scheduler", torch_dtype=dtype)
+                transformer = model_cls[0].from_config(transformer_config).to(dtype=dtype)
+                tokenizer = model_cls[1].from_pretrained(model_card, subfolder="tokenizer", torch_dtype=dtype)
+                tokenizer_2 = model_cls[2].from_pretrained(model_card, subfolder="tokenizer_2", torch_dtype=dtype)
+                text_encoder = model_cls[3].from_pretrained(model_card, subfolder="text_encoder", torch_dtype=dtype)
+                text_encoder_2 = model_cls[4].from_pretrained(model_card, subfolder="text_encoder_2", torch_dtype=dtype)
+                vae = model_cls[5].from_config(vae_config).to(dtype=dtype)
+                scheduler = model_cls[6].from_config(scheduler_config)
+                del vae.decoder
+
 
             optimizer = create_optimizer(transformer.parameters())
 
-            if ac == AC.FULL:
+            if ac:
                 ac_classes = model_ac_classes[model_name]
-                apply_ac(unet, ac_classes)
-            in_channels = model.in_channels
-            joint_attention_dim = model.joint_attention_dim
-            pooled_projection_dim = model.pooled_projection_dim
-            flux_inputs = generate_flux_inputs(
-                batch_size, image_size, seq_len, in_channels, joint_attention_dim, pooled_projection_dim, dtype, dev
-            )
+                apply_ac(transformer, ac_classes)
+
+            
+            pixel_img, timesteps = generate_noise_and_timesteps(batch_size, image_size, num_denoising_steps, dtype, dev)
+            input_ids, labels = generate_inputs_and_labels(batch_size, text_encoder.config.vocab_size, seq_len, dev)
+            img_ids = generate_flux_inputs(batch_size, vae.config.latent_channels, dtype, dev) ## img_ids are generated randomly here, tried to generate them from latents instead but wasn't able to
+            flux_inputs = (input_ids, labels, pixel_img, timesteps, img_ids)
 
 
 
@@ -395,33 +408,44 @@ def create_training_setup(
         def flux_train_step(
             models: List[nn.Module], optimizers: List[optim.Optimizer], flux_inputs
         ):
+            
             transformer = models[0]
             optimizer = optimizers[0]
-            hidden_states, encoder_hidden_states, pooled_projections, timestep, img_ids, txt_ids, target = flux_inputs
+
+            input_ids, _, pixel_img, timesteps, img_ids = flux_inputs
 
 
-            # overwrite encoder_hidden_states and pooled_projections from real models:
+            with torch.no_grad():
+                ### Text Encoder 2
+                text_input_ids = torch.randint(0, tokenizer_2.vocab_size, (batch_size, seq_len))   
+                prompt_embeds = models[2](text_input_ids.to(dev), output_hidden_states=False)[0]
+                text_ids = torch.zeros(prompt_embeds.shape[1], 3).to(device=dev, dtype=dtype)
 
-            ### Text Encoder 2
-            text_input_ids = torch.randn((batch_size, 77))   # hardcode to 77 for now, todo: add two sequence lengths for flux
-            pooled_prompt_embeds = models[2](text_input_ids.to(device), output_hidden_states=False)[0]  ### text_encoder
+                ### Text Encoder 1
+                text_input_ids = torch.randint(0, tokenizer.vocab_size, (batch_size, 77)) # hardcode to 77 for now, later can add two sequence lengths for flux in parameters
+                pooled_prompt_embeds = models[1](text_input_ids.to(dev), output_hidden_states=False)
 
-            ### Text Encoder 1
-            text_input_ids = torch.randn((batch_size, seq_len))
-            prompt_embeds = models[1](text_input_ids.to(device), output_hidden_states=False)    ### text_encoder
+                pooled_prompt_embeds = pooled_prompt_embeds.pooler_output
+                pooled_prompt_embeds = pooled_prompt_embeds.to(dtype=models[1].dtype, device=dev)
+                
+                # VAE
+                latents = models[3].encode(pixel_img).latent_dist.sample()
 
-            prompt_embeds = prompt_embeds.pooler_output
-            prompt_embeds = prompt_embeds.to(dtype=models[1].dtype, device=device)
-            text_ids = torch.zeros(prompt_embeds.shape[1], 3).to(device=device, dtype=dtype)
-            ### now have prompt_embeds and pooled_prompt_embeds and text_ids that can feed into the inputs
+            noise = torch.randn_like(latents)
+            noisy_latents = scheduler.step(latents, timesteps, noise).prev_sample
 
-            
+            # Reshape
+            bs, c, h, w = noisy_latents.size()
+            noisy_latents = noisy_latents.view(bs, c, -1)
+            latents = latents.view(bs, c, -1)
+
+
             # Prepare inputs for FluxTransformer
             inputs = {
-                "hidden_states": hidden_states, 
+                "hidden_states": noisy_latents, 
                 "encoder_hidden_states": prompt_embeds,
                 "pooled_projections": pooled_prompt_embeds,
-                "timestep": timestep,
+                "timestep": timesteps,
                 "img_ids": img_ids,
                 "txt_ids": text_ids,
             }
@@ -429,70 +453,13 @@ def create_training_setup(
             with sdpa_kernel([SDPBackend.FLASH_ATTENTION, SDPBackend.CUDNN_ATTENTION, SDPBackend.EFFICIENT_ATTENTION]):
                 with amp_context:
                     output = transformer(**inputs).sample
-                    loss = nn.functional.mse_loss(output, target) 
+                    loss = nn.functional.mse_loss(output, latents) 
                 loss.backward()
                 optimizer.step()
                 optimizer.zero_grad()
 
-        return (flux_train_step, [transformer, text_encoder, text_encoder_2, tokenizer, tokenizer_2], [optimizer], flux_inputs)
+        return (flux_train_step, [transformer, text_encoder, text_encoder_2, vae], [optimizer], flux_inputs)
 
-
-
-
-    elif model_name == "stable_diffusion_mmdit":
-        
-        model_card = model_cards[model_name]
-        model_cls = model_class[model_name]
-
-        with init_mode:
-            with torch.device(dev):
-
-                model = StableDiffusion3Pipeline.from_pretrained("stabilityai/stable-diffusion-3-medium-diffusers", torch_dtype=torch.float16)
-
-                transformer = model.transformer
-                vae = model.vae
-                text_encoder = model.text_encoder
-                text_encoder_2 = model.text_encoder_2
-                tokenizer = model.tokenizer
-                tokenizer_2 = model.tokenizer_2
-                tokenizer_3 = model.tokenizer_3
-                scheduler = model.scheduler
-
-            optimizer = create_optimizer(transformer.parameters())
-
-            if ac == AC.FULL:
-                ac_classes = model_ac_classes[model_name]
-                apply_ac(transformer, ac_classes)
-
-
-        def hf_train_step(
-                model: nn.Module, optim: optim.Optimizer,
-            ):
-
-                in_channels = model.in_channels
-                joint_attention_dim = model.joint_attention_dim
-                pooled_projection_dim = model.pooled_projection_dim
-                embed_dim = 4096
-
-                hidden_states, encoder_hidden_states, pooled_projections, timestep, target = generate_sd3_inputs(
-                    batch_size, image_size, seq_len, in_channels, joint_attention_dim, pooled_projection_dim, embed_dim, dtype, dev)
-
-                inputs = {
-                    "hidden_states": hidden_states,
-                    "encoder_hidden_states": encoder_hidden_states,
-                    "pooled_projections": pooled_projections,
-                    "timestep": timestep,
-                }
-
-                with sdpa_kernel([SDPBackend.FLASH_ATTENTION, SDPBackend.CUDNN_ATTENTION, SDPBackend.EFFICIENT_ATTENTION]):
-                    with amp_context:
-                        noise_pred = model(**inputs).sample
-                        loss = torch.nn.functional.mse_loss(hidden_states, target.to(dev))
-                    loss.backward()
-                    optimizer.step()
-                    optimizer.zero_grad()
-
-        return (model.transformer, optimizer, hf_train_step)
 
 
 
