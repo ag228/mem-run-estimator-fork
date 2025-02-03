@@ -46,6 +46,7 @@ class ExpType(StrEnum):
     runtime_est = "runtime_estimation"
     memory_est = "memory_estimation"
     real_execution = "real_execution"
+    auto_sac = "auto_sac"
     test = "test"
 
 class Precision(StrEnum):
@@ -166,7 +167,6 @@ def apply_ac(model: nn.Module, ac_classes: List[str]):
     def ac_wrapper(module: nn.Module) -> Union[nn.Module, None]:
         module_class = module.__class__.__name__
         if module_class in ac_classes:
-            print("Applied AC")
             return checkpoint_wrapper(
                 module,
                 preserve_rng_state=False,
@@ -404,15 +404,15 @@ def create_training_setup(
 
             ### Text Encoder 2
             text_input_ids = torch.randn((batch_size, 77))   # hardcode to 77 for now, todo: add two sequence lengths for flux
-            pooled_prompt_embeds = models[2](text_input_ids.to(device), output_hidden_states=False)[0]  ### text_encoder
+            pooled_prompt_embeds = models[2](text_input_ids.to(DEVICE), output_hidden_states=False)[0]  ### text_encoder
 
             ### Text Encoder 1
             text_input_ids = torch.randn((batch_size, seq_len))
-            prompt_embeds = models[1](text_input_ids.to(device), output_hidden_states=False)    ### text_encoder
+            prompt_embeds = models[1](text_input_ids.to(DEVICE), output_hidden_states=False)    ### text_encoder
 
             prompt_embeds = prompt_embeds.pooler_output
-            prompt_embeds = prompt_embeds.to(dtype=models[1].dtype, device=device)
-            text_ids = torch.zeros(prompt_embeds.shape[1], 3).to(device=device, dtype=dtype)
+            prompt_embeds = prompt_embeds.to(dtype=models[1].dtype, device=DEVICE)
+            text_ids = torch.zeros(prompt_embeds.shape[1], 3).to(device=DEVICE, dtype=dtype)
             ### now have prompt_embeds and pooled_prompt_embeds and text_ids that can feed into the inputs
 
             

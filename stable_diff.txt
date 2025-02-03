@@ -1,113 +1,537 @@
-args =  Namespace(model_name='stable_diffusion', batch_size=2, seq_len=64, image_size=224, num_denoising_steps=50, precision='HP', enable_ac=False, gpu_type='H100', real_execution=False, memory_estimation=True, test=False, runtime_estimation=False, benchmark=True, preset_config=False, config_idx=0, runtime_estimation_mode='operator-level-learned-model')
-<class 'diffusers.schedulers.scheduling_ddpm.DDPMScheduler'>
-Model has 1066235307 parameters.
-Parameter Memory: 3.972 GiB
-========  ===========  ========  ==========  ============  ========  ==========  =======  ==========
-Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
-========  ===========  ========  ==========  ============  ========  ==========  =======  ==========
-cuda:0    3.97 GiB     0.0 GiB   0.46 GiB    109.72 GiB    4.38 GiB  6.4 GiB     0.0 GiB  124.93 GiB
-========  ===========  ========  ==========  ============  ========  ==========  =======  ==========
-Memory Tracking time (ms): 38798.96068572998
-Delete: ['stable_diffusion', 16, 77, 1024, 50, 'FP', False, 134142104064, 38798.96068572998]
-<class 'diffusers.schedulers.scheduling_ddpm.DDPMScheduler'>
-Model has 1066235307 parameters.
-Parameter Memory: 3.972 GiB
-========  ===========  ========  ==========  ============  ========  ==========  =======  =========
-Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
-========  ===========  ========  ==========  ============  ========  ==========  =======  =========
-cuda:0    3.97 GiB     0.0 GiB   0.46 GiB    56.32 GiB     2.19 GiB  6.4 GiB     0.0 GiB  69.35 GiB
-========  ===========  ========  ==========  ============  ========  ==========  =======  =========
-Memory Tracking time (ms): 38801.37133598328
-<class 'diffusers.schedulers.scheduling_ddpm.DDPMScheduler'>
-Model has 1066235307 parameters.
-Parameter Memory: 3.972 GiB
-========  ===========  ========  ==========  ============  ========  ==========  =======  ========
-Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
-========  ===========  ========  ==========  ============  ========  ==========  =======  ========
-cuda:0    3.97 GiB     0.0 GiB   0.46 GiB    62.17 GiB     2.19 GiB  6.4 GiB     0.0 GiB  75.2 GiB
-========  ===========  ========  ==========  ============  ========  ==========  =======  ========
-Memory Tracking time (ms): 38822.505474090576
-Delete: ['stable_diffusion', 128, 77, 256, 50, 'FP', False, 80742203392, 38822.505474090576]
-<class 'diffusers.schedulers.scheduling_ddpm.DDPMScheduler'>
-Model has 1066235307 parameters.
-Parameter Memory: 3.972 GiB
-========  ===========  ========  ==========  ============  =======  ==========  =======  =========
-Device    Parameter    Buffer    Gradient    Activation    Temp     Optstate    Other    Total
-========  ===========  ========  ==========  ============  =======  ==========  =======  =========
-cuda:0    3.97 GiB     0.0 GiB   3.5 GiB     1.41 GiB      0.1 GiB  6.4 GiB     0.0 GiB  15.38 GiB
-========  ===========  ========  ==========  ============  =======  ==========  =======  =========
-Memory Tracking time (ms): 38914.446115493774
-<class 'diffusers.schedulers.scheduling_ddpm.DDPMScheduler'>
-Model has 1066235307 parameters.
-Parameter Memory: 3.972 GiB
-========  ===========  ========  ==========  ============  ========  ==========  =======  =========
-Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
-========  ===========  ========  ==========  ============  ========  ==========  =======  =========
-cuda:0    3.97 GiB     0.0 GiB   0.46 GiB    10.7 GiB      0.27 GiB  6.4 GiB     0.0 GiB  21.81 GiB
-========  ===========  ========  ==========  ============  ========  ==========  =======  =========
-Memory Tracking time (ms): 38902.427434921265
-<class 'diffusers.schedulers.scheduling_ddpm.DDPMScheduler'>
-Model has 1066235307 parameters.
-Parameter Memory: 3.972 GiB
-========  ===========  ========  ==========  ============  ========  ==========  =======  ==========
-Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
-========  ===========  ========  ==========  ============  ========  ==========  =======  ==========
-cuda:0    3.97 GiB     0.0 GiB   0.46 GiB    225.29 GiB    8.75 GiB  6.4 GiB     0.0 GiB  244.87 GiB
-========  ===========  ========  ==========  ============  ========  ==========  =======  ==========
-Memory Tracking time (ms): 39080.0998210907
-Delete: ['stable_diffusion', 128, 77, 512, 50, 'FP', False, 262931185664, 39080.0998210907]
-<class 'diffusers.schedulers.scheduling_ddpm.DDPMScheduler'>
-Model has 1066235307 parameters.
-Parameter Memory: 3.972 GiB
-========  ===========  ========  ==========  ============  ========  ==========  =======  =========
-Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
-========  ===========  ========  ==========  ============  ========  ==========  =======  =========
-cuda:0    3.97 GiB     0.0 GiB   0.46 GiB    7.77 GiB      0.27 GiB  6.4 GiB     0.0 GiB  18.88 GiB
-========  ===========  ========  ==========  ============  ========  ==========  =======  =========
-Memory Tracking time (ms): 39014.914989471436
-<class 'diffusers.schedulers.scheduling_ddpm.DDPMScheduler'>
-Model has 1066235307 parameters.
-Parameter Memory: 3.972 GiB
-========  ===========  ========  ==========  ============  ========  ==========  =======  ==========
-Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
-========  ===========  ========  ==========  ============  ========  ==========  =======  ==========
-cuda:0    3.97 GiB     0.0 GiB   0.46 GiB    112.64 GiB    4.38 GiB  6.4 GiB     0.0 GiB  127.86 GiB
-========  ===========  ========  ==========  ============  ========  ==========  =======  ==========
-Memory Tracking time (ms): 39056.83660507202
-Delete: ['stable_diffusion', 64, 77, 512, 50, 'FP', False, 137283398144, 39056.83660507202]
-<class 'diffusers.schedulers.scheduling_ddpm.DDPMScheduler'>
-Model has 1066235307 parameters.
-Parameter Memory: 3.972 GiB
-========  ===========  ========  ==========  ============  =======  ==========  =======  ========
-Device    Parameter    Buffer    Gradient    Activation    Temp     Optstate    Other    Total
-========  ===========  ========  ==========  ============  =======  ==========  =======  ========
-cuda:0    3.97 GiB     0.0 GiB   3.5 GiB     2.82 GiB      0.2 GiB  6.4 GiB     0.0 GiB  16.9 GiB
-========  ===========  ========  ==========  ============  =======  ==========  =======  ========
-Memory Tracking time (ms): 38930.301904678345
-<class 'diffusers.schedulers.scheduling_ddpm.DDPMScheduler'>
-Model has 1066235307 parameters.
-Parameter Memory: 3.972 GiB
-========  ===========  ========  ==========  ============  ========  ==========  =======  =========
-Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
-========  ===========  ========  ==========  ============  ========  ==========  =======  =========
-cuda:0    3.97 GiB     0.0 GiB   0.46 GiB    31.09 GiB     1.09 GiB  6.4 GiB     0.0 GiB  43.02 GiB
-========  ===========  ========  ==========  ============  ========  ==========  =======  =========
-Memory Tracking time (ms): 39013.0820274353
-<class 'diffusers.schedulers.scheduling_ddpm.DDPMScheduler'>
-Model has 1066235307 parameters.
-Parameter Memory: 3.972 GiB
-========  ===========  ========  ==========  ============  ========  ==========  =======  =========
-Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
-========  ===========  ========  ==========  ============  ========  ==========  =======  =========
-cuda:0    3.97 GiB     0.0 GiB   0.46 GiB    31.09 GiB     1.09 GiB  6.4 GiB     0.0 GiB  43.02 GiB
-========  ===========  ========  ==========  ============  ========  ==========  =======  =========
-Memory Tracking time (ms): 39075.60992240906
-<class 'diffusers.schedulers.scheduling_ddpm.DDPMScheduler'>
-Model has 1066235307 parameters.
-Parameter Memory: 3.972 GiB
-========  ===========  ========  ==========  ============  ========  ==========  =======  =========
-Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other    Total
-========  ===========  ========  ==========  ============  ========  ==========  =======  =========
-cuda:0    3.97 GiB     0.0 GiB   0.46 GiB    21.4 GiB      0.55 GiB  6.4 GiB     0.0 GiB  32.78 GiB
-========  ===========  ========  ==========  ============  ========  ==========  =======  =========
-Memory Tracking time (ms): 38967.55886077881
+Found Root Module Conv2d but was not provided to Auto-SAC as an input.
+The Module FQNs in AC decisions will include Conv2d as one of the root modules. If Conv2d is a sub-module, then its ancestor modules were not called during the forward pass. This may result in a sub-optimal solution.
+Found Root Module Conv2d but was not provided to Auto-SAC as an input.
+The Module FQNs in AC decisions will include Conv2d as one of the root modules. If Conv2d is a sub-module, then its ancestor modules were not called during the forward pass. This may result in a sub-optimal solution.
+Found Root Module Conv2d but was not provided to Auto-SAC as an input.
+The Module FQNs in AC decisions will include Conv2d as one of the root modules. If Conv2d is a sub-module, then its ancestor modules were not called during the forward pass. This may result in a sub-optimal solution.
+Found Root Module Conv2d but was not provided to Auto-SAC as an input.
+The Module FQNs in AC decisions will include Conv2d as one of the root modules. If Conv2d is a sub-module, then its ancestor modules were not called during the forward pass. This may result in a sub-optimal solution.
+Found Root Module Conv2d but was not provided to Auto-SAC as an input.
+The Module FQNs in AC decisions will include Conv2d as one of the root modules. If Conv2d is a sub-module, then its ancestor modules were not called during the forward pass. This may result in a sub-optimal solution.
+Found Root Module Conv2d but was not provided to Auto-SAC as an input.
+The Module FQNs in AC decisions will include Conv2d as one of the root modules. If Conv2d is a sub-module, then its ancestor modules were not called during the forward pass. This may result in a sub-optimal solution.
+Found Root Module Conv2d but was not provided to Auto-SAC as an input.
+The Module FQNs in AC decisions will include Conv2d as one of the root modules. If Conv2d is a sub-module, then its ancestor modules were not called during the forward pass. This may result in a sub-optimal solution.
+Found Root Module Conv2d but was not provided to Auto-SAC as an input.
+The Module FQNs in AC decisions will include Conv2d as one of the root modules. If Conv2d is a sub-module, then its ancestor modules were not called during the forward pass. This may result in a sub-optimal solution.
+Found Root Module Conv2d but was not provided to Auto-SAC as an input.
+The Module FQNs in AC decisions will include Conv2d as one of the root modules. If Conv2d is a sub-module, then its ancestor modules were not called during the forward pass. This may result in a sub-optimal solution.
+Found Root Module Conv2d but was not provided to Auto-SAC as an input.
+The Module FQNs in AC decisions will include Conv2d as one of the root modules. If Conv2d is a sub-module, then its ancestor modules were not called during the forward pass. This may result in a sub-optimal solution.
+Found Root Module Conv2d but was not provided to Auto-SAC as an input.
+The Module FQNs in AC decisions will include Conv2d as one of the root modules. If Conv2d is a sub-module, then its ancestor modules were not called during the forward pass. This may result in a sub-optimal solution.
+Found Root Module Conv2d but was not provided to Auto-SAC as an input.
+The Module FQNs in AC decisions will include Conv2d as one of the root modules. If Conv2d is a sub-module, then its ancestor modules were not called during the forward pass. This may result in a sub-optimal solution.
+args =  Namespace(model_name='stable_diffusion', batch_size=64, seq_len=77, image_size=512, num_denoising_steps=50, precision='FP', ac_mode='auto', gpu_type='H100', real_execution=False, memory_estimation=False, test=False, runtime_estimation=False, auto_sac=True, benchmark=True, preset_config=False, config_idx=0, memory_budget=68.0, sac_algo='greedy', runtime_estimation_mode='operator-level-cost-model')
+Memory Budget: 68.0 GiB
+Auto-SAC Estimated Memory: 68.0 GiB
+Estimated recomputation time: 108.51 ms
+Auto-SAC Decisions: 
+UNet2DConditionModel.time_embedding: 0.0
+UNet2DConditionModel.down_blocks.0: 0.887
+UNet2DConditionModel.down_blocks.1: 0.88
+UNet2DConditionModel.down_blocks.2.resnets.1: 0.7188
+UNet2DConditionModel.down_blocks.2.attentions.1: 0.5364
+UNet2DConditionModel.down_blocks.3.resnets.0: 0.7191
+UNet2DConditionModel.mid_block.resnets.0: 0.7191
+UNet2DConditionModel.mid_block.attentions.0.transformer_blocks.0.attn1: 0.1997
+UNet2DConditionModel.mid_block.attentions.0.transformer_blocks.0.attn2: 0.1848
+UNet2DConditionModel.mid_block.resnets.1: 0.7191
+UNet2DConditionModel.up_blocks.0.resnets.0: 0.7774
+UNet2DConditionModel.up_blocks.0.resnets.2: 0.7774
+UNet2DConditionModel.up_blocks.1.attentions.0.transformer_blocks.0.attn2: 0.29
+UNet2DConditionModel.up_blocks.1.attentions.2.transformer_blocks.0.attn1: 0.1997
+UNet2DConditionModel.up_blocks.2: 0.6557
+UNet2DConditionModel.up_blocks.3.attentions.0: 0.9229
+UNet2DConditionModel.up_blocks.3.attentions.1: 0.9229
+UNet2DConditionModel.up_blocks.3.attentions.2: 0.1889
+Model has UNet2DConditionModel 859520964 parameters.
+Parameter Memory: 3.202 GiB
+Model has CLIPTextModel 123060480 parameters.
+Parameter Memory: 0.458 GiB
+Model has Encoder 34163592 parameters.
+Parameter Memory: 0.127 GiB
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other     Total
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+cuda:0    3.79 GiB     0.0 GiB   0.0 GiB     48.98 GiB     4.38 GiB  6.4 GiB     0.19 GiB  63.73 GiB
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+Memory Tracking time (ms): 42546.38719558716
+Estimation time (ms): 3244.915723800659
+args =  Namespace(model_name='stable_diffusion', batch_size=80, seq_len=77, image_size=512, num_denoising_steps=50, precision='FP', ac_mode='auto', gpu_type='H100', real_execution=False, memory_estimation=False, test=False, runtime_estimation=False, auto_sac=True, benchmark=True, preset_config=False, config_idx=0, memory_budget=68.0, sac_algo='greedy', runtime_estimation_mode='operator-level-cost-model')
+Memory Budget: 68.0 GiB
+Auto-SAC Estimated Memory: 68.0 GiB
+Estimated recomputation time: 168.42 ms
+Auto-SAC Decisions: 
+UNet2DConditionModel.down_blocks.0: 0.887
+UNet2DConditionModel.down_blocks.1: 0.88
+UNet2DConditionModel.down_blocks.2.attentions.0.transformer_blocks.0.ff: 0.367
+UNet2DConditionModel.down_blocks.2.resnets.1: 0.7188
+UNet2DConditionModel.down_blocks.2.attentions.1.transformer_blocks.0.attn1: 0.1997
+UNet2DConditionModel.down_blocks.2.attentions.1.transformer_blocks.0.ff.net.0: 0.0
+UNet2DConditionModel.down_blocks.3: 0.7551
+UNet2DConditionModel.mid_block.resnets.0: 0.7191
+UNet2DConditionModel.mid_block.attentions.0.transformer_blocks.0.attn1: 0.1997
+UNet2DConditionModel.mid_block.attentions.0.transformer_blocks.0.ff: 0.367
+UNet2DConditionModel.up_blocks.0: 0.8917
+UNet2DConditionModel.up_blocks.1.attentions.0.transformer_blocks.0.attn1: 0.1997
+UNet2DConditionModel.up_blocks.1.attentions.0.transformer_blocks.0.ff: 0.367
+UNet2DConditionModel.up_blocks.1.attentions.1.transformer_blocks.0.attn1: 0.1997
+UNet2DConditionModel.up_blocks.1.attentions.1.transformer_blocks.0.ff: 0.367
+UNet2DConditionModel.up_blocks.1.attentions.2.transformer_blocks.0.ff: 0.367
+UNet2DConditionModel.up_blocks.1.upsamplers.0: 0.01
+UNet2DConditionModel.up_blocks.2: 0.9207
+UNet2DConditionModel.up_blocks.3.attentions.0: 0.9229
+UNet2DConditionModel.up_blocks.3.resnets.1: 0.808
+UNet2DConditionModel.up_blocks.3.attentions.1: 0.9229
+UNet2DConditionModel.up_blocks.3.resnets.2: 0.808
+UNet2DConditionModel.up_blocks.3.attentions.2.transformer_blocks.0.attn2: 0.9107
+UNet2DConditionModel.up_blocks.3.attentions.2.transformer_blocks.0.ff: 0.0508
+Model has UNet2DConditionModel 859520964 parameters.
+Parameter Memory: 3.202 GiB
+Model has CLIPTextModel 123060480 parameters.
+Parameter Memory: 0.458 GiB
+Model has Encoder 34163592 parameters.
+Parameter Memory: 0.127 GiB
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other     Total
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+cuda:0    3.79 GiB     0.0 GiB   0.09 GiB    46.39 GiB     5.47 GiB  6.4 GiB     0.23 GiB  62.37 GiB
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+Memory Tracking time (ms): 43229.30097579956
+Estimation time (ms): 3215.9409523010254
+args =  Namespace(model_name='stable_diffusion', batch_size=192, seq_len=77, image_size=256, num_denoising_steps=50, precision='FP', ac_mode='auto', gpu_type='H100', real_execution=False, memory_estimation=False, test=False, runtime_estimation=False, auto_sac=True, benchmark=True, preset_config=False, config_idx=0, memory_budget=68.0, sac_algo='knapsack', runtime_estimation_mode='operator-level-cost-model')
+Memory Budget: 68.0 GiB
+Auto-SAC Estimated Memory: 68.0 GiB
+Estimated recomputation time: 41.78 ms
+Auto-SAC Decisions: 
+UNet2DConditionModel.down_blocks.0: 0.8853
+UNet2DConditionModel.down_blocks.1.attentions.0.transformer_blocks.0.ff: 0.3968
+UNet2DConditionModel.down_blocks.1.attentions.1: 0.4966
+UNet2DConditionModel.down_blocks.2.resnets.0: 0.7334
+UNet2DConditionModel.down_blocks.2.attentions.0.transformer_blocks.0: 0.5269
+UNet2DConditionModel.down_blocks.2.resnets.1: 0.7191
+UNet2DConditionModel.down_blocks.2.attentions.1: 0.5413
+UNet2DConditionModel.down_blocks.3.resnets.0: 0.72
+UNet2DConditionModel.down_blocks.3.resnets.1: 0.72
+UNet2DConditionModel.mid_block: 0.2022
+UNet2DConditionModel.up_blocks.0: 0.8925
+UNet2DConditionModel.up_blocks.1.resnets.0: 0.673
+UNet2DConditionModel.up_blocks.1.attentions.0: 0.5413
+UNet2DConditionModel.up_blocks.1.attentions.1.transformer_blocks.0: 0.5269
+UNet2DConditionModel.up_blocks.1.attentions.2.transformer_blocks.0: 0.5269
+UNet2DConditionModel.up_blocks.1.upsamplers.0: 0.01
+UNet2DConditionModel.up_blocks.2.resnets.0: 0.8258
+UNet2DConditionModel.up_blocks.2.attentions.0: 0.4966
+UNet2DConditionModel.up_blocks.2.attentions.1: 0.4966
+UNet2DConditionModel.up_blocks.2.attentions.2: 0.4966
+UNet2DConditionModel.up_blocks.3.attentions.0.transformer_blocks.0.ff: 0.2114
+UNet2DConditionModel.up_blocks.3.resnets.1: 0.8081
+UNet2DConditionModel.up_blocks.3.attentions.1.transformer_blocks.0.ff: 0.2114
+UNet2DConditionModel.up_blocks.3.resnets.2: 0.8081
+UNet2DConditionModel.up_blocks.3.attentions.2.transformer_blocks.0.ff: 0.0467
+Model has UNet2DConditionModel 859520964 parameters.
+Parameter Memory: 3.202 GiB
+Model has CLIPTextModel 123060480 parameters.
+Parameter Memory: 0.458 GiB
+Model has Encoder 34163592 parameters.
+Parameter Memory: 0.127 GiB
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other     Total
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+cuda:0    3.79 GiB     0.0 GiB   0.0 GiB     50.32 GiB     3.28 GiB  6.4 GiB     0.14 GiB  63.93 GiB
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+Memory Tracking time (ms): 43743.8485622406
+Estimation time (ms): 3260.944366455078
+args =  Namespace(model_name='stable_diffusion', batch_size=192, seq_len=77, image_size=256, num_denoising_steps=50, precision='FP', ac_mode='auto', gpu_type='H100', real_execution=False, memory_estimation=False, test=False, runtime_estimation=False, auto_sac=True, benchmark=True, preset_config=False, config_idx=0, memory_budget=68.0, sac_algo='optimal', runtime_estimation_mode='operator-level-cost-model')
+Memory Budget: 68.0 GiB
+Auto-SAC Estimated Memory: 68.0 GiB
+Estimated recomputation time: 41.78 ms
+Auto-SAC Decisions: 
+UNet2DConditionModel.down_blocks.0: 0.8853
+UNet2DConditionModel.down_blocks.1.attentions.0.transformer_blocks.0.ff: 0.3968
+UNet2DConditionModel.down_blocks.1.attentions.1: 0.4966
+UNet2DConditionModel.down_blocks.2.resnets.0: 0.7334
+UNet2DConditionModel.down_blocks.2.attentions.0.transformer_blocks.0: 0.5269
+UNet2DConditionModel.down_blocks.2.resnets.1: 0.7191
+UNet2DConditionModel.down_blocks.2.attentions.1: 0.5413
+UNet2DConditionModel.down_blocks.3.resnets.0: 0.72
+UNet2DConditionModel.down_blocks.3.resnets.1: 0.72
+UNet2DConditionModel.mid_block: 0.2022
+UNet2DConditionModel.up_blocks.0: 0.8925
+UNet2DConditionModel.up_blocks.1.resnets.0: 0.673
+UNet2DConditionModel.up_blocks.1.attentions.0: 0.5413
+UNet2DConditionModel.up_blocks.1.attentions.1.transformer_blocks.0: 0.5269
+UNet2DConditionModel.up_blocks.1.attentions.2.transformer_blocks.0: 0.5269
+UNet2DConditionModel.up_blocks.1.upsamplers.0: 0.01
+UNet2DConditionModel.up_blocks.2.resnets.0: 0.8258
+UNet2DConditionModel.up_blocks.2.attentions.0: 0.4966
+UNet2DConditionModel.up_blocks.2.attentions.1: 0.4966
+UNet2DConditionModel.up_blocks.2.attentions.2: 0.4966
+UNet2DConditionModel.up_blocks.3.attentions.0.transformer_blocks.0.ff: 0.2114
+UNet2DConditionModel.up_blocks.3.resnets.1: 0.8081
+UNet2DConditionModel.up_blocks.3.attentions.1.transformer_blocks.0.ff: 0.2114
+UNet2DConditionModel.up_blocks.3.resnets.2: 0.8081
+UNet2DConditionModel.up_blocks.3.attentions.2.transformer_blocks.0.ff: 0.0467
+Model has UNet2DConditionModel 859520964 parameters.
+Parameter Memory: 3.202 GiB
+Model has CLIPTextModel 123060480 parameters.
+Parameter Memory: 0.458 GiB
+Model has Encoder 34163592 parameters.
+Parameter Memory: 0.127 GiB
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other     Total
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+cuda:0    3.79 GiB     0.0 GiB   0.0 GiB     52.76 GiB     3.28 GiB  6.4 GiB     0.14 GiB  66.38 GiB
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+Memory Tracking time (ms): 43361.393451690674
+Estimation time (ms): 3272.958755493164
+args =  Namespace(model_name='stable_diffusion', batch_size=192, seq_len=77, image_size=256, num_denoising_steps=50, precision='FP', ac_mode='auto', gpu_type='H100', real_execution=False, memory_estimation=False, test=False, runtime_estimation=False, auto_sac=True, benchmark=True, preset_config=False, config_idx=0, memory_budget=68.0, sac_algo='greedy', runtime_estimation_mode='operator-level-cost-model')
+Memory Budget: 68.0 GiB
+Auto-SAC Estimated Memory: 68.0 GiB
+Estimated recomputation time: 41.78 ms
+Auto-SAC Decisions: 
+UNet2DConditionModel.down_blocks.0: 0.8853
+UNet2DConditionModel.down_blocks.1.attentions.0.transformer_blocks.0.ff: 0.3968
+UNet2DConditionModel.down_blocks.1.attentions.1: 0.4966
+UNet2DConditionModel.down_blocks.2.resnets.0: 0.7334
+UNet2DConditionModel.down_blocks.2.attentions.0.transformer_blocks.0: 0.5269
+UNet2DConditionModel.down_blocks.2.resnets.1: 0.7191
+UNet2DConditionModel.down_blocks.2.attentions.1: 0.5413
+UNet2DConditionModel.down_blocks.3.resnets.0: 0.72
+UNet2DConditionModel.down_blocks.3.resnets.1: 0.72
+UNet2DConditionModel.mid_block: 0.2022
+UNet2DConditionModel.up_blocks.0: 0.8925
+UNet2DConditionModel.up_blocks.1.resnets.0: 0.673
+UNet2DConditionModel.up_blocks.1.attentions.0: 0.5413
+UNet2DConditionModel.up_blocks.1.attentions.1.transformer_blocks.0: 0.5269
+UNet2DConditionModel.up_blocks.1.attentions.2.transformer_blocks.0: 0.5269
+UNet2DConditionModel.up_blocks.1.upsamplers.0: 0.01
+UNet2DConditionModel.up_blocks.2.resnets.0: 0.8258
+UNet2DConditionModel.up_blocks.2.attentions.0: 0.4966
+UNet2DConditionModel.up_blocks.2.attentions.1: 0.4966
+UNet2DConditionModel.up_blocks.2.attentions.2: 0.4966
+UNet2DConditionModel.up_blocks.3.attentions.0.transformer_blocks.0.ff: 0.2114
+UNet2DConditionModel.up_blocks.3.resnets.1: 0.8081
+UNet2DConditionModel.up_blocks.3.attentions.1.transformer_blocks.0.ff: 0.2114
+UNet2DConditionModel.up_blocks.3.resnets.2: 0.8081
+UNet2DConditionModel.up_blocks.3.attentions.2.transformer_blocks.0.ff: 0.0467
+Model has UNet2DConditionModel 859520964 parameters.
+Parameter Memory: 3.202 GiB
+Model has CLIPTextModel 123060480 parameters.
+Parameter Memory: 0.458 GiB
+Model has Encoder 34163592 parameters.
+Parameter Memory: 0.127 GiB
+========  ===========  ========  ==========  ============  ========  ==========  ========  ========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other     Total
+========  ===========  ========  ==========  ============  ========  ==========  ========  ========
+cuda:0    3.79 GiB     0.0 GiB   0.0 GiB     51.09 GiB     3.28 GiB  6.4 GiB     0.14 GiB  64.7 GiB
+========  ===========  ========  ==========  ============  ========  ==========  ========  ========
+Memory Tracking time (ms): 43656.25190734863
+Estimation time (ms): 3259.3133449554443
+args =  Namespace(model_name='stable_diffusion', batch_size=160, seq_len=77, image_size=256, num_denoising_steps=50, precision='FP', ac_mode='auto', gpu_type='H100', real_execution=False, memory_estimation=False, test=False, runtime_estimation=False, auto_sac=True, benchmark=True, preset_config=False, config_idx=0, memory_budget=68.0, sac_algo='optimal', runtime_estimation_mode='operator-level-cost-model')
+Memory Budget: 68.0 GiB
+Auto-SAC Estimated Memory: 68.0 GiB
+Estimated recomputation time: 25.28 ms
+Auto-SAC Decisions: 
+UNet2DConditionModel.down_blocks.0.resnets.0: 0.7199
+UNet2DConditionModel.down_blocks.0.attentions.0: 0.4836
+UNet2DConditionModel.down_blocks.0.resnets.1: 0.7199
+UNet2DConditionModel.down_blocks.0.attentions.1: 0.4836
+UNet2DConditionModel.down_blocks.1: 0.5704
+UNet2DConditionModel.down_blocks.2.attentions.0.transformer_blocks.0: 0.5269
+UNet2DConditionModel.down_blocks.2.resnets.1: 0.7191
+UNet2DConditionModel.down_blocks.2.attentions.1.transformer_blocks.0.attn2: 0.1848
+UNet2DConditionModel.down_blocks.2.attentions.1.transformer_blocks.0.ff.net.0: 0.0
+UNet2DConditionModel.down_blocks.3.resnets.0: 0.72
+UNet2DConditionModel.down_blocks.3.resnets.1: 0.72
+UNet2DConditionModel.mid_block: 0.2022
+UNet2DConditionModel.up_blocks.0: 0.8925
+UNet2DConditionModel.up_blocks.1.attentions.0.transformer_blocks.0.attn2: 0.1848
+UNet2DConditionModel.up_blocks.1.attentions.0.transformer_blocks.0.ff.net.0: 0.0
+UNet2DConditionModel.up_blocks.1.attentions.1: 0.5413
+UNet2DConditionModel.up_blocks.1.attentions.2: 0.5413
+UNet2DConditionModel.up_blocks.2.attentions.0.transformer_blocks.0: 0.4567
+UNet2DConditionModel.up_blocks.2.resnets.1: 0.7773
+UNet2DConditionModel.up_blocks.2.attentions.1.transformer_blocks.0: 0.4567
+UNet2DConditionModel.up_blocks.2.resnets.2: 0.7824
+UNet2DConditionModel.up_blocks.2.attentions.2: 0.4966
+UNet2DConditionModel.up_blocks.2.upsamplers.0: 0.01
+UNet2DConditionModel.up_blocks.3.attentions.0.transformer_blocks.0.ff.net.0: 0.0
+UNet2DConditionModel.up_blocks.3.attentions.1.transformer_blocks.0.ff: 0.2114
+UNet2DConditionModel.up_blocks.3.attentions.2: 0.1884
+Model has UNet2DConditionModel 859520964 parameters.
+Parameter Memory: 3.202 GiB
+Model has CLIPTextModel 123060480 parameters.
+Parameter Memory: 0.458 GiB
+Model has Encoder 34163592 parameters.
+Parameter Memory: 0.127 GiB
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other     Total
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+cuda:0    3.79 GiB     0.0 GiB   0.0 GiB     54.08 GiB     2.73 GiB  6.4 GiB     0.12 GiB  67.13 GiB
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+Memory Tracking time (ms): 43782.73868560791
+Estimation time (ms): 3299.2103099823
+args =  Namespace(model_name='stable_diffusion', batch_size=160, seq_len=77, image_size=256, num_denoising_steps=50, precision='FP', ac_mode='auto', gpu_type='H100', real_execution=False, memory_estimation=False, test=False, runtime_estimation=False, auto_sac=True, benchmark=True, preset_config=False, config_idx=0, memory_budget=68.0, sac_algo='greedy', runtime_estimation_mode='operator-level-cost-model')
+Memory Budget: 68.0 GiB
+Auto-SAC Estimated Memory: 68.0 GiB
+Estimated recomputation time: 25.28 ms
+Auto-SAC Decisions: 
+UNet2DConditionModel.down_blocks.0.resnets.0: 0.7199
+UNet2DConditionModel.down_blocks.0.attentions.0: 0.4836
+UNet2DConditionModel.down_blocks.0.resnets.1: 0.7199
+UNet2DConditionModel.down_blocks.0.attentions.1: 0.4836
+UNet2DConditionModel.down_blocks.1: 0.5704
+UNet2DConditionModel.down_blocks.2.attentions.0.transformer_blocks.0: 0.5269
+UNet2DConditionModel.down_blocks.2.resnets.1: 0.7191
+UNet2DConditionModel.down_blocks.2.attentions.1.transformer_blocks.0.attn2: 0.1848
+UNet2DConditionModel.down_blocks.2.attentions.1.transformer_blocks.0.ff.net.0: 0.0
+UNet2DConditionModel.down_blocks.3.resnets.0: 0.72
+UNet2DConditionModel.down_blocks.3.resnets.1: 0.72
+UNet2DConditionModel.mid_block: 0.2022
+UNet2DConditionModel.up_blocks.0: 0.8925
+UNet2DConditionModel.up_blocks.1.attentions.0.transformer_blocks.0.attn2: 0.1848
+UNet2DConditionModel.up_blocks.1.attentions.0.transformer_blocks.0.ff.net.0: 0.0
+UNet2DConditionModel.up_blocks.1.attentions.1: 0.5413
+UNet2DConditionModel.up_blocks.1.attentions.2: 0.5413
+UNet2DConditionModel.up_blocks.2.attentions.0.transformer_blocks.0: 0.4567
+UNet2DConditionModel.up_blocks.2.resnets.1: 0.7773
+UNet2DConditionModel.up_blocks.2.attentions.1.transformer_blocks.0: 0.4567
+UNet2DConditionModel.up_blocks.2.resnets.2: 0.7824
+UNet2DConditionModel.up_blocks.2.attentions.2: 0.4966
+UNet2DConditionModel.up_blocks.2.upsamplers.0: 0.01
+UNet2DConditionModel.up_blocks.3.attentions.0.transformer_blocks.0.ff.net.0: 0.0
+UNet2DConditionModel.up_blocks.3.attentions.1.transformer_blocks.0.ff: 0.2114
+UNet2DConditionModel.up_blocks.3.attentions.2: 0.1884
+Model has UNet2DConditionModel 859520964 parameters.
+Parameter Memory: 3.202 GiB
+Model has CLIPTextModel 123060480 parameters.
+Parameter Memory: 0.458 GiB
+Model has Encoder 34163592 parameters.
+Parameter Memory: 0.127 GiB
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other     Total
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+cuda:0    3.79 GiB     0.0 GiB   0.0 GiB     53.4 GiB      2.73 GiB  6.4 GiB     0.12 GiB  66.45 GiB
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+Memory Tracking time (ms): 43581.13074302673
+Estimation time (ms): 3257.0958137512207
+args =  Namespace(model_name='stable_diffusion', batch_size=160, seq_len=77, image_size=256, num_denoising_steps=50, precision='FP', ac_mode='auto', gpu_type='H100', real_execution=False, memory_estimation=False, test=False, runtime_estimation=False, auto_sac=True, benchmark=True, preset_config=False, config_idx=0, memory_budget=68.0, sac_algo='knapsack', runtime_estimation_mode='operator-level-cost-model')
+Memory Budget: 68.0 GiB
+Auto-SAC Estimated Memory: 68.0 GiB
+Estimated recomputation time: 25.28 ms
+Auto-SAC Decisions: 
+UNet2DConditionModel.down_blocks.0.resnets.0: 0.7199
+UNet2DConditionModel.down_blocks.0.attentions.0: 0.4836
+UNet2DConditionModel.down_blocks.0.resnets.1: 0.7199
+UNet2DConditionModel.down_blocks.0.attentions.1: 0.4836
+UNet2DConditionModel.down_blocks.1: 0.5704
+UNet2DConditionModel.down_blocks.2.attentions.0.transformer_blocks.0: 0.5269
+UNet2DConditionModel.down_blocks.2.resnets.1: 0.7191
+UNet2DConditionModel.down_blocks.2.attentions.1.transformer_blocks.0.attn2: 0.1848
+UNet2DConditionModel.down_blocks.2.attentions.1.transformer_blocks.0.ff.net.0: 0.0
+UNet2DConditionModel.down_blocks.3.resnets.0: 0.72
+UNet2DConditionModel.down_blocks.3.resnets.1: 0.72
+UNet2DConditionModel.mid_block: 0.2022
+UNet2DConditionModel.up_blocks.0: 0.8925
+UNet2DConditionModel.up_blocks.1.attentions.0.transformer_blocks.0.attn2: 0.1848
+UNet2DConditionModel.up_blocks.1.attentions.0.transformer_blocks.0.ff.net.0: 0.0
+UNet2DConditionModel.up_blocks.1.attentions.1: 0.5413
+UNet2DConditionModel.up_blocks.1.attentions.2: 0.5413
+UNet2DConditionModel.up_blocks.2.attentions.0.transformer_blocks.0: 0.4567
+UNet2DConditionModel.up_blocks.2.resnets.1: 0.7773
+UNet2DConditionModel.up_blocks.2.attentions.1.transformer_blocks.0: 0.4567
+UNet2DConditionModel.up_blocks.2.resnets.2: 0.7824
+UNet2DConditionModel.up_blocks.2.attentions.2: 0.4966
+UNet2DConditionModel.up_blocks.2.upsamplers.0: 0.01
+UNet2DConditionModel.up_blocks.3.attentions.0.transformer_blocks.0.ff.net.0: 0.0
+UNet2DConditionModel.up_blocks.3.attentions.1.transformer_blocks.0.ff: 0.2114
+UNet2DConditionModel.up_blocks.3.attentions.2: 0.1884
+Model has UNet2DConditionModel 859520964 parameters.
+Parameter Memory: 3.202 GiB
+Model has CLIPTextModel 123060480 parameters.
+Parameter Memory: 0.458 GiB
+Model has Encoder 34163592 parameters.
+Parameter Memory: 0.127 GiB
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other     Total
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+cuda:0    3.79 GiB     0.0 GiB   0.0 GiB     50.11 GiB     2.73 GiB  6.4 GiB     0.12 GiB  63.16 GiB
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+Memory Tracking time (ms): 43813.57264518738
+Estimation time (ms): 3265.352487564087
+args =  Namespace(model_name='stable_diffusion', batch_size=64, seq_len=77, image_size=512, num_denoising_steps=50, precision='FP', ac_mode='auto', gpu_type='H100', real_execution=False, memory_estimation=False, test=False, runtime_estimation=False, auto_sac=True, benchmark=True, preset_config=False, config_idx=0, memory_budget=68.0, sac_algo='knapsack', runtime_estimation_mode='operator-level-cost-model')
+Memory Budget: 68.0 GiB
+Auto-SAC Estimated Memory: 68.0 GiB
+Estimated recomputation time: 95.85 ms
+Auto-SAC Decisions: 
+UNet2DConditionModel.time_embedding: 0.0
+UNet2DConditionModel.down_blocks.0: 0.887
+UNet2DConditionModel.down_blocks.1.resnets.0: 0.7342
+UNet2DConditionModel.down_blocks.1.attentions.0.transformer_blocks.0: 0.4392
+UNet2DConditionModel.down_blocks.1.resnets.1: 0.7191
+UNet2DConditionModel.down_blocks.1.attentions.1.transformer_blocks.0: 0.5338
+UNet2DConditionModel.down_blocks.2: 0.6777
+UNet2DConditionModel.down_blocks.3.resnets.1: 0.7191
+UNet2DConditionModel.up_blocks.0: 0.8917
+UNet2DConditionModel.up_blocks.1.resnets.0: 0.7769
+UNet2DConditionModel.up_blocks.1.attentions.0.transformer_blocks.0: 0.5225
+UNet2DConditionModel.up_blocks.1.attentions.1.transformer_blocks.0: 0.5225
+UNet2DConditionModel.up_blocks.1.resnets.2: 0.7368
+UNet2DConditionModel.up_blocks.1.attentions.2.transformer_blocks.0.attn1: 0.1997
+UNet2DConditionModel.up_blocks.1.upsamplers.0: 0.01
+UNet2DConditionModel.up_blocks.2.resnets.0: 0.8257
+UNet2DConditionModel.up_blocks.2.attentions.0: 0.4664
+UNet2DConditionModel.up_blocks.2.resnets.1: 0.7771
+UNet2DConditionModel.up_blocks.2.attentions.1: 0.4664
+UNet2DConditionModel.up_blocks.2.resnets.2: 0.7823
+UNet2DConditionModel.up_blocks.2.attentions.2: 0.4664
+UNet2DConditionModel.up_blocks.2.upsamplers.0: 0.01
+UNet2DConditionModel.up_blocks.3.resnets.0: 0.8431
+UNet2DConditionModel.up_blocks.3.attentions.0: 0.9229
+UNet2DConditionModel.up_blocks.3.attentions.1: 0.9229
+UNet2DConditionModel.up_blocks.3.resnets.2: 0.808
+UNet2DConditionModel.up_blocks.3.attentions.2.transformer_blocks.0.attn2: 1.0
+UNet2DConditionModel.up_blocks.3.attentions.2.transformer_blocks.0.ff: 0.2114
+Model has UNet2DConditionModel 859520964 parameters.
+Parameter Memory: 3.202 GiB
+Model has CLIPTextModel 123060480 parameters.
+Parameter Memory: 0.458 GiB
+Model has Encoder 34163592 parameters.
+Parameter Memory: 0.127 GiB
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other     Total
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+cuda:0    3.79 GiB     0.0 GiB   0.0 GiB     47.74 GiB     4.38 GiB  6.4 GiB     0.19 GiB  62.49 GiB
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+Memory Tracking time (ms): 44486.64927482605
+Estimation time (ms): 3372.1680641174316
+args =  Namespace(model_name='stable_diffusion', batch_size=64, seq_len=77, image_size=512, num_denoising_steps=50, precision='FP', ac_mode='auto', gpu_type='H100', real_execution=False, memory_estimation=False, test=False, runtime_estimation=False, auto_sac=True, benchmark=True, preset_config=False, config_idx=0, memory_budget=68.0, sac_algo='optimal', runtime_estimation_mode='operator-level-cost-model')
+Memory Budget: 68.0 GiB
+Auto-SAC Estimated Memory: 68.0 GiB
+Estimated recomputation time: 95.85 ms
+Auto-SAC Decisions: 
+UNet2DConditionModel.time_embedding: 0.0
+UNet2DConditionModel.down_blocks.0: 0.887
+UNet2DConditionModel.down_blocks.1.resnets.0: 0.7342
+UNet2DConditionModel.down_blocks.1.attentions.0.transformer_blocks.0: 0.4392
+UNet2DConditionModel.down_blocks.1.resnets.1: 0.7191
+UNet2DConditionModel.down_blocks.1.attentions.1.transformer_blocks.0: 0.5338
+UNet2DConditionModel.down_blocks.2: 0.6777
+UNet2DConditionModel.down_blocks.3.resnets.1: 0.7191
+UNet2DConditionModel.up_blocks.0: 0.8917
+UNet2DConditionModel.up_blocks.1.resnets.0: 0.7769
+UNet2DConditionModel.up_blocks.1.attentions.0.transformer_blocks.0: 0.5225
+UNet2DConditionModel.up_blocks.1.attentions.1.transformer_blocks.0: 0.5225
+UNet2DConditionModel.up_blocks.1.resnets.2: 0.7368
+UNet2DConditionModel.up_blocks.1.attentions.2.transformer_blocks.0.attn1: 0.1997
+UNet2DConditionModel.up_blocks.1.upsamplers.0: 0.01
+UNet2DConditionModel.up_blocks.2.resnets.0: 0.8257
+UNet2DConditionModel.up_blocks.2.attentions.0: 0.4664
+UNet2DConditionModel.up_blocks.2.resnets.1: 0.7771
+UNet2DConditionModel.up_blocks.2.attentions.1: 0.4664
+UNet2DConditionModel.up_blocks.2.resnets.2: 0.7823
+UNet2DConditionModel.up_blocks.2.attentions.2: 0.4664
+UNet2DConditionModel.up_blocks.2.upsamplers.0: 0.01
+UNet2DConditionModel.up_blocks.3.resnets.0: 0.8431
+UNet2DConditionModel.up_blocks.3.attentions.0: 0.9229
+UNet2DConditionModel.up_blocks.3.attentions.1: 0.9229
+UNet2DConditionModel.up_blocks.3.resnets.2: 0.808
+UNet2DConditionModel.up_blocks.3.attentions.2.transformer_blocks.0.attn2: 1.0
+UNet2DConditionModel.up_blocks.3.attentions.2.transformer_blocks.0.ff: 0.2114
+Model has UNet2DConditionModel 859520964 parameters.
+Parameter Memory: 3.202 GiB
+Model has CLIPTextModel 123060480 parameters.
+Parameter Memory: 0.458 GiB
+Model has Encoder 34163592 parameters.
+Parameter Memory: 0.127 GiB
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other     Total
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+cuda:0    3.79 GiB     0.0 GiB   0.0 GiB     50.9 GiB      4.38 GiB  6.4 GiB     0.19 GiB  65.66 GiB
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+Memory Tracking time (ms): 45303.79247665405
+Estimation time (ms): 3334.5067501068115
+args =  Namespace(model_name='stable_diffusion', batch_size=80, seq_len=77, image_size=512, num_denoising_steps=50, precision='FP', ac_mode='auto', gpu_type='H100', real_execution=False, memory_estimation=False, test=False, runtime_estimation=False, auto_sac=True, benchmark=True, preset_config=False, config_idx=0, memory_budget=68.0, sac_algo='knapsack', runtime_estimation_mode='operator-level-cost-model')
+Memory Budget: 68.0 GiB
+Auto-SAC Estimated Memory: 68.0 GiB
+Estimated recomputation time: 154.78 ms
+Auto-SAC Decisions: 
+UNet2DConditionModel.down_blocks.0: 0.887
+UNet2DConditionModel.down_blocks.1.resnets.0: 0.7342
+UNet2DConditionModel.down_blocks.1.attentions.0: 0.4664
+UNet2DConditionModel.down_blocks.1.resnets.1: 0.7191
+UNet2DConditionModel.down_blocks.1.attentions.1: 0.4664
+UNet2DConditionModel.down_blocks.2: 0.6777
+UNet2DConditionModel.down_blocks.3.resnets.0: 0.7191
+UNet2DConditionModel.down_blocks.3.resnets.1: 0.7191
+UNet2DConditionModel.mid_block: 0.8927
+UNet2DConditionModel.up_blocks.0: 0.8917
+UNet2DConditionModel.up_blocks.1.resnets.0: 0.7769
+UNet2DConditionModel.up_blocks.1.attentions.0: 0.5364
+UNet2DConditionModel.up_blocks.1.attentions.1: 0.5364
+UNet2DConditionModel.up_blocks.1.resnets.2: 0.7368
+UNet2DConditionModel.up_blocks.1.attentions.2: 0.5364
+UNet2DConditionModel.up_blocks.1.upsamplers.0: 0.01
+UNet2DConditionModel.up_blocks.2: 0.8533
+UNet2DConditionModel.up_blocks.3.resnets.0: 0.8431
+UNet2DConditionModel.up_blocks.3.attentions.0: 0.9229
+UNet2DConditionModel.up_blocks.3.resnets.1: 0.808
+UNet2DConditionModel.up_blocks.3.attentions.1: 0.9229
+UNet2DConditionModel.up_blocks.3.resnets.2: 0.808
+UNet2DConditionModel.up_blocks.3.attentions.2.transformer_blocks.0.ff: 0.0508
+Model has UNet2DConditionModel 859520964 parameters.
+Parameter Memory: 3.202 GiB
+Model has CLIPTextModel 123060480 parameters.
+Parameter Memory: 0.458 GiB
+Model has Encoder 34163592 parameters.
+Parameter Memory: 0.127 GiB
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other     Total
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+cuda:0    3.79 GiB     0.0 GiB   0.09 GiB    45.84 GiB     5.47 GiB  6.4 GiB     0.23 GiB  61.83 GiB
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+Memory Tracking time (ms): 45870.49221992493
+Estimation time (ms): 3452.8896808624268
+args =  Namespace(model_name='stable_diffusion', batch_size=80, seq_len=77, image_size=512, num_denoising_steps=50, precision='FP', ac_mode='auto', gpu_type='H100', real_execution=False, memory_estimation=False, test=False, runtime_estimation=False, auto_sac=True, benchmark=True, preset_config=False, config_idx=0, memory_budget=68.0, sac_algo='optimal', runtime_estimation_mode='operator-level-cost-model')
+Memory Budget: 68.0 GiB
+Auto-SAC Estimated Memory: 68.0 GiB
+Estimated recomputation time: 154.78 ms
+Auto-SAC Decisions: 
+UNet2DConditionModel.down_blocks.0: 0.887
+UNet2DConditionModel.down_blocks.1.resnets.0: 0.7342
+UNet2DConditionModel.down_blocks.1.attentions.0: 0.4664
+UNet2DConditionModel.down_blocks.1.resnets.1: 0.7191
+UNet2DConditionModel.down_blocks.1.attentions.1: 0.4664
+UNet2DConditionModel.down_blocks.2: 0.6777
+UNet2DConditionModel.down_blocks.3.resnets.0: 0.7191
+UNet2DConditionModel.down_blocks.3.resnets.1: 0.7191
+UNet2DConditionModel.mid_block: 0.8927
+UNet2DConditionModel.up_blocks.0: 0.8917
+UNet2DConditionModel.up_blocks.1.resnets.0: 0.7769
+UNet2DConditionModel.up_blocks.1.attentions.0: 0.5364
+UNet2DConditionModel.up_blocks.1.attentions.1: 0.5364
+UNet2DConditionModel.up_blocks.1.resnets.2: 0.7368
+UNet2DConditionModel.up_blocks.1.attentions.2: 0.5364
+UNet2DConditionModel.up_blocks.1.upsamplers.0: 0.01
+UNet2DConditionModel.up_blocks.2: 0.8533
+UNet2DConditionModel.up_blocks.3.resnets.0: 0.8431
+UNet2DConditionModel.up_blocks.3.attentions.0: 0.9229
+UNet2DConditionModel.up_blocks.3.resnets.1: 0.808
+UNet2DConditionModel.up_blocks.3.attentions.1: 0.9229
+UNet2DConditionModel.up_blocks.3.resnets.2: 0.808
+UNet2DConditionModel.up_blocks.3.attentions.2.transformer_blocks.0.ff: 0.0508
+Model has UNet2DConditionModel 859520964 parameters.
+Parameter Memory: 3.202 GiB
+Model has CLIPTextModel 123060480 parameters.
+Parameter Memory: 0.458 GiB
+Model has Encoder 34163592 parameters.
+Parameter Memory: 0.127 GiB
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+Device    Parameter    Buffer    Gradient    Activation    Temp      Optstate    Other     Total
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+cuda:0    3.79 GiB     0.0 GiB   0.0 GiB     49.04 GiB     5.47 GiB  6.4 GiB     0.23 GiB  64.93 GiB
+========  ===========  ========  ==========  ============  ========  ==========  ========  =========
+Memory Tracking time (ms): 46370.98836898804
+Estimation time (ms): 3468.9652919769287

@@ -35,9 +35,12 @@ class Experiment:
             self.exp_type = ExpType.runtime_est
         elif args.test:
             self.exp_type = ExpType.test
-        self.runtime_kwargs = {"estimate_mode": args.runtime_estimation_mode}
+        elif args.auto_sac:
+            self.exp_type = ExpType.auto_sac
+
+        self.runtime_kwargs = {"estimate_mode_type": args.runtime_estimation_mode}
         self.ac_mode = AC(args.ac_mode)
-        self.sac_algo = SACAlgorithm.GREEDY
+        self.sac_algo = SACAlgorithm(args.sac_algo)
         self.memory_budget = args.memory_budget
 
         init_mode = contextlib.nullcontext() if self.exp_type in [ExpType.real_execution, ExpType.test] else FakeTensorMode()
@@ -59,7 +62,7 @@ class Experiment:
         self.train_step, self.models, self.optimizers, self.inputs = create_training_setup(**self.setup_cfg)
         if self.ac_mode == AC.AUTO:
             with init_mode:
-                self.auto_sac(self.memory_budget, self.sac_algo, self.runtime_kwargs)
+                self.optimization_times = self.auto_sac(self.memory_budget, self.sac_algo, self.runtime_kwargs)
         
         for model in self.models:
             param_count = 0
@@ -157,7 +160,7 @@ class Experiment:
         return iter_time, peak_active, peak_reserved
 
     def auto_sac(self, memory_budget: float, sac_algorithm: SACAlgorithm, runtime_kwargs: Dict[str, Any]):
-        auto_sac_result = get_auto_sac_policies(
+        auto_sac_result, optimization_times = get_auto_sac_policies(
             self.train_step,
             self.models,
             self.optimizers,
@@ -179,40 +182,67 @@ class Experiment:
         print("Auto-SAC Decisions: ")
         for m_name, budget in auto_sac_result.ac_decisions.items():
             print(f"{m_name}: {budget}")
+        return optimization_times
+
     def run(self,):
         cfg = self.setup_cfg
         log_record = [
-            cfg['model_name'], cfg['batch_size'], cfg["seq_len"], cfg["image_size"], cfg["num_denoising_steps"], cfg['precision'].value, cfg['ac']
+            cfg['model_name'], cfg['batch_size'], cfg["seq_len"], cfg["image_size"], cfg["num_denoising_steps"], cfg['precision'].value, cfg['ac'].value, self.sac_algo.value,
         ]
         if self.exp_type == ExpType.test:
             iter_time, peak_active, peak_reserved = self.test()
             log_record.extend([iter_time, peak_active, peak_reserved])
-        elif self.exp_type == ExpType.real_execution:
+
+        if self.exp_type == ExpType.real_execution:
             iter_time, peak_active, peak_reserved = self.real_execution()
             log_record.extend([iter_time, peak_active, peak_reserved])
-        elif self.exp_type == ExpType.runtime_est:
+
+        if self.exp_type == ExpType.runtime_est:
             run_est, est_time = self.runtime_estimation(self.runtime_kwargs)
-            log_record.extend([self.runtime_kwargs["estimate_mode"], run_est, est_time])
-        elif self.exp_type == ExpType.memory_est:
+            log_record.extend([self.runtime_kwargs["estimate_mode_type"], run_est, est_time])
+
+        if self.exp_type == ExpType.memory_est:
             peak_mem_est, peak_snapshot, est_time = self.memory_estimation()
             snapshot_log_record = copy.deepcopy(log_record)
             cuda_snapshot = peak_snapshot[torch.device(DEVICE)]
             snapshot_log_record.extend(cuda_snapshot.values())
             log_record.extend([peak_mem_est, est_time])
-            if peak_mem_est > (70 * _GiB):
-                print(f"Delete: {log_record}")
+
+        if self.exp_type == ExpType.auto_sac:
+            peak_mem_est, peak_snapshot, est_time = self.memory_estimation()
+            snapshot_log_record = copy.deepcopy(log_record)
+            cuda_snapshot = peak_snapshot[torch.device(DEVICE)]
+            snapshot_log_record.extend(cuda_snapshot.values())
+            mem_log_record = copy.deepcopy(log_record)
+            mem_log_record.extend([peak_mem_est, est_time])
+            run_est, est_time = self.runtime_estimation(self.runtime_kwargs)
+            run_log_record = copy.deepcopy(log_record)
+            run_log_record.extend([self.runtime_kwargs["estimate_mode_type"], run_est, est_time])
+            sac_log_record = copy.deepcopy(log_record)
+            sac_log_record.extend([*self.optimization_times])
+
 
         Path(f"{OUT_DIR}/").mkdir(parents=True, exist_ok=True)
         if self.exp_type == ExpType.runtime_est:
-            out_file = f"{OUT_DIR}/{self.exp_type.value}_{self.runtime_kwargs['estimate_mode']}_{self.gpu_type}.csv"
+            out_file = f"{OUT_DIR}/{self.exp_type.value}_{self.runtime_kwargs['estimate_mode_type']}_{self.gpu_type}.csv"
+            write_to_logfile(out_file, log_record)
+        elif self.exp_type == ExpType.auto_sac:
+            run_out_file = f"{OUT_DIR}/{ExpType.runtime_est.value}_{self.runtime_kwargs['estimate_mode_type']}_{self.gpu_type}.csv"
+            mem_out_file = f"{OUT_DIR}/{ExpType.memory_est.value}_{self.gpu_type}.csv"
+            snapshot_out_file = f"{OUT_DIR}/{ExpType.memory_est.value}_snapshot_{self.gpu_type}.csv"
+            sac_out_file = f"{OUT_DIR}/{self.exp_type.value}_{self.gpu_type}.csv"
+            write_to_logfile(run_out_file, run_log_record)
+            write_to_logfile(mem_out_file, mem_log_record)
+            write_to_logfile(snapshot_out_file, snapshot_log_record)
+            write_to_logfile(sac_out_file, sac_log_record)
+            
         else:
             out_file = f"{OUT_DIR}/{self.exp_type.value}_{self.gpu_type}.csv"
+            write_to_logfile(out_file, log_record)
 
         if self.exp_type == ExpType.memory_est:
             snapshot_out_file = f"{OUT_DIR}/{self.exp_type.value}_snapshot_{self.gpu_type}.csv"
             write_to_logfile(snapshot_out_file, snapshot_log_record)
-
-        write_to_logfile(out_file, log_record)
 
 
 def experiment_runner(args):
@@ -307,6 +337,11 @@ if __name__ == "__main__":
         action="store_true", 
         help="Estimate training runtime"
     )
+    group.add_argument(
+        "--auto_sac",
+        action="store_true",
+        help="Estimate runtime and memory for Auto-SAC"
+    )
     group2 = parser.add_mutually_exclusive_group()
     group2.add_argument(
         "--benchmark", 
@@ -327,8 +362,15 @@ if __name__ == "__main__":
     parser.add_argument(
         "--memory_budget",
         type=float,
-        default=40.0,
+        default=68.0,
         help=f"Memory Budget for Auto SAC"
+    )
+    parser.add_argument(
+        "--sac_algo",
+        type=str,
+        default=SACAlgorithm.OPTIMAL.value,
+        choices=[algo.value for algo in SACAlgorithm], 
+        help=f"SAC Algorithm to use for Auto SAC"
     )
     parser.add_argument(
         "--runtime_estimation_mode",
@@ -362,12 +404,18 @@ if __name__ == "__main__":
             for config in input_configs[args.model_name]:
                 b_args = override_args_with_configs(args, config)
                 if args.runtime_estimation:
-                    bench_est_modes = {'operator-level-cost-model', 'operator-level-learned-model'}
-                    # bench_est_modes = ['operator-level-learned-model',]
+                    # bench_est_modes = {'operator-level-cost-model', 'operator-level-learned-model'}
+                    bench_est_modes = ['operator-level-cost-model',]
                     for est_mode in bench_est_modes:
                         r_args = copy.deepcopy(b_args)
                         r_args.runtime_estimation_mode = est_mode
                         futures.append(executor.submit(experiment_runner, r_args))
+                elif args.auto_sac:
+                    sac_algos = [alg.value for alg in SACAlgorithm]
+                    for sac_algo in sac_algos:
+                        s_args = copy.deepcopy(b_args)
+                        s_args.sac_algo = sac_algo
+                        futures.append(executor.submit(experiment_runner, s_args))
                 else:
                     futures.append(executor.submit(experiment_runner, b_args))
 
