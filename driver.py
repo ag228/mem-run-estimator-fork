@@ -11,11 +11,11 @@ import torch.multiprocessing as mp
 import torch.nn as nn
 import torch.optim as optim
 from torch.distributed._tools import MemTracker, RuntimeEstimator
-from torch.distributed._tools.auto_sac import (
-    apply_auto_sac_policies,
-    get_auto_sac_policies,
-    SACAlgorithm,
-)
+# from torch.distributed._tools.auto_sac import (
+#     apply_auto_sac_policies,
+#     get_auto_sac_policies,
+#     SACAlgorithm,
+# )
 from torch._subclasses.fake_tensor import FakeTensorMode
 
 from exp_utils import create_training_setup, AC, DEVICE, gpu_types, model_names, Precision, runtime_est_modes, ExpType, OUT_DIR, write_to_logfile, override_args_with_configs
@@ -40,7 +40,7 @@ class Experiment:
 
         self.runtime_kwargs = {"estimate_mode_type": args.runtime_estimation_mode}
         self.ac_mode = AC(args.ac_mode)
-        self.sac_algo = SACAlgorithm(args.sac_algo)
+        # self.sac_algo = SACAlgorithm(args.sac_algo)
         self.memory_budget = args.memory_budget
 
         init_mode = contextlib.nullcontext() if self.exp_type in [ExpType.real_execution, ExpType.test] else FakeTensorMode()
@@ -60,9 +60,9 @@ class Experiment:
         }
         self.gpu_type = args.gpu_type
         self.train_step, self.models, self.optimizers, self.inputs = create_training_setup(**self.setup_cfg)
-        if self.ac_mode == AC.AUTO:
-            with init_mode:
-                self.optimization_times = self.auto_sac(self.memory_budget, self.sac_algo, self.runtime_kwargs)
+        # if self.ac_mode == AC.AUTO:
+        #     with init_mode:
+        #         self.optimization_times = self.auto_sac(self.memory_budget, self.sac_algo, self.runtime_kwargs)
         
         for model in self.models:
             param_count = 0
@@ -159,35 +159,37 @@ class Experiment:
 
         return iter_time, peak_active, peak_reserved
 
-    def auto_sac(self, memory_budget: float, sac_algorithm: SACAlgorithm, runtime_kwargs: Dict[str, Any]):
-        auto_sac_result, optimization_times = get_auto_sac_policies(
-            self.train_step,
-            self.models,
-            self.optimizers,
-            self.inputs,
-            torch.device(DEVICE),
-            memory_budget,
-            sac_algorithm,
-            runtime_kwargs=runtime_kwargs
-        )
-        for model in self.models:
-            apply_auto_sac_policies(
-                model, auto_sac_result.sac_policies, preserve_rng_state=False
-            )
-        print(
-            f"Memory Budget: {memory_budget} GiB\n"
-            f"Auto-SAC Estimated Memory: {auto_sac_result.peak_mem / _GiB} GiB\n"
-            f"Estimated recomputation time: {auto_sac_result.recomputation_time} ms"
-        )
-        print("Auto-SAC Decisions: ")
-        for m_name, budget in auto_sac_result.ac_decisions.items():
-            print(f"{m_name}: {budget}")
-        return optimization_times
+    # def auto_sac(self, memory_budget: float, sac_algorithm: SACAlgorithm, runtime_kwargs: Dict[str, Any]):
+    #     auto_sac_result, optimization_times = get_auto_sac_policies(
+    #         self.train_step,
+    #         self.models,
+    #         self.optimizers,
+    #         self.inputs,
+    #         torch.device(DEVICE),
+    #         memory_budget,
+    #         sac_algorithm,
+    #         runtime_kwargs=runtime_kwargs
+    #     )
+    #     for model in self.models:
+    #         apply_auto_sac_policies(
+    #             model, auto_sac_result.sac_policies, preserve_rng_state=False
+    #         )
+    #     print(
+    #         f"Memory Budget: {memory_budget} GiB\n"
+    #         f"Auto-SAC Estimated Memory: {auto_sac_result.peak_mem / _GiB} GiB\n"
+    #         f"Estimated recomputation time: {auto_sac_result.recomputation_time} ms"
+    #     )
+    #     print("Auto-SAC Decisions: ")
+    #     for m_name, budget in auto_sac_result.ac_decisions.items():
+    #         print(f"{m_name}: {budget}")
+    #     return optimization_times
 
     def run(self,):
         cfg = self.setup_cfg
         log_record = [
-            cfg['model_name'], cfg['batch_size'], cfg["seq_len"], cfg["image_size"], cfg["num_denoising_steps"], cfg['precision'].value, cfg['ac'].value, self.sac_algo.value,
+            # cfg['model_name'], cfg['batch_size'], cfg["seq_len"], cfg["image_size"], cfg["num_denoising_steps"], cfg['precision'].value, cfg['ac'].value, self.sac_algo.value,
+            cfg['model_name'], cfg['batch_size'], cfg["seq_len"], cfg["image_size"], cfg["num_denoising_steps"], cfg['precision'].value, cfg['ac'].value,
+            
         ]
         if self.exp_type == ExpType.test:
             iter_time, peak_active, peak_reserved = self.test()
@@ -365,13 +367,13 @@ if __name__ == "__main__":
         default=68.0,
         help=f"Memory Budget for Auto SAC"
     )
-    parser.add_argument(
-        "--sac_algo",
-        type=str,
-        default=SACAlgorithm.OPTIMAL.value,
-        choices=[algo.value for algo in SACAlgorithm], 
-        help=f"SAC Algorithm to use for Auto SAC"
-    )
+    # parser.add_argument(
+    #     "--sac_algo",
+    #     type=str,
+    #     default=SACAlgorithm.OPTIMAL.value,
+    #     choices=[algo.value for algo in SACAlgorithm], 
+    #     help=f"SAC Algorithm to use for Auto SAC"
+    # )
     parser.add_argument(
         "--runtime_estimation_mode",
         type=str,
@@ -410,12 +412,12 @@ if __name__ == "__main__":
                         r_args = copy.deepcopy(b_args)
                         r_args.runtime_estimation_mode = est_mode
                         futures.append(executor.submit(experiment_runner, r_args))
-                elif args.auto_sac:
-                    sac_algos = [alg.value for alg in SACAlgorithm]
-                    for sac_algo in sac_algos:
-                        s_args = copy.deepcopy(b_args)
-                        s_args.sac_algo = sac_algo
-                        futures.append(executor.submit(experiment_runner, s_args))
+                # elif args.auto_sac:
+                #     sac_algos = [alg.value for alg in SACAlgorithm]
+                #     for sac_algo in sac_algos:
+                #         s_args = copy.deepcopy(b_args)
+                #         s_args.sac_algo = sac_algo
+                #         futures.append(executor.submit(experiment_runner, s_args))
                 else:
                     futures.append(executor.submit(experiment_runner, b_args))
 

@@ -9,8 +9,8 @@ import timm
 import timm.optim
 from transformers import AutoConfig, AutoModelForCausalLM, AutoModelForSeq2SeqLM, CLIPModel
 from diffusers import StableDiffusion3Pipeline
-from diffusers import FluxTransformer2DModel, FluxPipeline
-from transformers import CLIPTextModel, CLIPTokenizer 
+from diffusers import FluxTransformer2DModel, FluxPipeline, FlowMatchEulerDiscreteScheduler
+from transformers import CLIPTextModel, CLIPTokenizer, T5EncoderModel, T5TokenizerFast 
 from diffusers import UNet2DConditionModel, AutoencoderKL, DDPMScheduler
 from torchmultimodal.modules.losses.contrastive_loss_with_temperature import (
     ContrastiveLossWithTemperature,
@@ -23,7 +23,7 @@ from torch.distributed.algorithms._checkpoint.checkpoint_wrapper import checkpoi
 
 
 DEVICE = "cuda:0"
-BASE_DIR = "/n/netscratch/idreos_lab/Lab/spurandare/auto-sac"
+BASE_DIR = "/n/netscratch/idreos_lab/Lab/spurandare/mem-run-estimator-fork"
 # BASE_DIR = "/n/holylabs/LABS/acc_lab/Users/golden/CS2881r/mem-run-estimator-fork"
 OUT_DIR = f"{BASE_DIR}/outputs"
 gpu_types: Set[str] = {"H100", "A100"}
@@ -39,7 +39,6 @@ model_names: Set[str] = {
     "timm_convnext_v2",
     "stable_diffusion",
     "flux",
-    "stable_diffusion_mmdit"
 }
 
 class ExpType(StrEnum):
@@ -68,7 +67,6 @@ model_cards: Dict[str, str] = {
     "hf_clip": "openai/clip-vit-large-patch14-336",
     "stable_diffusion": "stable-diffusion-v1-5/stable-diffusion-v1-5",
     "flux": "black-forest-labs/FLUX.1-schnell",
-    "stable_diffusion_mmdit": ["stabilityai/stable-diffusion-3-medium-diffusers"]
 }
 
 precision_to_dtype: Dict[Precision, torch.dtype] = {
@@ -83,8 +81,7 @@ model_class: Dict[str, Type] = {
     "gemma_2b": AutoModelForCausalLM,
     "hf_clip": CLIPModel,
     "stable_diffusion": [UNet2DConditionModel, AutoencoderKL, CLIPTextModel, DDPMScheduler],
-    "flux": FluxTransformer2DModel,
-    "stable_diffusion_mmdit": [StableDiffusion3Pipeline]
+    "flux": [FluxTransformer2DModel, CLIPTokenizer, T5TokenizerFast, CLIPTextModel, T5EncoderModel, AutoencoderKL, FlowMatchEulerDiscreteScheduler],
 }
 
 model_ac_classes: Dict[str, List[str]] = {
@@ -96,7 +93,6 @@ model_ac_classes: Dict[str, List[str]] = {
     "hf_clip": ["CLIPEncoderLayer",],
     "stable_diffusion": ["BasicTransformerBlock", "ResnetBlock2D"],
     "flux": ["FluxTransformer2DModel"], ### ???
-    "stable_diffusion_mmdit": ["JointTransformerBlock"] ### ???
 }
 
 def generate_inputs_and_labels(
@@ -128,31 +124,11 @@ def generate_noise_and_timesteps(
     timesteps = torch.randint(0, num_denoise, (bsz,), dtype=torch.int64, device=dev)
     return (pixel_img, timesteps)
 
-def generate_flux_inputs(
-        batch_size: int, image_size:int, seq_len:int, in_channels:int, joint_attention_dim:int, pooled_projection_dim:int, dtype: torch.dtype, dev: torch.device
-) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
-
-    hidden_states = torch.randn((batch_size, int((image_size/8)*2), in_channels), dtype=dtype, device=dev)
-    encoder_hidden_states = torch.randn((batch_size, seq_len, joint_attention_dim), dtype=dtype, device=dev)
-    pooled_projections = torch.randn((batch_size, pooled_projection_dim), dtype=dtype, device=dev)
-    timestep = torch.tensor([0], dtype=dtype, device=dev)
-    img_ids = torch.randn((int((image_size/8)*2), 3), dtype=dtype, device=dev)
-    txt_ids = torch.randn((seq_len, 3), dtype=dtype, device=dev)
-    target = torch.randn_like(hidden_states)
-
-    return (hidden_states, encoder_hidden_states, pooled_projections, timestep, img_ids, txt_ids, target)
-
-def generate_sd3_inputs(
-        batch_size: int, image_size:int, seq_len:int, in_channels:int, joint_attention_dim:int, pooled_projection_dim:int, embed_dim:int, dtype: torch.dtype, dev: torch.device
-) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
-
-    hidden_states = torch.randn((batch_size, in_channels, image_size, image_size), dtype=dtype, requires_grad=True).to(dev)
-    encoder_hidden_states = torch.randn((batch_size, seq_len, embed_dim), dtype=dtype, requires_grad=True).to(dev)
-    pooled_projections = torch.randn((batch_size, pooled_projection_dim), dtype=dtype, requires_grad=True).to(dev)
-    timestep = torch.tensor([0], dtype=dtype, requires_grad=True).to(dev)
-    target = torch.randn_like(hidden_states, requires_grad=True).to(dev)
-
-    return (hidden_states, encoder_hidden_states, pooled_projections, timestep, target)
+def generate_flux_img_ids(
+        im_sz:int, channels: int, dtype: torch.dtype, dev: torch.device
+) -> torch.Tensor:
+    img_ids = torch.randn(im_sz // 2 * im_sz // 2, channels, dtype=dtype, device=dev)
+    return img_ids
 
 def create_optimizer(param_iter: Iterator) -> optim.Optimizer:
     optimizer = optim.Adam(
@@ -366,97 +342,24 @@ def create_training_setup(
         model_card = model_cards[model_name]
         model_cls = model_class[model_name]
 
-        with init_mode:
-            with torch.device(dev):
-                transformer = model_cls.from_pretrained(model_card, subfolder="transformer", torch_dtype=dtype)
-
-                vae = model_cls.from_pretrained(model_card, subfolder="vae", torch_dtype=dtype)
-                text_encoder = model_cls.from_pretrained(model_card, subfolder="text_encoder", torch_dtype=dtype)
-                text_encoder_2 = model_cls.from_pretrained(model_card, subfolder="text_encoder_2", torch_dtype=dtype)
-                tokenizer = model_cls.from_pretrained(model_card, subfolder="tokenizer", torch_dtype=dtype)
-                tokenizer_2 = model_cls.from_pretrained(model_card, subfolder="tokenizer_2", torch_dtype=dtype)
-                scheduler = model_cls.from_pretrained(model_card, subfolder="scheduler", torch_dtype=dtype)
-
-            optimizer = create_optimizer(transformer.parameters())
-
-            if ac == AC.FULL:
-                ac_classes = model_ac_classes[model_name]
-                apply_ac(unet, ac_classes)
-            in_channels = model.in_channels
-            joint_attention_dim = model.joint_attention_dim
-            pooled_projection_dim = model.pooled_projection_dim
-            flux_inputs = generate_flux_inputs(
-                batch_size, image_size, seq_len, in_channels, joint_attention_dim, pooled_projection_dim, dtype, dev
-            )
-
-
-
-        # Training loop
-        def flux_train_step(
-            models: List[nn.Module], optimizers: List[optim.Optimizer], flux_inputs
-        ):
-            transformer = models[0]
-            optimizer = optimizers[0]
-            hidden_states, encoder_hidden_states, pooled_projections, timestep, img_ids, txt_ids, target = flux_inputs
-
-
-            # overwrite encoder_hidden_states and pooled_projections from real models:
-
-            ### Text Encoder 2
-            text_input_ids = torch.randn((batch_size, 77))   # hardcode to 77 for now, todo: add two sequence lengths for flux
-            pooled_prompt_embeds = models[2](text_input_ids.to(DEVICE), output_hidden_states=False)[0]  ### text_encoder
-
-            ### Text Encoder 1
-            text_input_ids = torch.randn((batch_size, seq_len))
-            prompt_embeds = models[1](text_input_ids.to(DEVICE), output_hidden_states=False)    ### text_encoder
-
-            prompt_embeds = prompt_embeds.pooler_output
-            prompt_embeds = prompt_embeds.to(dtype=models[1].dtype, device=DEVICE)
-            text_ids = torch.zeros(prompt_embeds.shape[1], 3).to(device=DEVICE, dtype=dtype)
-            ### now have prompt_embeds and pooled_prompt_embeds and text_ids that can feed into the inputs
-
-            
-            # Prepare inputs for FluxTransformer
-            inputs = {
-                "hidden_states": hidden_states, 
-                "encoder_hidden_states": prompt_embeds,
-                "pooled_projections": pooled_prompt_embeds,
-                "timestep": timestep,
-                "img_ids": img_ids,
-                "txt_ids": text_ids,
-            }
-
-            with sdpa_kernel([SDPBackend.FLASH_ATTENTION, SDPBackend.CUDNN_ATTENTION, SDPBackend.EFFICIENT_ATTENTION]):
-                with amp_context:
-                    output = transformer(**inputs).sample
-                    loss = nn.functional.mse_loss(output, target) 
-                loss.backward()
-                optimizer.step()
-                optimizer.zero_grad()
-
-        return (flux_train_step, [transformer, text_encoder, text_encoder_2, tokenizer, tokenizer_2], [optimizer], flux_inputs)
-
-
-
-
-    elif model_name == "stable_diffusion_mmdit":
-        
-        model_card = model_cards[model_name]
-        model_cls = model_class[model_name]
+        transformer_config = model_cls[0].load_config(model_card, subfolder="transformer")
+        text_encoder_config = AutoConfig.from_pretrained(model_card, subfolder="text_encoder")
+        text_encoder_2_config = AutoConfig.from_pretrained(model_card, subfolder="text_encoder_2")
+        vae_config = model_cls[5].load_config(model_card, subfolder="vae")
+        scheduler_config = model_cls[6].load_config(model_card, subfolder="scheduler")
 
         with init_mode:
             with torch.device(dev):
 
-                model = StableDiffusion3Pipeline.from_pretrained("stabilityai/stable-diffusion-3-medium-diffusers", torch_dtype=torch.float16)
+                transformer = model_cls[0].from_config(transformer_config).to(dtype=dtype)
+                tokenizer = model_cls[1].from_pretrained(model_card, subfolder="tokenizer", torch_dtype=dtype)
+                tokenizer_2 = model_cls[2].from_pretrained(model_card, subfolder="tokenizer_2", torch_dtype=dtype)
+                text_encoder = model_cls[3]._from_config(text_encoder_config).to(dtype=dtype)
+                text_encoder_2 = model_cls[4]._from_config(text_encoder_2_config).to(dtype=dtype)
+                vae = model_cls[5].from_config(vae_config).to(dtype=dtype)
+                scheduler = model_cls[6].from_config(scheduler_config)
+                del vae.decoder
 
-                transformer = model.transformer
-                vae = model.vae
-                text_encoder = model.text_encoder
-                text_encoder_2 = model.text_encoder_2
-                tokenizer = model.tokenizer
-                tokenizer_2 = model.tokenizer_2
-                tokenizer_3 = model.tokenizer_3
-                scheduler = model.scheduler
 
             optimizer = create_optimizer(transformer.parameters())
 
@@ -464,37 +367,70 @@ def create_training_setup(
                 ac_classes = model_ac_classes[model_name]
                 apply_ac(transformer, ac_classes)
 
-
-        def hf_train_step(
-                model: nn.Module, optim: optim.Optimizer,
-            ):
-
-                in_channels = model.in_channels
-                joint_attention_dim = model.joint_attention_dim
-                pooled_projection_dim = model.pooled_projection_dim
-                embed_dim = 4096
-
-                hidden_states, encoder_hidden_states, pooled_projections, timestep, target = generate_sd3_inputs(
-                    batch_size, image_size, seq_len, in_channels, joint_attention_dim, pooled_projection_dim, embed_dim, dtype, dev)
-
-                inputs = {
-                    "hidden_states": hidden_states,
-                    "encoder_hidden_states": encoder_hidden_states,
-                    "pooled_projections": pooled_projections,
-                    "timestep": timestep,
-                }
-
-                with sdpa_kernel([SDPBackend.FLASH_ATTENTION, SDPBackend.CUDNN_ATTENTION, SDPBackend.EFFICIENT_ATTENTION]):
-                    with amp_context:
-                        noise_pred = model(**inputs).sample
-                        loss = torch.nn.functional.mse_loss(hidden_states, target.to(dev))
-                    loss.backward()
-                    optimizer.step()
-                    optimizer.zero_grad()
-
-        return (model.transformer, optimizer, hf_train_step)
+            scheduler._step_index = 0
+            pixel_img, timesteps = generate_noise_and_timesteps(batch_size, image_size, num_denoising_steps, dtype, dev)
+            input_ids, labels = generate_inputs_and_labels(batch_size, text_encoder.config.vocab_size, seq_len, dev)
+            vae_scale_factor = 2 ** (len(vae.config.block_out_channels) - 1)
+            image_id_size = 2 * (int(image_size) // (vae_scale_factor * 2))
+            img_ids = generate_flux_img_ids(image_id_size, vae.config.in_channels, dtype, dev) ## img_ids are generated randomly here, tried to generate them from latents instead but wasn't able to
+            flux_inputs = (input_ids, labels, pixel_img, timesteps, img_ids)
 
 
+
+        # Training loop
+        def flux_train_step(
+            models: List[nn.Module], optimizers: List[optim.Optimizer], flux_inputs
+        ):
+            
+            transformer = models[0]
+            optimizer = optimizers[0]
+
+            input_ids, _, pixel_img, timesteps, img_ids = flux_inputs
+
+
+            with torch.no_grad():
+                ### Text Encoder 2
+                text_input_ids = torch.randint(0, tokenizer_2.vocab_size, (batch_size, seq_len), device=dev)   
+                prompt_embeds = models[2](text_input_ids, output_hidden_states=False)[0]
+                text_ids = torch.zeros(prompt_embeds.shape[1], 3, device=dev, dtype=dtype)
+
+                ### Text Encoder 1
+                text_input_ids = torch.randint(0, tokenizer.vocab_size, (batch_size, 77), device=dev) # hardcode to 77 for now, later can add two sequence lengths for flux in parameters
+                pooled_prompt_embeds = models[1](text_input_ids, output_hidden_states=False)
+
+                pooled_prompt_embeds = pooled_prompt_embeds.pooler_output
+                pooled_prompt_embeds = pooled_prompt_embeds.to(dtype=models[1].dtype, device=dev)
+                
+                # VAE
+                latents = models[3].encode(pixel_img).latent_dist.sample()
+
+            noise = torch.randn_like(latents)
+            noisy_latents = scheduler.step(latents, scheduler.timesteps, noise).prev_sample
+
+            # Reshape
+            bs, c, h, w = noisy_latents.size()
+            noisy_latents = noisy_latents.view(bs, c, -1)
+            latents = latents.view(bs, c, -1)
+
+            # Prepare inputs for FluxTransformer
+            inputs = {
+                "hidden_states": noisy_latents, 
+                "encoder_hidden_states": prompt_embeds,
+                "pooled_projections": pooled_prompt_embeds,
+                "timestep": timesteps,
+                "img_ids": img_ids,
+                "txt_ids": text_ids,
+            }
+
+            with sdpa_kernel([SDPBackend.FLASH_ATTENTION, SDPBackend.CUDNN_ATTENTION, SDPBackend.EFFICIENT_ATTENTION]):
+                with amp_context:
+                    output = transformer(**inputs).sample
+                    loss = nn.functional.mse_loss(output, latents) 
+                loss.backward()
+                optimizer.step()
+                optimizer.zero_grad()
+
+        return (flux_train_step, [transformer, text_encoder, text_encoder_2, vae], [optimizer], flux_inputs)
 
     else:
          raise ValueError(f"No setup is available for {model_name}. Please choose from {model_names}")
