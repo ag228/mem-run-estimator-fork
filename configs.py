@@ -61,7 +61,7 @@ input_configs: Dict[str, List[Dict[str, Union[AC, Precision, int]]]] = {
         {"batch_size": 80, "seq_len": 77, "precision": Precision.FP, "ac": AC.AUTO, "image_size": 512, "num_denoising_steps": 50},
     ],
     "flux": [
-        {"batch_size": 16, "seq_len": 512, "precision": Precision.FP, "ac": AC.NONE, "image_size": 64, "num_denoising_steps": 10},
+        {"batch_size": 4, "seq_len": 512, "precision": Precision.FP, "ac": AC.NONE, "image_size": 64, "num_denoising_steps": 10},
         {"batch_size": 32, "seq_len": 256, "precision": Precision.FP, "ac": AC.NONE, "image_size": 64, "num_denoising_steps": 50},
         {"batch_size": 64, "seq_len": 256, "precision": Precision.FP, "ac": AC.NONE, "image_size": 64, "num_denoising_steps": 50},
         {"batch_size": 1, "seq_len": 256, "precision": Precision.FP, "ac": AC.NONE, "image_size": 128, "num_denoising_steps": 50},

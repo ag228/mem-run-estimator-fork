@@ -362,6 +362,17 @@ if __name__ == "__main__":
         help=f"Preset config index for the model"
     )
     parser.add_argument(
+        "--world_size",
+        type=int,
+        default=128,
+        help=f"World size to use for FSDP"
+    )
+    parser.add_argument(
+        "--enable_fake_pg", 
+        action="store_true", 
+        help="Use FakeProcessGroup for distributed training"
+    )
+    parser.add_argument(
         "--memory_budget",
         type=float,
         default=68.0,

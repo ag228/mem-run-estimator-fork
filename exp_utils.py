@@ -92,7 +92,12 @@ model_ac_classes: Dict[str, List[str]] = {
     "timm_vit": ["Block",],
     "hf_clip": ["CLIPEncoderLayer",],
     "stable_diffusion": ["BasicTransformerBlock", "ResnetBlock2D"],
-    "flux": ["FluxTransformer2DModel"], ### ???
+    "flux": ["FluxSingleTransformerBlock", "FluxTransformerBlock"],
+}
+
+model_fsdp_classes: Dict[str, List[str]] = {
+   "AutoencoderKL" : ["DownEncoderBlock2D", "UNetMidBlock2D", "Encoder"],
+   "FluxTransformer2DModel": ["FluxSingleTransformerBlock", "FluxTransformerBlock"],
 }
 
 def generate_inputs_and_labels(
@@ -150,6 +155,14 @@ def apply_ac(model: nn.Module, ac_classes: List[str]):
         else:
             return None
     _post_order_apply(model, fn=ac_wrapper)
+
+def apply_fsdp(model: nn.Module, fsdp_classes: List[str], fully_shard_fn: Callable):
+    def fsdp_wrapper(module: nn.Module) -> None:
+        module_class = module.__class__.__name__
+        if module_class in fsdp_classes:
+            fully_shard_fn(module)
+    _post_order_apply(model, fn=fsdp_wrapper)
+    fully_shard_fn(model)
 
 def create_training_setup(
         model_name: str,
@@ -338,6 +351,28 @@ def create_training_setup(
 
 
     elif model_name == "flux":
+        from functools import partial
+        from torch.distributed._composable.fsdp import (
+            fully_shard,
+            MixedPrecisionPolicy,
+        )
+        from torch.distributed._tensor import DeviceMesh
+        from torch.testing._internal.distributed.fake_pg import FakeStore
+
+        world_size = 128
+        store = FakeStore()
+        torch.distributed.init_process_group(
+            "fake", rank=0, world_size=world_size, store=store
+        )
+        mesh = DeviceMesh("cuda", torch.arange(0, world_size))
+        mp_policy = MixedPrecisionPolicy(param_dtype=torch.bfloat16, reduce_dtype=torch.float32)
+        reshard_after_forward = True
+        fully_shard_fn = partial(
+                fully_shard,
+                mesh=mesh,
+                reshard_after_forward=reshard_after_forward,
+                mp_policy=mp_policy,
+        )
 
         model_card = model_cards[model_name]
         model_cls = model_class[model_name]
@@ -349,17 +384,23 @@ def create_training_setup(
         scheduler_config = model_cls[6].load_config(model_card, subfolder="scheduler")
 
         with init_mode:
-            with torch.device(dev):
-
-                transformer = model_cls[0].from_config(transformer_config).to(dtype=dtype)
+            with torch.device(dev):              
                 tokenizer = model_cls[1].from_pretrained(model_card, subfolder="tokenizer", torch_dtype=dtype)
                 tokenizer_2 = model_cls[2].from_pretrained(model_card, subfolder="tokenizer_2", torch_dtype=dtype)
                 text_encoder = model_cls[3]._from_config(text_encoder_config).to(dtype=dtype)
-                text_encoder_2 = model_cls[4]._from_config(text_encoder_2_config).to(dtype=dtype)
+                text_encoder_2 = model_cls[4]._from_config(text_encoder_2_config).to(dtype=dtype)           
+                scheduler = model_cls[6].from_config(scheduler_config)          
+            with torch.device("meta"):
+                transformer = model_cls[0].from_config(transformer_config).to(dtype=dtype)
                 vae = model_cls[5].from_config(vae_config).to(dtype=dtype)
-                scheduler = model_cls[6].from_config(scheduler_config)
                 del vae.decoder
 
+            transformer_fsdp_classes = model_fsdp_classes[transformer.__class__.__name__]
+            vae_fsdp_classes = model_fsdp_classes[vae.__class__.__name__]
+            apply_fsdp(transformer, transformer_fsdp_classes, fully_shard_fn)
+            apply_fsdp(vae, vae_fsdp_classes, fully_shard_fn)
+            transformer = transformer.to_empty(device=dev)
+            vae = vae.to_empty(device=dev)
 
             optimizer = create_optimizer(transformer.parameters())
 
@@ -369,11 +410,13 @@ def create_training_setup(
 
             scheduler._step_index = 0
             pixel_img, timesteps = generate_noise_and_timesteps(batch_size, image_size, num_denoising_steps, dtype, dev)
-            input_ids, labels = generate_inputs_and_labels(batch_size, text_encoder.config.vocab_size, seq_len, dev)
+            input_ids, _ = generate_inputs_and_labels(batch_size, tokenizer.vocab_size, tokenizer.model_max_length, dev)
+            input_ids2, _ = generate_inputs_and_labels(batch_size, tokenizer_2.vocab_size, seq_len, dev)
+
             vae_scale_factor = 2 ** (len(vae.config.block_out_channels) - 1)
             image_id_size = 2 * (int(image_size) // (vae_scale_factor * 2))
             img_ids = generate_flux_img_ids(image_id_size, vae.config.in_channels, dtype, dev) ## img_ids are generated randomly here, tried to generate them from latents instead but wasn't able to
-            flux_inputs = (input_ids, labels, pixel_img, timesteps, img_ids)
+            flux_inputs = (input_ids, input_ids2, pixel_img, timesteps, img_ids)
 
 
 
@@ -385,18 +428,16 @@ def create_training_setup(
             transformer = models[0]
             optimizer = optimizers[0]
 
-            input_ids, _, pixel_img, timesteps, img_ids = flux_inputs
+            input_ids, input_ids2, pixel_img, timesteps, img_ids = flux_inputs
 
 
             with torch.no_grad():
-                ### Text Encoder 2
-                text_input_ids = torch.randint(0, tokenizer_2.vocab_size, (batch_size, seq_len), device=dev)   
-                prompt_embeds = models[2](text_input_ids, output_hidden_states=False)[0]
+                ### Text Encoder 2  
+                prompt_embeds = models[2](input_ids2, output_hidden_states=False)[0]
                 text_ids = torch.zeros(prompt_embeds.shape[1], 3, device=dev, dtype=dtype)
 
                 ### Text Encoder 1
-                text_input_ids = torch.randint(0, tokenizer.vocab_size, (batch_size, 77), device=dev) # hardcode to 77 for now, later can add two sequence lengths for flux in parameters
-                pooled_prompt_embeds = models[1](text_input_ids, output_hidden_states=False)
+                pooled_prompt_embeds = models[1](input_ids, output_hidden_states=False)
 
                 pooled_prompt_embeds = pooled_prompt_embeds.pooler_output
                 pooled_prompt_embeds = pooled_prompt_embeds.to(dtype=models[1].dtype, device=dev)
